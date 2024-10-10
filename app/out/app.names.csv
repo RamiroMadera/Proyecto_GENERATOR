@@ -1,0 +1,220 @@
+examples/c/app/out/app.elf:10000048 00000074 b ili9341_drivers_pool
+examples/c/app/out/app.elf:1a002120 00000004 t InitClkStates
+examples/c/app/out/app.elf:1a002124 00000074 t pinmuxing
+examples/c/app/out/app.elf:1a000b7c 00000044 t Board_LED_Init
+examples/c/app/out/app.elf:1a000bc0 00000040 t Board_TEC_Init
+examples/c/app/out/app.elf:1a000c00 00000040 t Board_GPIO_Init
+examples/c/app/out/app.elf:1a000c40 00000030 t Board_ADC_Init
+examples/c/app/out/app.elf:1a000c70 00000038 t Board_SPI_Init
+examples/c/app/out/app.elf:1a000ca8 00000024 t Board_I2C_Init
+examples/c/app/out/app.elf:1a00219c 00000008 t GpioButtons
+examples/c/app/out/app.elf:1a0021a4 0000000c t GpioLeds
+examples/c/app/out/app.elf:1a0021b0 00000012 t GpioPorts
+examples/c/app/out/app.elf:1a000d28 0000001a t SSP_Write2BFifo
+examples/c/app/out/app.elf:1a000d42 00000018 t SSP_Write1BFifo
+examples/c/app/out/app.elf:1a000d5a 00000042 t SSP_Read2BFifo
+examples/c/app/out/app.elf:1a000d9c 00000040 t SSP_Read1BFifo
+examples/c/app/out/app.elf:1a000ddc 00000014 t Chip_SSP_GetClockIndex
+examples/c/app/out/app.elf:1a000df0 00000018 t Chip_SSP_GetPeriphClockIndex
+examples/c/app/out/app.elf:10000000 00000038 d i2c
+examples/c/app/out/app.elf:1a000fb8 00000014 t Chip_ADC_GetClockIndex
+examples/c/app/out/app.elf:1a000fcc 00000032 t getClkDiv
+examples/c/app/out/app.elf:1a0021c8 00000048 t InitClkStates
+examples/c/app/out/app.elf:1a0011ec 000000a0 t pll_calc_divs
+examples/c/app/out/app.elf:1a00128c 0000010c t pll_get_frac
+examples/c/app/out/app.elf:1a001398 0000004c t Chip_Clock_FindBaseClock
+examples/c/app/out/app.elf:1a00160c 00000022 t Chip_Clock_GetDivRate
+examples/c/app/out/app.elf:100000bc 00000008 b audio_usb_pll_freq
+examples/c/app/out/app.elf:1a00221c 0000006c t periph_to_base
+examples/c/app/out/app.elf:1a001778 0000002c t Chip_UART_GetIndex
+examples/c/app/out/app.elf:1a002288 00000008 t UART_BClock
+examples/c/app/out/app.elf:1a002290 00000008 t UART_PClock
+examples/c/app/out/app.elf:10000038 00000004 d ClockSpeed
+examples/c/app/out/app.elf:1a001928 00000034 t gpioObtainPinInit
+examples/c/app/out/app.elf:100000c4 00000004 b callBackFuncParams
+examples/c/app/out/app.elf:100000c8 00000008 b tickCounter
+examples/c/app/out/app.elf:100000d0 00000004 b tickHookFunction
+examples/c/app/out/app.elf:100000d4 00000004 b g_hUsb
+examples/c/app/out/app.elf:1a002384 t __init_array_end
+examples/c/app/out/app.elf:1a002380 b __preinit_array_end
+examples/c/app/out/app.elf:1a002380 t __init_array_start
+examples/c/app/out/app.elf:1a002380 b __preinit_array_start
+examples/c/app/out/app.elf:1a001430 0000001c T Chip_Clock_GetDividerSource
+examples/c/app/out/app.elf:1a0001ba 00000002 W TIMER2_IRQHandler
+examples/c/app/out/app.elf:1a000382 0000003e T _ili9341_write_cmd
+examples/c/app/out/app.elf:1a000184 00000002 W DebugMon_Handler
+examples/c/app/out/app.elf:1a0001ba 00000002 W RIT_IRQHandler
+examples/c/app/out/app.elf:1a080000 A __top_MFlashA512
+examples/c/app/out/app.elf:1a0001ba 00000002 W ADCHS_IRQHandler
+examples/c/app/out/app.elf:1a000114 T __section_table_start
+examples/c/app/out/app.elf:1a0001ba 00000002 W FLASH_EEPROM_IRQHandler
+examples/c/app/out/app.elf:1a0001ba 00000002 W I2C0_IRQHandler
+examples/c/app/out/app.elf:1a000d20 00000008 T __stdio_init
+examples/c/app/out/app.elf:1a00017a 00000002 W HardFault_Handler
+examples/c/app/out/app.elf:1a00035e 00000024 T _ili9341_wait_for_spi_ready
+examples/c/app/out/app.elf:1a000000 A __vectors_start__
+examples/c/app/out/app.elf:1a001072 0000000c T Chip_ADC_SetResolution
+examples/c/app/out/app.elf:1a001ca4 0000002c T SysTick_Handler
+examples/c/app/out/app.elf:1a000a3c 00000002 W initialise_monitor_handles
+examples/c/app/out/app.elf:1a0001ba 00000002 W SDIO_IRQHandler
+examples/c/app/out/app.elf:1a0001ba 00000002 W ATIMER_IRQHandler
+examples/c/app/out/app.elf:1a000186 00000002 W PendSV_Handler
+examples/c/app/out/app.elf:1a000178 00000002 W NMI_Handler
+examples/c/app/out/app.elf:1a00238c R __exidx_end
+examples/c/app/out/app.elf:1a000150 T __data_section_table_end
+examples/c/app/out/app.elf:1a0001ba 00000002 W I2C1_IRQHandler
+examples/c/app/out/app.elf:1a0001ba 00000002 W UART1_IRQHandler
+examples/c/app/out/app.elf:1a0001ba 00000002 W GPIO5_IRQHandler
+examples/c/app/out/app.elf:1a0001ba 00000002 W CAN1_IRQHandler
+examples/c/app/out/app.elf:1a00068a 00000216 T _ili9341_init_display
+examples/c/app/out/app.elf:53ff6e4e A __valid_user_code_checksum
+examples/c/app/out/app.elf:1a000354 0000000a T _ili9341_write_bytes_end
+examples/c/app/out/app.elf:1a00238c R _etext
+examples/c/app/out/app.elf:1a0001ba 00000002 W USB1_IRQHandler
+examples/c/app/out/app.elf:1a0001ba 00000002 W I2S0_IRQHandler
+examples/c/app/out/app.elf:1a000404 0000000a T _ili9341_delay_ms
+examples/c/app/out/app.elf:1a0001ba 00000002 W TIMER3_IRQHandler
+examples/c/app/out/app.elf:1a0016ae 0000000c T Chip_Clock_GetBaseClocktHz
+examples/c/app/out/app.elf:1a0001ba 00000002 W UART0_IRQHandler
+examples/c/app/out/app.elf:1a0001a8 00000012 T bss_init
+examples/c/app/out/app.elf:1a0001ba 00000002 W SGPIO_IRQHandler
+examples/c/app/out/app.elf:1a000954 00000028 T ili9341_1ms_timer_cb
+examples/c/app/out/app.elf:1a001d60 T __aeabi_uldivmod
+examples/c/app/out/app.elf:100000e0 ? _noinit
+examples/c/app/out/app.elf:100000d8 00000004 B SystemCoreClock
+examples/c/app/out/app.elf:1a0017a4 00000054 T Chip_UART_Init
+examples/c/app/out/app.elf:1a0001ba 00000002 W ADC0_IRQHandler
+examples/c/app/out/app.elf:1a000180 00000002 W UsageFault_Handler
+examples/c/app/out/app.elf:1a00172c 0000004c T Chip_Clock_GetRate
+examples/c/app/out/app.elf:1a0005f0 0000009a T ili9341_set_region
+examples/c/app/out/app.elf:1a0001ba 00000002 W GPIO6_IRQHandler
+examples/c/app/out/app.elf:1a000b04 0000006c T Board_SetupClocking
+examples/c/app/out/app.elf:20008000 A __top_RamAHB32
+examples/c/app/out/app.elf:1a001d90 000002d0 T __udivmoddi4
+examples/c/app/out/app.elf:1a002198 00000004 T ExtRateIn
+examples/c/app/out/app.elf:1a0001ba 00000002 W IntDefaultHandler
+examples/c/app/out/app.elf:1a000300 T __CRP_WORD_END__
+examples/c/app/out/app.elf:1a0001ba 00000002 W GPIO1_IRQHandler
+examples/c/app/out/app.elf:1a0001ba 00000002 W SSP0_IRQHandler
+examples/c/app/out/app.elf:1a002384 R __exidx_start
+examples/c/app/out/app.elf:1a0002fc 00000004 T CRP_WORD
+examples/c/app/out/app.elf:1a000a14 00000016 T spi_tx_dma_b
+examples/c/app/out/app.elf:1a002064 00000048 T __libc_init_array
+examples/c/app/out/app.elf:1a000434 00000028 T _ili9341_fix_region
+examples/c/app/out/app.elf:1a0001ba 00000002 W ADC1_IRQHandler
+examples/c/app/out/app.elf:1a000cf0 00000030 T Board_Init
+examples/c/app/out/app.elf:1a000aca 00000002 W _init
+examples/c/app/out/app.elf:1a000114 T __data_section_table
+examples/c/app/out/app.elf:1a000e1a 000000a8 T Chip_SSP_RWFrames_Blocking
+examples/c/app/out/app.elf:1a0001ba 00000002 W RTC_IRQHandler
+examples/c/app/out/app.elf:100000e0 B _ebss
+examples/c/app/out/app.elf:1a0001ba 00000002 W TIMER0_IRQHandler
+examples/c/app/out/app.elf:1a000a40 00000088 T Reset_Handler
+examples/c/app/out/app.elf:1a001c28 0000007c T tickInit
+examples/c/app/out/app.elf:20010000 A __top_RamAHB_ETB16
+examples/c/app/out/app.elf:1a0001ba 00000002 W SPI_IRQHandler
+examples/c/app/out/app.elf:1a000f7c 00000038 T Chip_I2C_SetClockRate
+examples/c/app/out/app.elf:1a0001ba 00000002 W LCD_IRQHandler
+examples/c/app/out/app.elf:1a0013e4 0000004c T Chip_Clock_EnableCrystal
+examples/c/app/out/app.elf:1a0008a0 000000b4 T ili9341_init
+examples/c/app/out/app.elf:10008000 A __top_RamLoc32
+examples/c/app/out/app.elf:1a00018a 0000001e T data_init
+examples/c/app/out/app.elf:1a0003e2 00000022 T _ili9341_write_data
+examples/c/app/out/app.elf:1a0001ba 00000002 W TIMER1_IRQHandler
+examples/c/app/out/app.elf:1a000f58 00000024 T Chip_I2C_Init
+examples/c/app/out/app.elf:1a0001ba 00000002 W UART2_IRQHandler
+examples/c/app/out/app.elf:1a0015a0 0000006c T Chip_Clock_GetMainPLLHz
+examples/c/app/out/app.elf:1a002298 000000e6 T gpioPinsInit
+examples/c/app/out/app.elf:1a000e08 00000012 T Chip_SSP_SetClockRate
+examples/c/app/out/app.elf:1a0001ba 00000002 W GPIO2_IRQHandler
+examples/c/app/out/app.elf:1a001688 00000026 T Chip_Clock_GetBaseClock
+examples/c/app/out/app.elf:10000048 B _bss
+examples/c/app/out/app.elf:1a001040 00000032 T Chip_ADC_SetSampleRate
+examples/c/app/out/app.elf:1a000342 00000012 T _ili9341_write_bytes_start
+examples/c/app/out/app.elf:1a0001ba 00000002 W I2S1_IRQHandler
+examples/c/app/out/app.elf:1a000ec2 0000003e T Chip_SSP_SetBitRate
+examples/c/app/out/app.elf:1a000fb4 00000002 T Chip_GPIO_Init
+examples/c/app/out/app.elf:1a0021c4 00000004 T OscRateIn
+examples/c/app/out/app.elf:100000e0 ? _end_noinit
+examples/c/app/out/app.elf:10008000 A _vStackTop
+examples/c/app/out/app.elf:1a00097c 00000008 T diskTickHook
+examples/c/app/out/app.elf:1a0001ba 00000002 W SSP1_IRQHandler
+examples/c/app/out/app.elf:1a001bc4 0000002c T spiWrite
+examples/c/app/out/app.elf:1a000178 T __bss_section_table_end
+examples/c/app/out/app.elf:1a00195c 000001ac T gpioInit
+examples/c/app/out/app.elf:1a002060 00000002 W __aeabi_ldiv0
+examples/c/app/out/app.elf:1a001cd0 0000001c T USB0_IRQHandler
+examples/c/app/out/app.elf:1a0009b4 00000018 T ili9341_spi_init
+examples/c/app/out/app.elf:1a0001ba 00000002 W GPIO3_IRQHandler
+examples/c/app/out/app.elf:1a0001ba 00000002 W SCT_IRQHandler
+examples/c/app/out/app.elf:1a00144c 0000001c T Chip_Clock_GetDividerDivisor
+examples/c/app/out/app.elf:1a0002fc T __CRP_WORD_START__
+examples/c/app/out/app.elf:1a000564 0000008c T ili9341_set_orientation
+examples/c/app/out/app.elf:1a000984 00000030 T ili9341_gpio_init
+examples/c/app/out/app.elf:1a0020ac 00000010 T memset
+examples/c/app/out/app.elf:1a00017c 00000002 W MemManage_Handler
+examples/c/app/out/app.elf:1a000300 00000038 T main
+examples/c/app/out/app.elf:1a0001ba 00000002 W WDT_IRQHandler
+examples/c/app/out/app.elf:1a001b74 00000050 T spiInit
+examples/c/app/out/app.elf:2000c000 A __top_RamAHB16
+examples/c/app/out/app.elf:1008a000 A __top_RamLoc40
+examples/c/app/out/app.elf:1a000182 00000002 W SVC_Handler
+examples/c/app/out/app.elf:1a0001ba 00000002 W GPIO7_IRQHandler
+examples/c/app/out/app.elf:1a0016bc 0000003c T Chip_Clock_EnableOpts
+examples/c/app/out/app.elf:1a001468 000000b8 T Chip_Clock_GetClockInputHz
+examples/c/app/out/app.elf:1a001520 00000080 T Chip_Clock_CalcMainPLLValue
+examples/c/app/out/app.elf:1a0018d4 00000038 T SystemInit
+examples/c/app/out/app.elf:1a0001ba 00000002 W SPIFI_IRQHandler
+examples/c/app/out/app.elf:1a0001ba 00000002 W QEI_IRQHandler
+examples/c/app/out/app.elf:1a000150 T __bss_section_table
+examples/c/app/out/app.elf:1a001b08 0000006a T gpioWrite
+examples/c/app/out/app.elf:1a000ac8 00000002 W _fini
+examples/c/app/out/app.elf:1a001000 00000040 T Chip_ADC_Init
+examples/c/app/out/app.elf:100000dc 00000004 B g_pUsbApi
+examples/c/app/out/app.elf:1a000acc 00000038 T Board_SetupMuxing
+examples/c/app/out/app.elf:1a00045c 00000108 T ili9341_get_default_hw_cfg
+examples/c/app/out/app.elf:1a0017f8 000000dc T Chip_UART_SetBaudFDR
+examples/c/app/out/app.elf:10000040 00000008 D tickRateMS
+examples/c/app/out/app.elf:1a0009fc 00000018 T gpio_rst_pin
+examples/c/app/out/app.elf:1a0001ba 00000002 W ETH_IRQHandler
+examples/c/app/out/app.elf:1a000a2c 00000010 T spi_tx_dma_ready
+examples/c/app/out/app.elf:10000000 ? _end_uninit_RESERVED
+examples/c/app/out/app.elf:1a00040e 0000001c T _ili9341_region_valid
+examples/c/app/out/app.elf:1a0001ba 00000002 W CAN0_IRQHandler
+examples/c/app/out/app.elf:10000000 D _data
+examples/c/app/out/app.elf:1a001bf0 00000020 T tickCallbackSet
+examples/c/app/out/app.elf:100000e0 B _pvHeapStart
+examples/c/app/out/app.elf:1a000178 T __section_table_end
+examples/c/app/out/app.elf:1a000f00 00000038 T Chip_SSP_Init
+examples/c/app/out/app.elf:1a0001ba 00000002 W GINT0_IRQHandler
+examples/c/app/out/app.elf:1a0009cc 00000018 T gpio_cs_pin
+examples/c/app/out/app.elf:1a0001ba 00000002 W DAC_IRQHandler
+examples/c/app/out/app.elf:1a000ccc 00000024 T Board_Debug_Init
+examples/c/app/out/app.elf:10000048 D _edata
+examples/c/app/out/app.elf:1a000f38 00000020 T Chip_I2C_EventHandler
+examples/c/app/out/app.elf:1a0001ba 00000002 W M0SUB_IRQHandler
+examples/c/app/out/app.elf:1a001080 00000158 T Chip_SetupCoreClock
+examples/c/app/out/app.elf:1a0001ba 00000002 W GPIO0_IRQHandler
+examples/c/app/out/app.elf:1a000000 00000040 T g_pfnVectors
+examples/c/app/out/app.elf:1a0011d8 00000014 T SystemCoreClockUpdate
+examples/c/app/out/app.elf:1a0001ba 00000002 W DMA_IRQHandler
+examples/c/app/out/app.elf:1a0001ba 00000002 W EVRT_IRQHandler
+examples/c/app/out/app.elf:1b080000 A __top_MFlashB512
+examples/c/app/out/app.elf:1a002060 00000002 W __aeabi_idiv0
+examples/c/app/out/app.elf:1a00017e 00000002 W BusFault_Handler
+examples/c/app/out/app.elf:1a0016f8 00000034 T Chip_Clock_Enable
+examples/c/app/out/app.elf:1a0001ba 00000002 W UART3_IRQHandler
+examples/c/app/out/app.elf:1a0001ba 00000002 W MCPWM_IRQHandler
+examples/c/app/out/app.elf:1a0001ba 00000002 W M0APP_IRQHandler
+examples/c/app/out/app.elf:1a001cec 00000074 T boardInit
+examples/c/app/out/app.elf:1a000040 000000d4 T g_pfnVendorVectors
+examples/c/app/out/app.elf:1a0001ba 00000002 W GINT1_IRQHandler
+examples/c/app/out/app.elf:1a0003c0 00000022 T _ili9341_write_bytes
+examples/c/app/out/app.elf:1a000338 0000000a T _ili9341_enable
+examples/c/app/out/app.elf:1a001c10 00000018 T tickPowerSet
+examples/c/app/out/app.elf:1a0009e4 00000018 T gpio_dc_pin
+examples/c/app/out/app.elf:1a001630 00000058 T Chip_Clock_SetBaseClock
+examples/c/app/out/app.elf:1a00190c 0000001c T cyclesCounterInit
+examples/c/app/out/app.elf:1a0001ba 00000002 W GPIO4_IRQHandler
+examples/c/app/out/app.elf:1a000b70 0000000c T Board_SystemInit
+examples/c/app/out/app.elf:1a00042a 0000000a T _ili9341_swap
