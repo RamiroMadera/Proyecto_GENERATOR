@@ -24,8 +24,8 @@ int spi_tx_dma_b(const uint8_t* data, uint32_t len);
 
 /* Cons */
 
-#define CS_PIN      GPIO0
-#define DC_PIN      GPIO2
-#define RST_PIN     GPIO4
+#define CS_PIN      LCD1
+#define DC_PIN      GPIO0
+#define RST_PIN     GPIO2
 
 #endif // ILI9341_ILI9341_LPC4337_PATCH_H_

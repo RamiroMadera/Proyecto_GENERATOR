@@ -31,7 +31,7 @@ void gpio_cs_pin(ili9341_gpio_pin_value_t value) {
     if (value == ILI9341_PIN_RESET) {
         gpioWrite(CS_PIN, 0);
     } else {
-        gpioWrite(CS_PIN, 0);
+        gpioWrite(CS_PIN, 1);
     }
 }
 
@@ -39,7 +39,7 @@ void gpio_dc_pin(ili9341_gpio_pin_value_t value) {
     if (value == ILI9341_PIN_RESET) {
         gpioWrite(DC_PIN, 0);
     } else {
-        gpioWrite(DC_PIN, 0);
+        gpioWrite(DC_PIN, 1);
     }
 }
 
@@ -47,7 +47,7 @@ void gpio_rst_pin(ili9341_gpio_pin_value_t value) {
     if (value == ILI9341_PIN_RESET) {
         gpioWrite(RST_PIN, 0);
     } else {
-        gpioWrite(RST_PIN, 0);
+        gpioWrite(RST_PIN, 1);
     }
 }
 

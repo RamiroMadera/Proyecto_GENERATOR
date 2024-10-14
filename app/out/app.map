@@ -16001,7 +16001,7 @@ END GROUP
  *(.rodata.$Flash2*)
  *(.rodata.$MFlashB512*)
 
-.text           0x1a000000     0x2380
+.text           0x1a000000     0x2384
  FILL mask 0xff
                 0x1a000000                __vectors_start__ = ABSOLUTE (.)
  *(.isr_vector)
@@ -16014,19 +16014,19 @@ END GROUP
                 0x1a000114                . = ALIGN (0x4)
                 0x1a000114                __section_table_start = .
                 0x1a000114                __data_section_table = .
-                0x1a000114        0x4 LONG 0x1a00238c LOADADDR (.data)
+                0x1a000114        0x4 LONG 0x1a002390 LOADADDR (.data)
                 0x1a000118        0x4 LONG 0x10000000 ADDR (.data)
                 0x1a00011c        0x4 LONG 0x48 SIZEOF (.data)
-                0x1a000120        0x4 LONG 0x1a00238c LOADADDR (.data_RAM2)
+                0x1a000120        0x4 LONG 0x1a002390 LOADADDR (.data_RAM2)
                 0x1a000124        0x4 LONG 0x10080000 ADDR (.data_RAM2)
                 0x1a000128        0x4 LONG 0x0 SIZEOF (.data_RAM2)
-                0x1a00012c        0x4 LONG 0x1a00238c LOADADDR (.data_RAM3)
+                0x1a00012c        0x4 LONG 0x1a002390 LOADADDR (.data_RAM3)
                 0x1a000130        0x4 LONG 0x20000000 ADDR (.data_RAM3)
                 0x1a000134        0x4 LONG 0x0 SIZEOF (.data_RAM3)
-                0x1a000138        0x4 LONG 0x1a00238c LOADADDR (.data_RAM4)
+                0x1a000138        0x4 LONG 0x1a002390 LOADADDR (.data_RAM4)
                 0x1a00013c        0x4 LONG 0x20008000 ADDR (.data_RAM4)
                 0x1a000140        0x4 LONG 0x0 SIZEOF (.data_RAM4)
-                0x1a000144        0x4 LONG 0x1a00238c LOADADDR (.data_RAM5)
+                0x1a000144        0x4 LONG 0x1a002390 LOADADDR (.data_RAM5)
                 0x1a000148        0x4 LONG 0x2000c000 ADDR (.data_RAM5)
                 0x1a00014c        0x4 LONG 0x0 SIZEOF (.data_RAM5)
                 0x1a000150                __data_section_table_end = .
@@ -16141,347 +16141,348 @@ END GROUP
                 0x1a0003e2       0x22 examples/c/app/out/examples/c/app/src/ili9341.o
                 0x1a0003e2                _ili9341_write_data
  .text._ili9341_delay_ms
-                0x1a000404        0xa examples/c/app/out/examples/c/app/src/ili9341.o
+                0x1a000404        0xc examples/c/app/out/examples/c/app/src/ili9341.o
                 0x1a000404                _ili9341_delay_ms
  .text._ili9341_region_valid
-                0x1a00040e       0x1c examples/c/app/out/examples/c/app/src/ili9341.o
-                0x1a00040e                _ili9341_region_valid
+                0x1a000410       0x1c examples/c/app/out/examples/c/app/src/ili9341.o
+                0x1a000410                _ili9341_region_valid
  .text._ili9341_swap
-                0x1a00042a        0xa examples/c/app/out/examples/c/app/src/ili9341.o
-                0x1a00042a                _ili9341_swap
+                0x1a00042c        0xa examples/c/app/out/examples/c/app/src/ili9341.o
+                0x1a00042c                _ili9341_swap
  .text._ili9341_fix_region
-                0x1a000434       0x28 examples/c/app/out/examples/c/app/src/ili9341.o
-                0x1a000434                _ili9341_fix_region
+                0x1a000436       0x28 examples/c/app/out/examples/c/app/src/ili9341.o
+                0x1a000436                _ili9341_fix_region
+ *fill*         0x1a00045e        0x2 ff
  .text.ili9341_get_default_hw_cfg
-                0x1a00045c      0x108 examples/c/app/out/examples/c/app/src/ili9341.o
-                0x1a00045c                ili9341_get_default_hw_cfg
+                0x1a000460      0x108 examples/c/app/out/examples/c/app/src/ili9341.o
+                0x1a000460                ili9341_get_default_hw_cfg
  .text.ili9341_set_orientation
-                0x1a000564       0x8c examples/c/app/out/examples/c/app/src/ili9341.o
-                0x1a000564                ili9341_set_orientation
+                0x1a000568       0x8c examples/c/app/out/examples/c/app/src/ili9341.o
+                0x1a000568                ili9341_set_orientation
  .text.ili9341_set_region
-                0x1a0005f0       0x9a examples/c/app/out/examples/c/app/src/ili9341.o
-                0x1a0005f0                ili9341_set_region
+                0x1a0005f4       0x9a examples/c/app/out/examples/c/app/src/ili9341.o
+                0x1a0005f4                ili9341_set_region
  .text._ili9341_init_display
-                0x1a00068a      0x216 examples/c/app/out/examples/c/app/src/ili9341.o
-                0x1a00068a                _ili9341_init_display
+                0x1a00068e      0x216 examples/c/app/out/examples/c/app/src/ili9341.o
+                0x1a00068e                _ili9341_init_display
  .text.ili9341_init
-                0x1a0008a0       0xb4 examples/c/app/out/examples/c/app/src/ili9341.o
-                0x1a0008a0                ili9341_init
+                0x1a0008a4       0xb4 examples/c/app/out/examples/c/app/src/ili9341.o
+                0x1a0008a4                ili9341_init
  .text.ili9341_1ms_timer_cb
-                0x1a000954       0x28 examples/c/app/out/examples/c/app/src/ili9341.o
-                0x1a000954                ili9341_1ms_timer_cb
+                0x1a000958       0x28 examples/c/app/out/examples/c/app/src/ili9341.o
+                0x1a000958                ili9341_1ms_timer_cb
  .text.diskTickHook
-                0x1a00097c        0x8 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
-                0x1a00097c                diskTickHook
+                0x1a000980        0x8 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
+                0x1a000980                diskTickHook
  .text.ili9341_gpio_init
-                0x1a000984       0x30 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
-                0x1a000984                ili9341_gpio_init
+                0x1a000988       0x30 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
+                0x1a000988                ili9341_gpio_init
  .text.ili9341_spi_init
-                0x1a0009b4       0x18 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
-                0x1a0009b4                ili9341_spi_init
+                0x1a0009b8       0x18 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
+                0x1a0009b8                ili9341_spi_init
  .text.gpio_cs_pin
-                0x1a0009cc       0x18 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
-                0x1a0009cc                gpio_cs_pin
+                0x1a0009d0       0x18 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
+                0x1a0009d0                gpio_cs_pin
  .text.gpio_dc_pin
-                0x1a0009e4       0x18 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
-                0x1a0009e4                gpio_dc_pin
+                0x1a0009e8       0x18 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
+                0x1a0009e8                gpio_dc_pin
  .text.gpio_rst_pin
-                0x1a0009fc       0x18 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
-                0x1a0009fc                gpio_rst_pin
+                0x1a000a00       0x18 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
+                0x1a000a00                gpio_rst_pin
  .text.spi_tx_dma_b
-                0x1a000a14       0x16 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
-                0x1a000a14                spi_tx_dma_b
- *fill*         0x1a000a2a        0x2 ff
+                0x1a000a18       0x16 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
+                0x1a000a18                spi_tx_dma_b
+ *fill*         0x1a000a2e        0x2 ff
  .text.spi_tx_dma_ready
-                0x1a000a2c       0x10 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
-                0x1a000a2c                spi_tx_dma_ready
+                0x1a000a30       0x10 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
+                0x1a000a30                spi_tx_dma_ready
  .text.initialise_monitor_handles
-                0x1a000a3c        0x2 examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
-                0x1a000a3c                initialise_monitor_handles
- *fill*         0x1a000a3e        0x2 ff
+                0x1a000a40        0x2 examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
+                0x1a000a40                initialise_monitor_handles
+ *fill*         0x1a000a42        0x2 ff
  .text.Reset_Handler
-                0x1a000a40       0x88 examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
-                0x1a000a40                Reset_Handler
- .text._fini    0x1a000ac8        0x2 examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
-                0x1a000ac8                _fini
- .text._init    0x1a000aca        0x2 examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
-                0x1a000aca                _init
+                0x1a000a44       0x88 examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
+                0x1a000a44                Reset_Handler
+ .text._fini    0x1a000acc        0x2 examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
+                0x1a000acc                _fini
+ .text._init    0x1a000ace        0x2 examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
+                0x1a000ace                _init
  .text.Board_SetupMuxing
-                0x1a000acc       0x38 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
-                0x1a000acc                Board_SetupMuxing
+                0x1a000ad0       0x38 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+                0x1a000ad0                Board_SetupMuxing
  .text.Board_SetupClocking
-                0x1a000b04       0x6c examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
-                0x1a000b04                Board_SetupClocking
+                0x1a000b08       0x6c examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+                0x1a000b08                Board_SetupClocking
  .text.Board_SystemInit
-                0x1a000b70        0xc examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
-                0x1a000b70                Board_SystemInit
+                0x1a000b74        0xc examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+                0x1a000b74                Board_SystemInit
  .text.Board_LED_Init
-                0x1a000b7c       0x44 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x1a000b80       0x44 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
  .text.Board_TEC_Init
-                0x1a000bc0       0x40 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x1a000bc4       0x40 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
  .text.Board_GPIO_Init
-                0x1a000c00       0x40 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x1a000c04       0x40 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
  .text.Board_ADC_Init
-                0x1a000c40       0x30 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x1a000c44       0x30 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
  .text.Board_SPI_Init
-                0x1a000c70       0x38 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x1a000c74       0x38 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
  .text.Board_I2C_Init
-                0x1a000ca8       0x24 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x1a000cac       0x24 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
  .text.Board_Debug_Init
-                0x1a000ccc       0x24 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
-                0x1a000ccc                Board_Debug_Init
+                0x1a000cd0       0x24 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x1a000cd0                Board_Debug_Init
  .text.Board_Init
-                0x1a000cf0       0x30 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
-                0x1a000cf0                Board_Init
+                0x1a000cf4       0x30 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x1a000cf4                Board_Init
  .text.__stdio_init
-                0x1a000d20        0x8 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
-                0x1a000d20                __stdio_init
+                0x1a000d24        0x8 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x1a000d24                __stdio_init
  .text.SSP_Write2BFifo
-                0x1a000d28       0x1a examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+                0x1a000d2c       0x1a examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
  .text.SSP_Write1BFifo
-                0x1a000d42       0x18 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+                0x1a000d46       0x18 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
  .text.SSP_Read2BFifo
-                0x1a000d5a       0x42 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+                0x1a000d5e       0x42 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
  .text.SSP_Read1BFifo
-                0x1a000d9c       0x40 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+                0x1a000da0       0x40 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
  .text.Chip_SSP_GetClockIndex
-                0x1a000ddc       0x14 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+                0x1a000de0       0x14 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
  .text.Chip_SSP_GetPeriphClockIndex
-                0x1a000df0       0x18 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+                0x1a000df4       0x18 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
  .text.Chip_SSP_SetClockRate
-                0x1a000e08       0x12 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
-                0x1a000e08                Chip_SSP_SetClockRate
+                0x1a000e0c       0x12 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+                0x1a000e0c                Chip_SSP_SetClockRate
  .text.Chip_SSP_RWFrames_Blocking
-                0x1a000e1a       0xa8 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
-                0x1a000e1a                Chip_SSP_RWFrames_Blocking
+                0x1a000e1e       0xa8 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+                0x1a000e1e                Chip_SSP_RWFrames_Blocking
  .text.Chip_SSP_SetBitRate
-                0x1a000ec2       0x3e examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
-                0x1a000ec2                Chip_SSP_SetBitRate
+                0x1a000ec6       0x3e examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+                0x1a000ec6                Chip_SSP_SetBitRate
  .text.Chip_SSP_Init
-                0x1a000f00       0x38 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
-                0x1a000f00                Chip_SSP_Init
+                0x1a000f04       0x38 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+                0x1a000f04                Chip_SSP_Init
  .text.Chip_I2C_EventHandler
-                0x1a000f38       0x20 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
-                0x1a000f38                Chip_I2C_EventHandler
+                0x1a000f3c       0x20 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+                0x1a000f3c                Chip_I2C_EventHandler
  .text.Chip_I2C_Init
-                0x1a000f58       0x24 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
-                0x1a000f58                Chip_I2C_Init
+                0x1a000f5c       0x24 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+                0x1a000f5c                Chip_I2C_Init
  .text.Chip_I2C_SetClockRate
-                0x1a000f7c       0x38 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
-                0x1a000f7c                Chip_I2C_SetClockRate
+                0x1a000f80       0x38 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+                0x1a000f80                Chip_I2C_SetClockRate
  .text.Chip_GPIO_Init
-                0x1a000fb4        0x2 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
-                0x1a000fb4                Chip_GPIO_Init
- *fill*         0x1a000fb6        0x2 ff
+                0x1a000fb8        0x2 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
+                0x1a000fb8                Chip_GPIO_Init
+ *fill*         0x1a000fba        0x2 ff
  .text.Chip_ADC_GetClockIndex
-                0x1a000fb8       0x14 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+                0x1a000fbc       0x14 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
  .text.getClkDiv
-                0x1a000fcc       0x32 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
- *fill*         0x1a000ffe        0x2 ff
+                0x1a000fd0       0x32 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+ *fill*         0x1a001002        0x2 ff
  .text.Chip_ADC_Init
-                0x1a001000       0x40 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
-                0x1a001000                Chip_ADC_Init
+                0x1a001004       0x40 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+                0x1a001004                Chip_ADC_Init
  .text.Chip_ADC_SetSampleRate
-                0x1a001040       0x32 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
-                0x1a001040                Chip_ADC_SetSampleRate
+                0x1a001044       0x32 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+                0x1a001044                Chip_ADC_SetSampleRate
  .text.Chip_ADC_SetResolution
-                0x1a001072        0xc examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
-                0x1a001072                Chip_ADC_SetResolution
- *fill*         0x1a00107e        0x2 ff
+                0x1a001076        0xc examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+                0x1a001076                Chip_ADC_SetResolution
+ *fill*         0x1a001082        0x2 ff
  .text.Chip_SetupCoreClock
-                0x1a001080      0x158 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
-                0x1a001080                Chip_SetupCoreClock
+                0x1a001084      0x158 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
+                0x1a001084                Chip_SetupCoreClock
  .text.SystemCoreClockUpdate
-                0x1a0011d8       0x14 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
-                0x1a0011d8                SystemCoreClockUpdate
+                0x1a0011dc       0x14 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
+                0x1a0011dc                SystemCoreClockUpdate
  .text.pll_calc_divs
-                0x1a0011ec       0xa0 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a0011f0       0xa0 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
  .text.pll_get_frac
-                0x1a00128c      0x10c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a001290      0x10c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
  .text.Chip_Clock_FindBaseClock
-                0x1a001398       0x4c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a00139c       0x4c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
  .text.Chip_Clock_EnableCrystal
-                0x1a0013e4       0x4c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x1a0013e4                Chip_Clock_EnableCrystal
+                0x1a0013e8       0x4c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a0013e8                Chip_Clock_EnableCrystal
  .text.Chip_Clock_GetDividerSource
-                0x1a001430       0x1c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x1a001430                Chip_Clock_GetDividerSource
+                0x1a001434       0x1c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a001434                Chip_Clock_GetDividerSource
  .text.Chip_Clock_GetDividerDivisor
-                0x1a00144c       0x1c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x1a00144c                Chip_Clock_GetDividerDivisor
+                0x1a001450       0x1c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a001450                Chip_Clock_GetDividerDivisor
  .text.Chip_Clock_GetClockInputHz
-                0x1a001468       0xb8 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x1a001468                Chip_Clock_GetClockInputHz
+                0x1a00146c       0xb8 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a00146c                Chip_Clock_GetClockInputHz
  .text.Chip_Clock_CalcMainPLLValue
-                0x1a001520       0x80 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x1a001520                Chip_Clock_CalcMainPLLValue
+                0x1a001524       0x80 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a001524                Chip_Clock_CalcMainPLLValue
  .text.Chip_Clock_GetMainPLLHz
-                0x1a0015a0       0x6c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x1a0015a0                Chip_Clock_GetMainPLLHz
+                0x1a0015a4       0x6c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a0015a4                Chip_Clock_GetMainPLLHz
  .text.Chip_Clock_GetDivRate
-                0x1a00160c       0x22 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
- *fill*         0x1a00162e        0x2 ff
+                0x1a001610       0x22 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+ *fill*         0x1a001632        0x2 ff
  .text.Chip_Clock_SetBaseClock
-                0x1a001630       0x58 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x1a001630                Chip_Clock_SetBaseClock
+                0x1a001634       0x58 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a001634                Chip_Clock_SetBaseClock
  .text.Chip_Clock_GetBaseClock
-                0x1a001688       0x26 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x1a001688                Chip_Clock_GetBaseClock
+                0x1a00168c       0x26 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a00168c                Chip_Clock_GetBaseClock
  .text.Chip_Clock_GetBaseClocktHz
-                0x1a0016ae        0xc examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x1a0016ae                Chip_Clock_GetBaseClocktHz
- *fill*         0x1a0016ba        0x2 ff
+                0x1a0016b2        0xc examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a0016b2                Chip_Clock_GetBaseClocktHz
+ *fill*         0x1a0016be        0x2 ff
  .text.Chip_Clock_EnableOpts
-                0x1a0016bc       0x3c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x1a0016bc                Chip_Clock_EnableOpts
+                0x1a0016c0       0x3c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a0016c0                Chip_Clock_EnableOpts
  .text.Chip_Clock_Enable
-                0x1a0016f8       0x34 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x1a0016f8                Chip_Clock_Enable
+                0x1a0016fc       0x34 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a0016fc                Chip_Clock_Enable
  .text.Chip_Clock_GetRate
-                0x1a00172c       0x4c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
-                0x1a00172c                Chip_Clock_GetRate
+                0x1a001730       0x4c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a001730                Chip_Clock_GetRate
  .text.Chip_UART_GetIndex
-                0x1a001778       0x2c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+                0x1a00177c       0x2c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
  .text.Chip_UART_Init
-                0x1a0017a4       0x54 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
-                0x1a0017a4                Chip_UART_Init
+                0x1a0017a8       0x54 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+                0x1a0017a8                Chip_UART_Init
  .text.Chip_UART_SetBaudFDR
-                0x1a0017f8       0xdc examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
-                0x1a0017f8                Chip_UART_SetBaudFDR
+                0x1a0017fc       0xdc examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+                0x1a0017fc                Chip_UART_SetBaudFDR
  .text.SystemInit
-                0x1a0018d4       0x38 examples/c/app/out/libs/lpc_open/lpc_startup/src/sysinit.o
-                0x1a0018d4                SystemInit
+                0x1a0018d8       0x38 examples/c/app/out/libs/lpc_open/lpc_startup/src/sysinit.o
+                0x1a0018d8                SystemInit
  .text.cyclesCounterInit
-                0x1a00190c       0x1c examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
-                0x1a00190c                cyclesCounterInit
+                0x1a001910       0x1c examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
+                0x1a001910                cyclesCounterInit
  .text.gpioObtainPinInit
-                0x1a001928       0x34 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+                0x1a00192c       0x34 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
  .text.gpioInit
-                0x1a00195c      0x1ac examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
-                0x1a00195c                gpioInit
+                0x1a001960      0x1ac examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+                0x1a001960                gpioInit
  .text.gpioWrite
-                0x1a001b08       0x6a examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
-                0x1a001b08                gpioWrite
- *fill*         0x1a001b72        0x2 ff
- .text.spiInit  0x1a001b74       0x50 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_spi.o
-                0x1a001b74                spiInit
+                0x1a001b0c       0x6a examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+                0x1a001b0c                gpioWrite
+ *fill*         0x1a001b76        0x2 ff
+ .text.spiInit  0x1a001b78       0x50 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_spi.o
+                0x1a001b78                spiInit
  .text.spiWrite
-                0x1a001bc4       0x2c examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_spi.o
-                0x1a001bc4                spiWrite
+                0x1a001bc8       0x2c examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_spi.o
+                0x1a001bc8                spiWrite
  .text.tickCallbackSet
-                0x1a001bf0       0x20 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
-                0x1a001bf0                tickCallbackSet
+                0x1a001bf4       0x20 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+                0x1a001bf4                tickCallbackSet
  .text.tickPowerSet
-                0x1a001c10       0x18 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
-                0x1a001c10                tickPowerSet
+                0x1a001c14       0x18 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+                0x1a001c14                tickPowerSet
  .text.tickInit
-                0x1a001c28       0x7c examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
-                0x1a001c28                tickInit
+                0x1a001c2c       0x7c examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+                0x1a001c2c                tickInit
  .text.SysTick_Handler
-                0x1a001ca4       0x2c examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
-                0x1a001ca4                SysTick_Handler
+                0x1a001ca8       0x2c examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+                0x1a001ca8                SysTick_Handler
  .text.USB0_IRQHandler
-                0x1a001cd0       0x1c examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
-                0x1a001cd0                USB0_IRQHandler
+                0x1a001cd4       0x1c examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
+                0x1a001cd4                USB0_IRQHandler
  .text.boardInit
-                0x1a001cec       0x74 examples/c/app/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
-                0x1a001cec                boardInit
- .text          0x1a001d60       0x30 c:/ciaa/ciaa_software_1.1-win/tools/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
-                0x1a001d60                __aeabi_uldivmod
+                0x1a001cf0       0x74 examples/c/app/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
+                0x1a001cf0                boardInit
+ .text          0x1a001d64       0x30 c:/ciaa/ciaa_software_1.1-win/tools/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
+                0x1a001d64                __aeabi_uldivmod
  .text.__udivmoddi4
-                0x1a001d90      0x2d0 c:/ciaa/ciaa_software_1.1-win/tools/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
-                0x1a001d90                __udivmoddi4
- .text          0x1a002060        0x4 c:/ciaa/ciaa_software_1.1-win/tools/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard\libgcc.a(_dvmd_tls.o)
-                0x1a002060                __aeabi_idiv0
-                0x1a002060                __aeabi_ldiv0
+                0x1a001d94      0x2d0 c:/ciaa/ciaa_software_1.1-win/tools/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+                0x1a001d94                __udivmoddi4
+ .text          0x1a002064        0x4 c:/ciaa/ciaa_software_1.1-win/tools/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard\libgcc.a(_dvmd_tls.o)
+                0x1a002064                __aeabi_idiv0
+                0x1a002064                __aeabi_ldiv0
  .text.__libc_init_array
-                0x1a002064       0x48 c:/ciaa/ciaa_software_1.1-win/tools/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-init.o)
-                0x1a002064                __libc_init_array
- .text.memset   0x1a0020ac       0x10 c:/ciaa/ciaa_software_1.1-win/tools/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-memset.o)
-                0x1a0020ac                memset
+                0x1a002068       0x48 c:/ciaa/ciaa_software_1.1-win/tools/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-init.o)
+                0x1a002068                __libc_init_array
+ .text.memset   0x1a0020b0       0x10 c:/ciaa/ciaa_software_1.1-win/tools/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-memset.o)
+                0x1a0020b0                memset
  *(.rodata .rodata.* .constdata .constdata.*)
- .rodata        0x1a0020bc       0x28 examples/c/app/out/examples/c/app/src/app.o
- .rodata        0x1a0020e4       0x3b examples/c/app/out/examples/c/app/src/ili9341.o
- *fill*         0x1a00211f        0x1 ff
+ .rodata        0x1a0020c0       0x28 examples/c/app/out/examples/c/app/src/app.o
+ .rodata        0x1a0020e8       0x3b examples/c/app/out/examples/c/app/src/ili9341.o
+ *fill*         0x1a002123        0x1 ff
  .rodata.InitClkStates
-                0x1a002120        0x4 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+                0x1a002124        0x4 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
  .rodata.pinmuxing
-                0x1a002124       0x74 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+                0x1a002128       0x74 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
  .rodata.ExtRateIn
-                0x1a002198        0x4 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
-                0x1a002198                ExtRateIn
+                0x1a00219c        0x4 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x1a00219c                ExtRateIn
  .rodata.GpioButtons
-                0x1a00219c        0x8 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x1a0021a0        0x8 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
  .rodata.GpioLeds
-                0x1a0021a4        0xc examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x1a0021a8        0xc examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
  .rodata.GpioPorts
-                0x1a0021b0       0x12 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
- *fill*         0x1a0021c2        0x2 ff
+                0x1a0021b4       0x12 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+ *fill*         0x1a0021c6        0x2 ff
  .rodata.OscRateIn
-                0x1a0021c4        0x4 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
-                0x1a0021c4                OscRateIn
+                0x1a0021c8        0x4 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+                0x1a0021c8                OscRateIn
  .rodata.InitClkStates
-                0x1a0021c8       0x48 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
- .rodata        0x1a002210        0x4 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a0021cc       0x48 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
+ .rodata        0x1a002214        0x4 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
  .rodata.Chip_Clock_SetDivider.str1.4
-                0x1a002214        0x8 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a002218        0x8 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
                                   0x6 (size before relaxing)
  .rodata.periph_to_base
-                0x1a00221c       0x6c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+                0x1a002220       0x6c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
  .rodata.UART_BClock
-                0x1a002288        0x8 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+                0x1a00228c        0x8 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
  .rodata.UART_PClock
-                0x1a002290        0x8 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+                0x1a002294        0x8 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
  .rodata.gpioPinsInit
-                0x1a002298       0xe6 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
-                0x1a002298                gpioPinsInit
-                0x1a002380                . = ALIGN (0x4)
- *fill*         0x1a00237e        0x2 ff
+                0x1a00229c       0xe6 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+                0x1a00229c                gpioPinsInit
+                0x1a002384                . = ALIGN (0x4)
+ *fill*         0x1a002382        0x2 ff
 
-.glue_7         0x1a002380        0x0
- .glue_7        0x1a002380        0x0 linker stubs
+.glue_7         0x1a002384        0x0
+ .glue_7        0x1a002384        0x0 linker stubs
 
-.glue_7t        0x1a002380        0x0
- .glue_7t       0x1a002380        0x0 linker stubs
+.glue_7t        0x1a002384        0x0
+ .glue_7t       0x1a002384        0x0 linker stubs
 
-.vfp11_veneer   0x1a002380        0x0
- .vfp11_veneer  0x1a002380        0x0 linker stubs
+.vfp11_veneer   0x1a002384        0x0
+ .vfp11_veneer  0x1a002384        0x0 linker stubs
 
-.v4_bx          0x1a002380        0x0
- .v4_bx         0x1a002380        0x0 linker stubs
+.v4_bx          0x1a002384        0x0
+ .v4_bx         0x1a002384        0x0 linker stubs
 
-.iplt           0x1a002380        0x0
- .iplt          0x1a002380        0x0 examples/c/app/out/examples/c/app/src/app.o
-                0x1a002380                . = ALIGN (0x4)
+.iplt           0x1a002384        0x0
+ .iplt          0x1a002384        0x0 examples/c/app/out/examples/c/app/src/app.o
+                0x1a002384                . = ALIGN (0x4)
 
-.preinit_array  0x1a002380        0x0
-                0x1a002380                PROVIDE (__preinit_array_start = .)
+.preinit_array  0x1a002384        0x0
+                0x1a002384                PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x1a002380                PROVIDE (__preinit_array_end = .)
+                0x1a002384                PROVIDE (__preinit_array_end = .)
 
-.init_array     0x1a002380        0x4
-                0x1a002380                PROVIDE (__init_array_start = .)
+.init_array     0x1a002384        0x4
+                0x1a002384                PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x1a002380        0x4 examples/c/app/out/libs/sys_newlib//src/system.o
-                0x1a002384                PROVIDE (__init_array_end = .)
-                0x1a002384                . = ALIGN (0x4)
+ .init_array    0x1a002384        0x4 examples/c/app/out/libs/sys_newlib//src/system.o
+                0x1a002388                PROVIDE (__init_array_end = .)
+                0x1a002388                . = ALIGN (0x4)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x1a002384                __exidx_start = .
+                0x1a002388                __exidx_start = .
 
-.ARM.exidx      0x1a002384        0x8
+.ARM.exidx      0x1a002388        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
  .ARM.exidx.text.__udivmoddi4
-                0x1a002384        0x8 c:/ciaa/ciaa_software_1.1-win/tools/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
-                0x1a00238c                __exidx_end = .
-                0x1a00238c                _etext = .
+                0x1a002388        0x8 c:/ciaa/ciaa_software_1.1-win/tools/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+                0x1a002390                __exidx_end = .
+                0x1a002390                _etext = .
 
-.rel.dyn        0x1a00238c        0x0
- .rel.iplt      0x1a00238c        0x0 examples/c/app/out/examples/c/app/src/app.o
+.rel.dyn        0x1a002390        0x0
+ .rel.iplt      0x1a002390        0x0 examples/c/app/out/examples/c/app/src/app.o
 
-.data_RAM2      0x10080000        0x0 load address 0x1a00238c
+.data_RAM2      0x10080000        0x0 load address 0x1a002390
  FILL mask 0xff
  *(.ramfunc.$RAM2)
  *(.ramfunc.$RamLoc40)
@@ -16489,7 +16490,7 @@ END GROUP
  *(.data.$RamLoc40*)
                 0x10080000                . = ALIGN (0x4)
 
-.data_RAM3      0x20000000        0x0 load address 0x1a00238c
+.data_RAM3      0x20000000        0x0 load address 0x1a002390
  FILL mask 0xff
  *(.ramfunc.$RAM3)
  *(.ramfunc.$RamAHB32)
@@ -16497,7 +16498,7 @@ END GROUP
  *(.data.$RamAHB32*)
                 0x20000000                . = ALIGN (0x4)
 
-.data_RAM4      0x20008000        0x0 load address 0x1a00238c
+.data_RAM4      0x20008000        0x0 load address 0x1a002390
  FILL mask 0xff
  *(.ramfunc.$RAM4)
  *(.ramfunc.$RamAHB16)
@@ -16505,7 +16506,7 @@ END GROUP
  *(.data.$RamAHB16*)
                 0x20008000                . = ALIGN (0x4)
 
-.data_RAM5      0x2000c000        0x0 load address 0x1a00238c
+.data_RAM5      0x2000c000        0x0 load address 0x1a002390
  FILL mask 0xff
  *(.ramfunc.$RAM5)
  *(.ramfunc.$RamAHB_ETB16)
@@ -16519,7 +16520,7 @@ END GROUP
                 0x10000000                . = ALIGN (0x4)
                 0x10000000                _end_uninit_RESERVED = .
 
-.data           0x10000000       0x48 load address 0x1a00238c
+.data           0x10000000       0x48 load address 0x1a002390
  FILL mask 0xff
                 0x10000000                _data = .
  *(vtable)
@@ -16535,7 +16536,7 @@ END GROUP
                 0x10000048                . = ALIGN (0x4)
                 0x10000048                _edata = .
 
-.igot.plt       0x10000048        0x0 load address 0x1a0023d4
+.igot.plt       0x10000048        0x0 load address 0x1a0023d8
  .igot.plt      0x10000048        0x0 examples/c/app/out/examples/c/app/src/app.o
 
 .bss_RAM2       0x10080000        0x0
@@ -16608,60 +16609,60 @@ END GROUP
                 0x100000e0                _end_noinit = .
                 0x100000e0                PROVIDE (_pvHeapStart = .)
                 0x10008000                PROVIDE (_vStackTop = (__top_RamLoc32 - 0x0))
-                0x53ff6e4e                PROVIDE (__valid_user_code_checksum = (0x0 - ((((((_vStackTop + (Reset_Handler + 0x1)) + (NMI_Handler + 0x1)) + (HardFault_Handler + 0x1)) + (DEFINED (MemManage_Handler)?MemManage_Handler:0x0 + 0x1)) + (DEFINED (BusFault_Handler)?BusFault_Handler:0x0 + 0x1)) + (DEFINED (UsageFault_Handler)?UsageFault_Handler:0x0 + 0x1))))
+                0x53ff6e4a                PROVIDE (__valid_user_code_checksum = (0x0 - ((((((_vStackTop + (Reset_Handler + 0x1)) + (NMI_Handler + 0x1)) + (HardFault_Handler + 0x1)) + (DEFINED (MemManage_Handler)?MemManage_Handler:0x0 + 0x1)) + (DEFINED (BusFault_Handler)?BusFault_Handler:0x0 + 0x1)) + (DEFINED (UsageFault_Handler)?UsageFault_Handler:0x0 + 0x1))))
 OUTPUT(examples/c/app/out/app.elf elf32-littlearm)
 
-.debug_info     0x00000000    0x20024
+.debug_info     0x00000000    0x20029
  .debug_info    0x00000000     0x3119 examples/c/app/out/examples/c/app/src/app.o
- .debug_info    0x00003119     0x2eae examples/c/app/out/examples/c/app/src/ili9341.o
- .debug_info    0x00005fc7     0x2604 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
- .debug_info    0x000085cb      0x35d examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
- .debug_info    0x00008928     0x10c3 examples/c/app/out/libs/sys_newlib//src/system.o
- .debug_info    0x000099eb     0x15d2 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
- .debug_info    0x0000afbd     0x23f7 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
- .debug_info    0x0000d3b4     0x1a33 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
- .debug_info    0x0000ede7     0x159b examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
- .debug_info    0x00010382      0x232 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
- .debug_info    0x000105b4      0xc0c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
- .debug_info    0x000111c0      0xb39 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
- .debug_info    0x00011cf9      0xc97 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
- .debug_info    0x00012990     0x1b68 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
- .debug_info    0x000144f8     0x1981 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
- .debug_info    0x00015e79       0x76 examples/c/app/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
- .debug_info    0x00015eef      0xc76 examples/c/app/out/libs/lpc_open/lpc_startup/src/sysinit.o
- .debug_info    0x00016b65       0x40 examples/c/app/out/libs/lpc_open/lpc_startup/src/crp.o
- .debug_info    0x00016ba5      0xf6a examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
- .debug_info    0x00017b0f     0x1cdd examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
- .debug_info    0x000197ec     0x10b5 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_spi.o
- .debug_info    0x0001a8a1     0x15a7 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
- .debug_info    0x0001be48     0x357f examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
- .debug_info    0x0001f3c7      0xc5d examples/c/app/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
+ .debug_info    0x00003119     0x2eb3 examples/c/app/out/examples/c/app/src/ili9341.o
+ .debug_info    0x00005fcc     0x2604 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
+ .debug_info    0x000085d0      0x35d examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
+ .debug_info    0x0000892d     0x10c3 examples/c/app/out/libs/sys_newlib//src/system.o
+ .debug_info    0x000099f0     0x15d2 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+ .debug_info    0x0000afc2     0x23f7 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+ .debug_info    0x0000d3b9     0x1a33 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+ .debug_info    0x0000edec     0x159b examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+ .debug_info    0x00010387      0x232 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
+ .debug_info    0x000105b9      0xc0c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+ .debug_info    0x000111c5      0xb39 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
+ .debug_info    0x00011cfe      0xc97 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
+ .debug_info    0x00012995     0x1b68 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+ .debug_info    0x000144fd     0x1981 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+ .debug_info    0x00015e7e       0x76 examples/c/app/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
+ .debug_info    0x00015ef4      0xc76 examples/c/app/out/libs/lpc_open/lpc_startup/src/sysinit.o
+ .debug_info    0x00016b6a       0x40 examples/c/app/out/libs/lpc_open/lpc_startup/src/crp.o
+ .debug_info    0x00016baa      0xf6a examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
+ .debug_info    0x00017b14     0x1cdd examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+ .debug_info    0x000197f1     0x10b5 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_spi.o
+ .debug_info    0x0001a8a6     0x15a7 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+ .debug_info    0x0001be4d     0x357f examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
+ .debug_info    0x0001f3cc      0xc5d examples/c/app/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
 
-.debug_abbrev   0x00000000     0x44c8
+.debug_abbrev   0x00000000     0x44cf
  .debug_abbrev  0x00000000      0x308 examples/c/app/out/examples/c/app/src/app.o
- .debug_abbrev  0x00000308      0x43b examples/c/app/out/examples/c/app/src/ili9341.o
- .debug_abbrev  0x00000743      0x390 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
- .debug_abbrev  0x00000ad3      0x127 examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
- .debug_abbrev  0x00000bfa      0x301 examples/c/app/out/libs/sys_newlib//src/system.o
- .debug_abbrev  0x00000efb      0x352 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
- .debug_abbrev  0x0000124d      0x512 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
- .debug_abbrev  0x0000175f      0x38a examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
- .debug_abbrev  0x00001ae9      0x3af examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
- .debug_abbrev  0x00001e98      0x114 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
- .debug_abbrev  0x00001fac      0x219 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
- .debug_abbrev  0x000021c5      0x245 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
- .debug_abbrev  0x0000240a      0x1ee examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
- .debug_abbrev  0x000025f8      0x3ef examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
- .debug_abbrev  0x000029e7      0x42c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
- .debug_abbrev  0x00002e13       0x78 examples/c/app/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
- .debug_abbrev  0x00002e8b      0x25b examples/c/app/out/libs/lpc_open/lpc_startup/src/sysinit.o
- .debug_abbrev  0x000030e6       0x38 examples/c/app/out/libs/lpc_open/lpc_startup/src/crp.o
- .debug_abbrev  0x0000311e      0x26c examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
- .debug_abbrev  0x0000338a      0x3f2 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
- .debug_abbrev  0x0000377c      0x2f7 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_spi.o
- .debug_abbrev  0x00003a73      0x3cb examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
- .debug_abbrev  0x00003e3e      0x448 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
- .debug_abbrev  0x00004286      0x242 examples/c/app/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
+ .debug_abbrev  0x00000308      0x442 examples/c/app/out/examples/c/app/src/ili9341.o
+ .debug_abbrev  0x0000074a      0x390 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
+ .debug_abbrev  0x00000ada      0x127 examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
+ .debug_abbrev  0x00000c01      0x301 examples/c/app/out/libs/sys_newlib//src/system.o
+ .debug_abbrev  0x00000f02      0x352 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+ .debug_abbrev  0x00001254      0x512 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+ .debug_abbrev  0x00001766      0x38a examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+ .debug_abbrev  0x00001af0      0x3af examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+ .debug_abbrev  0x00001e9f      0x114 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
+ .debug_abbrev  0x00001fb3      0x219 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+ .debug_abbrev  0x000021cc      0x245 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
+ .debug_abbrev  0x00002411      0x1ee examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
+ .debug_abbrev  0x000025ff      0x3ef examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+ .debug_abbrev  0x000029ee      0x42c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+ .debug_abbrev  0x00002e1a       0x78 examples/c/app/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
+ .debug_abbrev  0x00002e92      0x25b examples/c/app/out/libs/lpc_open/lpc_startup/src/sysinit.o
+ .debug_abbrev  0x000030ed       0x38 examples/c/app/out/libs/lpc_open/lpc_startup/src/crp.o
+ .debug_abbrev  0x00003125      0x26c examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
+ .debug_abbrev  0x00003391      0x3f2 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+ .debug_abbrev  0x00003783      0x2f7 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_spi.o
+ .debug_abbrev  0x00003a7a      0x3cb examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+ .debug_abbrev  0x00003e45      0x448 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
+ .debug_abbrev  0x0000428d      0x242 examples/c/app/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
 
 .debug_aranges  0x00000000      0x9c0
  .debug_aranges
@@ -16902,80 +16903,80 @@ OUTPUT(examples/c/app/out/app.elf elf32-littlearm)
  .debug_macro   0x0000c287      0x54f examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
  .debug_macro   0x0000c7d6      0x47d examples/c/app/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
 
-.debug_line     0x00000000     0xf925
+.debug_line     0x00000000     0xf92c
  .debug_line    0x00000000      0xda6 examples/c/app/out/examples/c/app/src/app.o
- .debug_line    0x00000da6      0xc7c examples/c/app/out/examples/c/app/src/ili9341.o
- .debug_line    0x00001a22      0xe9c examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
- .debug_line    0x000028be      0x267 examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
- .debug_line    0x00002b25      0x658 examples/c/app/out/libs/sys_newlib//src/system.o
- .debug_line    0x0000317d      0x901 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
- .debug_line    0x00003a7e      0xd6a examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
- .debug_line    0x000047e8     0x1242 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
- .debug_line    0x00005a2a     0x103b examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
- .debug_line    0x00006a65      0x709 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
- .debug_line    0x0000716e      0xa7c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
- .debug_line    0x00007bea      0x91b examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
- .debug_line    0x00008505      0x790 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
- .debug_line    0x00008c95     0x1434 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
- .debug_line    0x0000a0c9      0xec7 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
- .debug_line    0x0000af90       0x6f examples/c/app/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
- .debug_line    0x0000afff      0x842 examples/c/app/out/libs/lpc_open/lpc_startup/src/sysinit.o
- .debug_line    0x0000b841       0x44 examples/c/app/out/libs/lpc_open/lpc_startup/src/crp.o
- .debug_line    0x0000b885      0x962 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
- .debug_line    0x0000c1e7      0xc1a examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
- .debug_line    0x0000ce01      0xa3e examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_spi.o
- .debug_line    0x0000d83f      0xa86 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
- .debug_line    0x0000e2c5      0xd2d examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
- .debug_line    0x0000eff2      0x933 examples/c/app/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
+ .debug_line    0x00000da6      0xc83 examples/c/app/out/examples/c/app/src/ili9341.o
+ .debug_line    0x00001a29      0xe9c examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
+ .debug_line    0x000028c5      0x267 examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
+ .debug_line    0x00002b2c      0x658 examples/c/app/out/libs/sys_newlib//src/system.o
+ .debug_line    0x00003184      0x901 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+ .debug_line    0x00003a85      0xd6a examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+ .debug_line    0x000047ef     0x1242 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+ .debug_line    0x00005a31     0x103b examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+ .debug_line    0x00006a6c      0x709 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
+ .debug_line    0x00007175      0xa7c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+ .debug_line    0x00007bf1      0x91b examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
+ .debug_line    0x0000850c      0x790 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
+ .debug_line    0x00008c9c     0x1434 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+ .debug_line    0x0000a0d0      0xec7 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+ .debug_line    0x0000af97       0x6f examples/c/app/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
+ .debug_line    0x0000b006      0x842 examples/c/app/out/libs/lpc_open/lpc_startup/src/sysinit.o
+ .debug_line    0x0000b848       0x44 examples/c/app/out/libs/lpc_open/lpc_startup/src/crp.o
+ .debug_line    0x0000b88c      0x962 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
+ .debug_line    0x0000c1ee      0xc1a examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+ .debug_line    0x0000ce08      0xa3e examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_spi.o
+ .debug_line    0x0000d846      0xa86 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+ .debug_line    0x0000e2cc      0xd2d examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
+ .debug_line    0x0000eff9      0x933 examples/c/app/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
 
-.debug_str      0x00000000    0x2856b
- .debug_str     0x00000000    0x23167 examples/c/app/out/examples/c/app/src/app.o
-                              0x23548 (size before relaxing)
- .debug_str     0x00023167      0xa65 examples/c/app/out/examples/c/app/src/ili9341.o
+.debug_str      0x00000000    0x28570
+ .debug_str     0x00000000    0x23166 examples/c/app/out/examples/c/app/src/app.o
+                              0x23547 (size before relaxing)
+ .debug_str     0x00023166      0xa65 examples/c/app/out/examples/c/app/src/ili9341.o
                                0x7e94 (size before relaxing)
- .debug_str     0x00023bcc      0x30f examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
-                              0x23322 (size before relaxing)
- .debug_str     0x00023edb      0x212 examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
+ .debug_str     0x00023bcb      0x315 examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
+                              0x23321 (size before relaxing)
+ .debug_str     0x00023ee0      0x212 examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
                                0x3008 (size before relaxing)
- .debug_str     0x000240ed      0x881 examples/c/app/out/libs/sys_newlib//src/system.o
+ .debug_str     0x000240f2      0x881 examples/c/app/out/libs/sys_newlib//src/system.o
                                0x6cbb (size before relaxing)
- .debug_str     0x0002496e      0xdd0 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+ .debug_str     0x00024973      0xdd0 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
                               0x1b0a9 (size before relaxing)
- .debug_str     0x0002573e      0x934 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+ .debug_str     0x00025743      0x934 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
                               0x1b72e (size before relaxing)
- .debug_str     0x00026072      0x3b4 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+ .debug_str     0x00026077      0x3b4 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
                               0x172e0 (size before relaxing)
- .debug_str     0x00026426      0x584 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+ .debug_str     0x0002642b      0x584 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
                               0x17881 (size before relaxing)
- .debug_str     0x000269aa       0x42 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
+ .debug_str     0x000269af       0x42 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/gpio_18xx_43xx.o
                               0x168a1 (size before relaxing)
- .debug_str     0x000269ec      0x174 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+ .debug_str     0x000269f1      0x174 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
                               0x170ea (size before relaxing)
- .debug_str     0x00026b60      0x1ca examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
+ .debug_str     0x00026b65      0x1ca examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
                               0x175a0 (size before relaxing)
- .debug_str     0x00026d2a      0x12c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
+ .debug_str     0x00026d2f      0x12c examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/chip_18xx_43xx.o
                               0x1763f (size before relaxing)
- .debug_str     0x00026e56      0x3fc examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+ .debug_str     0x00026e5b      0x3fc examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
                               0x17b12 (size before relaxing)
- .debug_str     0x00027252      0x35a examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+ .debug_str     0x00027257      0x35a examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
                               0x1774f (size before relaxing)
- .debug_str     0x000275ac       0x56 examples/c/app/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
+ .debug_str     0x000275b1       0x56 examples/c/app/out/libs/lpc_open/lpc_startup/src/vendor_interrupt.o
                                0x2e63 (size before relaxing)
- .debug_str     0x00027602       0xb9 examples/c/app/out/libs/lpc_open/lpc_startup/src/sysinit.o
+ .debug_str     0x00027607       0xb9 examples/c/app/out/libs/lpc_open/lpc_startup/src/sysinit.o
                               0x1a37b (size before relaxing)
- .debug_str     0x000276bb       0x43 examples/c/app/out/libs/lpc_open/lpc_startup/src/crp.o
+ .debug_str     0x000276c0       0x43 examples/c/app/out/libs/lpc_open/lpc_startup/src/crp.o
                                0x2e08 (size before relaxing)
- .debug_str     0x000276fe       0xc6 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
+ .debug_str     0x00027703       0xc6 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
                               0x1b09d (size before relaxing)
- .debug_str     0x000277c4      0x13b examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+ .debug_str     0x000277c9      0x13b examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
                               0x1b3a8 (size before relaxing)
- .debug_str     0x000278ff       0x63 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_spi.o
+ .debug_str     0x00027904       0x63 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_spi.o
                               0x1a71a (size before relaxing)
- .debug_str     0x00027962      0x477 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+ .debug_str     0x00027967      0x477 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
                               0x1b579 (size before relaxing)
- .debug_str     0x00027dd9      0x765 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
+ .debug_str     0x00027dde      0x765 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
                               0x21229 (size before relaxing)
- .debug_str     0x0002853e       0x2d examples/c/app/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
+ .debug_str     0x00028543       0x2d examples/c/app/out/libs/sapi/sapi_v0.5.2/board/src/sapi_board.o
                               0x1a8ca (size before relaxing)
 
 .comment        0x00000000       0x68
@@ -17095,25 +17096,25 @@ OUTPUT(examples/c/app/out/app.elf elf32-littlearm)
  .debug_frame   0x000017dc       0x2c c:/ciaa/ciaa_software_1.1-win/tools/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-init.o)
  .debug_frame   0x00001808       0x20 c:/ciaa/ciaa_software_1.1-win/tools/arm-none-eabi-gcc/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-memset.o)
 
-.debug_loc      0x00000000     0x7d19
- .debug_loc     0x00000000      0xa28 examples/c/app/out/examples/c/app/src/ili9341.o
- .debug_loc     0x00000a28      0x1bb examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
- .debug_loc     0x00000be3      0x282 examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
- .debug_loc     0x00000e65      0x653 examples/c/app/out/libs/sys_newlib//src/system.o
- .debug_loc     0x000014b8      0x10f examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
- .debug_loc     0x000015c7      0x659 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
- .debug_loc     0x00001c20      0xfd3 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
- .debug_loc     0x00002bf3      0xe82 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
- .debug_loc     0x00003a75      0x738 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
- .debug_loc     0x000041ad      0x1e2 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
- .debug_loc     0x0000438f     0x1505 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
- .debug_loc     0x00005894      0xf38 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
- .debug_loc     0x000067cc       0x15 examples/c/app/out/libs/lpc_open/lpc_startup/src/sysinit.o
- .debug_loc     0x000067e1      0x109 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
- .debug_loc     0x000068ea      0xaff examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
- .debug_loc     0x000073e9      0x3ad examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_spi.o
- .debug_loc     0x00007796      0x1a3 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
- .debug_loc     0x00007939      0x3e0 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
+.debug_loc      0x00000000     0x7d25
+ .debug_loc     0x00000000      0xa34 examples/c/app/out/examples/c/app/src/ili9341.o
+ .debug_loc     0x00000a34      0x1bb examples/c/app/out/examples/c/app/src/ili9341_LPC4337_patch.o
+ .debug_loc     0x00000bef      0x282 examples/c/app/out/libs/cmsis_core//src/armv7m_startup.o
+ .debug_loc     0x00000e71      0x653 examples/c/app/out/libs/sys_newlib//src/system.o
+ .debug_loc     0x000014c4      0x10f examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board_sysinit.o
+ .debug_loc     0x000015d3      0x659 examples/c/app/out/libs/lpc_open/boards/edu_ciaa_nxp/src/board.o
+ .debug_loc     0x00001c2c      0xfd3 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/ssp_18xx_43xx.o
+ .debug_loc     0x00002bff      0xe82 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/i2c_18xx_43xx.o
+ .debug_loc     0x00003a81      0x738 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/adc_18xx_43xx.o
+ .debug_loc     0x000041b9      0x1e2 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/sysinit_18xx_43xx.o
+ .debug_loc     0x0000439b     0x1505 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/clock_18xx_43xx.o
+ .debug_loc     0x000058a0      0xf38 examples/c/app/out/libs/lpc_open/lpc_chip_43xx/src/uart_18xx_43xx.o
+ .debug_loc     0x000067d8       0x15 examples/c/app/out/libs/lpc_open/lpc_startup/src/sysinit.o
+ .debug_loc     0x000067ed      0x109 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/core/src/sapi_cyclesCounter.o
+ .debug_loc     0x000068f6      0xaff examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_gpio.o
+ .debug_loc     0x000073f5      0x3ad examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_spi.o
+ .debug_loc     0x000077a2      0x1a3 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/src/sapi_tick.o
+ .debug_loc     0x00007945      0x3e0 examples/c/app/out/libs/sapi/sapi_v0.5.2/soc/peripherals/usb/device/src/sapi_usb_device.o
 
 Cross Reference Table
 

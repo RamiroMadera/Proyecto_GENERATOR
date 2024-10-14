@@ -37,7 +37,7 @@ struct ili9341_desc {
 	uint32_t timeout_ms;
 	uint32_t restart_delay_ms;
 	uint32_t wup_delay_ms;
-	uint32_t curr_time_cnt;
+	volatile uint32_t curr_time_cnt;
 	coord_2d_t region_top_left;
 	coord_2d_t region_bottom_right;
 };
@@ -182,7 +182,7 @@ int _ili9341_wait_for_spi_ready(const ili9341_desc_ptr_t desc) {
 
 void _ili9341_delay_ms(const ili9341_desc_ptr_t desc, uint32_t time_ms) {
 	desc->curr_time_cnt = 0;
-	bool timeout = false;
+	uint32_t timeout = 0;
 	do {
 		timeout = (desc->curr_time_cnt >= time_ms);
 	} while(!timeout);
