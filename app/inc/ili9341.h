@@ -220,6 +220,7 @@ int ili9341_set_region(const ili9341_desc_ptr_t desc, coord_2d_t top_left, coord
 int ili9341_drawPixel(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t color);			 // Rxmaster89
 int ili9341_drawHLine(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t w, uint16_t color); // Rxmaster89
 int ili9341_drawVLine(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t h, uint16_t color); // Rxmaster89
+void ili9341_writeLine(const ili9341_desc_ptr_t desc, uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color); // Rxmaster89
 
 /**
  * Fill display region by solid color.

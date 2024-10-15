@@ -19,12 +19,11 @@
 #ifndef _swap_int16_t
 #define _swap_int16_t(a, b) \
 	{                       \
-		int16_t t = a;      \
+		int16_t temp = a;   \
 		a = b;              \
-		b = t;              \
+		b = temp;           \
 	}
 #endif
-
 /**
  * Definition of ili9341 driver instance descriptor.
  *
@@ -480,6 +479,50 @@ int ili9341_drawVLine(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uin
 	}
 
 	return -err;
+}
+
+void ili9341_writeLine(const ili9341_desc_ptr_t desc, uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color) // Rxmaster89
+{
+	int err = ILI9341_SUCCESS;
+
+	bool steep = abs((int16_t)(y1 - y0)) > abs((int16_t)(x1 - x0));
+	if (steep){
+		_swap_int16_t(x0, y0);
+		_swap_int16_t(x1, y1);
+	}
+
+	if (x0 > x1)
+	{
+		_swap_int16_t(x0, x1);
+		_swap_int16_t(y0, y1);
+	}
+
+	int16_t dx, dy;
+	dx = x1 - x0;
+	dy = abs((int16_t)(y1 - y0));
+
+	int16_t err = dx / 2;
+	int16_t ystep;
+
+	if (y0 < y1){
+		ystep = 1;
+	}else{
+		ystep = -1;
+	}
+
+	for (; x0 <= x1; x0++){
+		if (steep){
+			ili9341_display_drawPixel(desc, y0, x0, color);
+		}else{
+			ili9341_display_drawPixel(desc, x0, y0, color);
+		}
+		err -= dy;
+		if (err < 0)
+		{
+			y0 += ystep;
+			err += dx;
+		}
+	}
 }
 
 int ili9341_fill_region(const ili9341_desc_ptr_t desc, uint16_t color) {
