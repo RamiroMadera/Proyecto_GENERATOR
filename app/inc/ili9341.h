@@ -50,7 +50,7 @@
 #define ILI9341_SUCCESS	0
 #define ILI9341_ERR_COMM_TIMEOUT 0x1
 #define ILI9341_ERR_INV_PARAM 0x2
-
+#define ILI9341_ERR_PIXEL_OUT_OF_BOUNDS 0x3	//Rxmaster89
 
 typedef struct ili9341_desc* ili9341_desc_ptr_t;  /**< ILI9341 driver instance descriptor. */
 
@@ -189,6 +189,20 @@ ili9341_desc_ptr_t ili9341_init(const ili9341_cfg_t* cfg, const ili9341_hw_cfg_t
  * @returns ILI9341_SUCCESS or negative error code.
  */
 int ili9341_set_orientation(const ili9341_desc_ptr_t desc, ili9341_orientation_t orientation);
+
+/**
+ * Set region to put image data to, with one coordinate and the size.
+ *
+ * This method sets CASET and PASET registers to given area. Display is then ready to accept image data.
+ *
+ * @param [in] desc Display driver instance.
+ * @param   x1  TFT memory 'x' origin
+ * @param   y1  TFT memory 'y' origin
+ * @param   w   Width of rectangle
+ * @param   h   Height of rectangle
+ * @returns ILI9341_SUCCESS or negative error code.
+ */
+int ili9341_set_region_by_size(const ili9341_desc_ptr_t desc, uint16_t x1, uint16_t y2, uint16_t w, uint16_t h);
 
 /**
  * Set region to put image data to.
