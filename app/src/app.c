@@ -30,11 +30,24 @@ int main(void) {
 
     display = ili9341_init(&display_cfg, &hw_cfg);
     if (display == NULL) {
-//Error_Handler();
+        //Error_Handler();
     }
 
     // C�digo de aplicaci�n
 
+    // Coordenadas para centrar el cuadrado
+    coord_2d_t square_top_left = {110, 70}; // (320-100)/2, (240-100)/2
+    coord_2d_t square_bottom_right = {210, 170};
+
+    // Coordenadas para el círculo
+    uint16_t center_x = 160; // 320/2
+    uint16_t center_y = 120; // 240/2
+    uint16_t radius = 50;
+
+    ili9341_set_region(display, square_top_left, square_bottom_right);
+    ili9341_fill_region(display, RED);
+
+    draw_circle(display, center_x, center_y, radius, BLUE);
     while (1) {
         // C�digo de la aplicaci�n
     }
