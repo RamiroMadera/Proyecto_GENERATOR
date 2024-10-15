@@ -16,6 +16,15 @@
 #include "ili9341_spi_cmds.h"
 #include "string.h"
 
+#ifndef _swap_int16_t
+#define _swap_int16_t(a, b) \
+	{                       \
+		int16_t t = a;      \
+		a = b;              \
+		b = t;              \
+	}
+#endif
+
 /**
  * Definition of ili9341 driver instance descriptor.
  *
@@ -148,7 +157,7 @@ int _ili9341_write_bytes(const ili9341_desc_ptr_t desc, const uint8_t* bytes, ui
 
 void _ili9341_write_bytes_start(const ili9341_desc_ptr_t desc) {
 	desc->dc_pin(ILI9341_PIN_SET);
-	desc->cs_pin(ILI9341_PIN_RESET);
+	desc->cs_pin(ILI9341_PIN_RESET);	//selecciona el chip de spi
 }
 
 void _ili9341_write_bytes_end(const ili9341_desc_ptr_t desc) {
@@ -334,67 +343,150 @@ int ili9341_set_orientation(const ili9341_desc_ptr_t desc, ili9341_orientation_t
 	return err;
 }
 
+int ili9341_set_region_by_size(const ili9341_desc_ptr_t desc, uint16_t x1, uint16_t y2, uint16_t w, uint16_t h) // Rxmaster89
+{	
+	int err = ILI9341_SUCCESS;
+	uint16_t x2 = (x1 + w - 1),
+			 y2 = (y1 + h - 1);
+
+	coord_2d_t top_left = {x1, y1};
+	coord_2d_t bottom_right = {x2, y2};
+
+	err |= ili9341_set_region(display, square_top_left, square_bottom_right);
+	return err;
+}
+
 int ili9341_set_region(const ili9341_desc_ptr_t desc, coord_2d_t top_left, coord_2d_t bottom_right) {
 	int err = ILI9341_SUCCESS;
-	if (!_ili9341_region_valid(&top_left, &bottom_right)) {
+	// Verifica si la región es válida (es decir, si las coordenadas están dentro de los límites).
+	if (!_ili9341_region_valid(&top_left, &bottom_right))
+	{
+		// Si la región no es válida, ajusta los límites a valores válidos.
 		_ili9341_fix_region(&top_left, &bottom_right);
 	}
 
+	// Guarda las coordenadas de la región en el descriptor.
 	desc->region_top_left = top_left;
 	desc->region_bottom_right = bottom_right;
 
+	// Envía el comando para establecer las coordenadas X de la región.
 	err |= _ili9341_write_cmd(desc, ILI9341_CMD_CASET);
+
+	// Prepara los datos para el comando CASET (column address set).
 	ili9341_caset_t caset;
-	caset.fields.sc_h = top_left.x >> 8;
-	caset.fields.sc_l = top_left.x;
-	caset.fields.ec_h = bottom_right.x >> 8;
-	caset.fields.ec_l = bottom_right.x;
+	caset.fields.sc_h = top_left.x >> 8;	 // Parte alta de la coordenada X inicial
+	caset.fields.sc_l = top_left.x;			 // Parte baja de la coordenada X inicial
+	caset.fields.ec_h = bottom_right.x >> 8; // Parte alta de la coordenada X final
+	caset.fields.ec_l = bottom_right.x;		 // Parte baja de la coordenada X final
+	// Envía las coordenadas X al controlador de la pantalla.
 	err |= _ili9341_write_data(desc, caset.params, sizeof(caset));
+
+	// Envía el comando para establecer las coordenadas Y de la región.
 	err |= _ili9341_write_cmd(desc, ILI9341_CMD_PASET);
 
+	// Prepara los datos para el comando PASET (page address set).
 	ili9341_paset_t paset;
-	paset.fields.sp_h = top_left.y >> 8;
-	paset.fields.sp_l = top_left.y;
-	paset.fields.ep_h = bottom_right.y >> 8;
-	paset.fields.ep_l = bottom_right.y;
+	paset.fields.sp_h = top_left.y >> 8;	 // Parte alta de la coordenada Y inicial
+	paset.fields.sp_l = top_left.y;			 // Parte baja de la coordenada Y inicial
+	paset.fields.ep_h = bottom_right.y >> 8; // Parte alta de la coordenada Y final
+	paset.fields.ep_l = bottom_right.y;		 // Parte baja de la coordenada Y final
+    // Envía las coordenadas Y al controlador de la pantalla.
 	err |= _ili9341_write_data(desc, paset.params, sizeof(paset));
+
+	// Envía el comando para iniciar la escritura en la memoria de la pantalla.
 	err |= _ili9341_write_cmd(desc, ILI9341_CMD_RAMWR);
 
 	return err;
 }
 
-int ili9341_fill_region(const ili9341_desc_ptr_t desc, uint16_t color) {
+int ili9341_drawPixel(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t color)	//Rxmaster89
+{
 	int err = ILI9341_SUCCESS;
 
-	uint32_t width = desc->region_bottom_right.x - desc->region_top_left.x+1;
-	uint32_t height = desc->region_bottom_right.y - desc->region_top_left.y + 1;
-	uint32_t size = width*height;
-	const int BUFF_SIZE = 1024;
+	uint8_t color_msb = (color >> 8) & 0xFF; // Byte más significativo del color
+	uint8_t color_lsb = color & 0xFF;		 // Byte menos significativo del color
 
-	uint8_t buffer[BUFF_SIZE];
-	uint8_t color_lsb = color&0xFF;
-	uint8_t color_msb = (color>>8)&0xFF;
+	if ((x < desc->current_width) && (y < desc->current_height)){
+		ili9341_set_region_by_size(desc, x, y, 1, 1);
 
-	uint32_t tx_size = size*2;
-	uint32_t segments = tx_size/BUFF_SIZE;
-	uint32_t rest = tx_size%BUFF_SIZE;
-
-	for (int i = 0; i < BUFF_SIZE; i+=2) {
-		buffer[i] = color_msb;
-		buffer[i+1] = color_lsb;
+		_ili9341_write_bytes_start(desc);
+		err |= _ili9341_write_bytes(desc, color_msb, 1);
+		_ili9341_wait_for_spi_ready(desc);
+		err |= _ili9341_write_bytes(desc, color_lsb, 1);
+		_ili9341_wait_for_spi_ready(desc);
+		_ili9341_write_bytes_end(desc);
+	} else {
+		err = ILI9341_ERR_PIXEL_OUT_OF_BOUNDS;
 	}
 
+	return -err;
+}
+
+int ili9341_fill_region(const ili9341_desc_ptr_t desc, uint16_t color) {
+	int err = ILI9341_SUCCESS;
+	// Calcula el ancho y el alto de la región a rellenar
+	uint32_t width = desc->region_bottom_right.x - desc->region_top_left.x + 1;
+	uint32_t height = desc->region_bottom_right.y - desc->region_top_left.y + 1;
+	uint32_t size = width * height; // Tamaño total en píxeles
+	const int BUFF_SIZE = 1024;		// Tamaño del buffer que se usará para enviar datos en segmentos
+
+	// Buffer temporal que contiene el color con el que se va a llenar la región
+	uint8_t buffer[BUFF_SIZE];
+	uint8_t color_lsb = color & 0xFF;		 // Byte menos significativo del color
+	uint8_t color_msb = (color >> 8) & 0xFF; // Byte más significativo del color
+
+	// Cantidad total de bytes a enviar (cada píxel tiene 2 bytes: 16 bits de color RGB565)
+	uint32_t tx_size = size * 2;
+	uint32_t segments = tx_size / BUFF_SIZE; // Cantidad de segmentos completos que podemos enviar
+	uint32_t rest = tx_size % BUFF_SIZE;	 // Resto que queda tras los segmentos completos
+
+	// Llena el buffer con el color en formato RGB565 (2 bytes por píxel)
+    for (int i = 0; i < BUFF_SIZE; i+=2) {
+        buffer[i] = color_msb;  // Byte más significativo
+        buffer[i+1] = color_lsb; // Byte menos significativo
+	}
+
+	// Inicia la transferencia de datos (cs->0)
 	_ili9341_write_bytes_start(desc);
+
+	// Enviar los segmentos completos de BUFF_SIZE
 	for (int seg = 0; seg <= segments; seg++) {
 		err |= _ili9341_write_bytes(desc, buffer, BUFF_SIZE);
 		_ili9341_wait_for_spi_ready(desc);
 	}
+
+	// Envía el resto de bytes que no completan un segmento
 	err |= _ili9341_write_bytes(desc, buffer, rest);
 	_ili9341_wait_for_spi_ready(desc);
+
+	// Finaliza la transferencia (cs->1)
 	_ili9341_write_bytes_end(desc);
 
 	return -err;
 }
+
+/* --------------------TODO-----------------------
+void ili9341_drawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color)
+{
+	// Update in subclasses if desired!
+	if (x0 == x1)
+	{
+		if (y0 > y1)
+			_swap_int16_t(y0, y1);
+		ili9341_drawVLine(x0, y0, y1 - y0 + 1, color);
+	}
+	else if (y0 == y1)
+	{
+		if (x0 > x1)
+			_swap_int16_t(x0, x1);
+		ili9341_drawHLine(x0, y0, x1 - x0 + 1, color);
+	}
+	else
+	{
+		writeLine(x0, y0, x1, y1, color);
+	}
+}
+*/
 
 void ili9341_1ms_timer_cb() {
 	for (int i = 0; i < ili9341_drivers_pool.current_driver; i++) {
