@@ -31,6 +31,8 @@ int main(void) {
     display = ili9341_init(&display_cfg, &hw_cfg);
     if (display == NULL) {
         //Error_Handler();
+
+        //ojalá no entre acá xd
     }
 
     // C�digo de aplicaci�n
