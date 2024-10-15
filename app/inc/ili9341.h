@@ -50,7 +50,8 @@
 #define ILI9341_SUCCESS	0
 #define ILI9341_ERR_COMM_TIMEOUT 0x1
 #define ILI9341_ERR_INV_PARAM 0x2
-#define ILI9341_ERR_PIXEL_OUT_OF_BOUNDS 0x3	//Rxmaster89
+#define ILI9341_ERR_PIXEL_OUT_OF_BOUNDS 0x3 // Rxmaster89
+#define ILI9341_ERR_INVALID_SIZE 0x4 // Rxmaster89
 
 typedef struct ili9341_desc* ili9341_desc_ptr_t;  /**< ILI9341 driver instance descriptor. */
 
@@ -202,7 +203,7 @@ int ili9341_set_orientation(const ili9341_desc_ptr_t desc, ili9341_orientation_t
  * @param   h   Height of rectangle
  * @returns ILI9341_SUCCESS or negative error code.
  */
-int ili9341_set_region_by_size(const ili9341_desc_ptr_t desc, uint16_t x1, uint16_t y2, uint16_t w, uint16_t h);
+int ili9341_set_region_by_size(const ili9341_desc_ptr_t desc, uint16_t x1, uint16_t y2, uint16_t w, uint16_t h);	//Rxmaster89
 
 /**
  * Set region to put image data to.
@@ -215,6 +216,10 @@ int ili9341_set_region_by_size(const ili9341_desc_ptr_t desc, uint16_t x1, uint1
  * @returns ILI9341_SUCCESS or negative error code.
  */
 int ili9341_set_region(const ili9341_desc_ptr_t desc, coord_2d_t top_left, coord_2d_t bottom_right);
+
+int ili9341_drawPixel(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t color);			 // Rxmaster89
+int ili9341_drawHLine(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t w, uint16_t color); // Rxmaster89
+int ili9341_drawVLine(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t h, uint16_t color); // Rxmaster89
 
 /**
  * Fill display region by solid color.

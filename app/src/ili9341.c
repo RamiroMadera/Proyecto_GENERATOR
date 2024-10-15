@@ -405,17 +405,77 @@ int ili9341_drawPixel(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uin
 
 	uint8_t color_msb = (color >> 8) & 0xFF; // Byte más significativo del color
 	uint8_t color_lsb = color & 0xFF;		 // Byte menos significativo del color
+	uint8_t buffer[2];						 // Buffer temporal que contiene el color con el que se va a llenar la región
+	buffer[0] = color_msb;
+	buffer[1] = color_lsb;
 
 	if ((x < desc->current_width) && (y < desc->current_height)){
 		ili9341_set_region_by_size(desc, x, y, 1, 1);
 
 		_ili9341_write_bytes_start(desc);
-		err |= _ili9341_write_bytes(desc, color_msb, 1);
-		_ili9341_wait_for_spi_ready(desc);
-		err |= _ili9341_write_bytes(desc, color_lsb, 1);
+		err |= _ili9341_write_bytes(desc, buffer, 2);
 		_ili9341_wait_for_spi_ready(desc);
 		_ili9341_write_bytes_end(desc);
 	} else {
+		err = ILI9341_ERR_PIXEL_OUT_OF_BOUNDS;
+	}
+
+	return -err;
+}
+
+int ili9341_drawHLine(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t w, uint16_t color) // Rxmaster89
+{
+	int err = ILI9341_SUCCESS;
+
+	uint8_t buffer[2];						 // Buffer temporal que contenerá el color con el que se va a llenar la región
+	buffer[0] = (color >> 8) & 0xFF;		 // Byte más significativo del color
+	buffer[1] = color & 0xFF;				 // Byte menos significativo del color
+
+	if(w == 0)
+		return ILI9341_ERR_INVALID_SIZE;
+	if (w < 0)
+		w = -w;
+
+	if ((x < desc->current_width) && (y < desc->current_height))	{
+		if ((x + w - 1) >= desc->current_width)
+			w = desc->current_width - x;
+		ili9341_set_region_by_size(desc, x, y, w, 1);
+		while (w--)
+		{
+			err |= _ili9341_write_bytes(desc, buffer, 2);
+			_ili9341_wait_for_spi_ready(desc);
+		}
+		_ili9341_write_bytes_end(desc);
+	} else {
+		err = ILI9341_ERR_PIXEL_OUT_OF_BOUNDS;
+	}
+
+	return -err;
+}
+
+int ili9341_drawVLine(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t h, uint16_t color) // Rxmaster89
+{
+	int err = ILI9341_SUCCESS;
+
+	uint8_t buffer[2];				 // Buffer temporal que contenerá el color con el que se va a llenar la región
+	buffer[0] = (color >> 8) & 0xFF; // Byte más significativo del color
+	buffer[1] = color & 0xFF;		 // Byte menos significativo del color
+
+	if (h == 0)
+		return ILI9341_ERR_INVALID_SIZE;
+	if (h < 0)
+		h = -h;
+
+	if ((x < desc->current_width) && (y < desc->current_height)){
+		if ((y + h - 1) >= desc->current_height)
+			h = desc->current_height - y;
+		ili9341_set_region_by_size(desc, x, y, 1, h);
+		while (h--) {
+			err |= _ili9341_write_bytes(desc, buffer, 2);
+			_ili9341_wait_for_spi_ready(desc);
+		}
+		_ili9341_write_bytes_end(desc);
+	}else{
 		err = ILI9341_ERR_PIXEL_OUT_OF_BOUNDS;
 	}
 
