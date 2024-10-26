@@ -342,7 +342,7 @@ int ili9341_set_orientation(const ili9341_desc_ptr_t desc, ili9341_orientation_t
 	return err;
 }
 
-int ili9341_set_region_by_size(const ili9341_desc_ptr_t desc, uint16_t x1, uint16_t y2, uint16_t w, uint16_t h) // Rxmaster89
+int ili9341_set_region_by_size(const ili9341_desc_ptr_t desc, uint16_t x1, uint16_t y1, uint16_t w, uint16_t h) // Rxmaster89
 {	
 	int err = ILI9341_SUCCESS;
 	uint16_t x2 = (x1 + w - 1),
@@ -351,7 +351,7 @@ int ili9341_set_region_by_size(const ili9341_desc_ptr_t desc, uint16_t x1, uint1
 	coord_2d_t top_left = {x1, y1};
 	coord_2d_t bottom_right = {x2, y2};
 
-	err |= ili9341_set_region(display, square_top_left, square_bottom_right);
+	err |= ili9341_set_region(desc, top_left, bottom_right);
 	return err;
 }
 
@@ -398,7 +398,7 @@ int ili9341_set_region(const ili9341_desc_ptr_t desc, coord_2d_t top_left, coord
 	return err;
 }
 
-int ili9341_drawPixel(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t color)	//Rxmaster89
+int ili9341_display_drawPixel(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t color)	//Rxmaster89
 {
 	int err = ILI9341_SUCCESS;
 
@@ -501,7 +501,7 @@ void ili9341_writeLine(const ili9341_desc_ptr_t desc, uint16_t x0, uint16_t y0, 
 	dx = x1 - x0;
 	dy = abs((int16_t)(y1 - y0));
 
-	int16_t err = dx / 2;
+	int16_t error = dx / 2;
 	int16_t ystep;
 
 	if (y0 < y1){
@@ -517,10 +517,10 @@ void ili9341_writeLine(const ili9341_desc_ptr_t desc, uint16_t x0, uint16_t y0, 
 			ili9341_display_drawPixel(desc, x0, y0, color);
 		}
 		err -= dy;
-		if (err < 0)
+		if (error < 0)
 		{
 			y0 += ystep;
-			err += dx;
+			error += dx;
 		}
 	}
 }

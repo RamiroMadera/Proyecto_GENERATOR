@@ -49,7 +49,7 @@ int main(void) {
     ili9341_set_region(display, square_top_left, square_bottom_right);
     ili9341_fill_region(display, RED);
 
-    draw_circle(display, center_x, center_y, radius, BLUE);
+    //draw_circle(display, center_x, center_y, radius, BLUE);
     while (1) {
         // C�digo de la aplicaci�n
     }
