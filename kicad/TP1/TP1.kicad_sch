@@ -6,8 +6,8 @@
 	(paper "A4")
 	(title_block
 		(title "GENERATOR Esquemático")
-		(date "30/09/2024")
-		(rev "1.0")
+		(date "31/10/2024")
+		(rev "1.2")
 	)
 	(lib_symbols
 		(symbol "Amplifier_Audio:LM386"

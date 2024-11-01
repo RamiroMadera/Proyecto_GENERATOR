@@ -1,4 +1,4 @@
-23843091701544196
+23860393998163378
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -85581,6 +85581,76 @@ Potentiometer vertical vishay
 0
 3
 3
+Puncho_Esqueleto
+Conn_Poncho_Chico
+
+CONN Poncho
+0
+80
+80
+Puncho_Esqueleto
+Conn_Poncho_Completo
+
+CONN Poncho
+0
+84
+81
+Puncho_Esqueleto
+Conn_Poncho_Mediano
+
+CONN Poncho
+0
+84
+81
+Puncho_Esqueleto
+Conn_Poncho_SinBorde
+
+CONN Poncho
+0
+80
+80
+Puncho_Esqueleto
+Logo_EDU-CIAA
+
+
+0
+0
+0
+Puncho_Esqueleto
+Logo_OSHWA
+
+
+0
+0
+0
+Puncho_Esqueleto
+Logo_Poncho
+
+
+0
+0
+0
+Puncho_Esqueleto
+Plantilla_EDU-CIAA
+
+plantilla poncho EDU CIAA
+0
+0
+0
+Puncho_Esqueleto
+Plantilla_Pico
+
+
+0
+0
+0
+Puncho_Esqueleto
+Symbol_KiCAD-Logo_CopperAndSilkScreenTop
+Symbol, KiCAD-Logo, Silk & Copper Top,
+Symbol, KiCAD-Logo, Silk & Copper Top,
+0
+0
+0
 RF
 Skyworks_SKY13575_639LF
 http://www.skyworksinc.com/uploads/documents/SKY13575_639LF_203270D.pdf
