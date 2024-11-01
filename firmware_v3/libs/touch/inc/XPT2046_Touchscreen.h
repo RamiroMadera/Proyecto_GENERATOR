@@ -36,6 +36,5 @@ TS_Point XPT2046_Touchscreen_getPoint(XPT2046_Touchscreen *touchscreen);
 bool XPT2046_Touchscreen_touched(XPT2046_Touchscreen *touchscreen);
 void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen);
 void XPT2046_Touchscreen_readData(XPT2046_Touchscreen *touchscreen, uint16_t *x, uint16_t *y, uint8_t *z);
-void XPT2046_Touchscreen_setRotation(XPT2046_Touchscreen *touchscreen, uint8_t rotation);
 
 #endif // XPT2046_TOUCHSCREEN_H

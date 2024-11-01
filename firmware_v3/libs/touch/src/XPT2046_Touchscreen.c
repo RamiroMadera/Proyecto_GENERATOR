@@ -36,7 +36,7 @@ bool XPT2046_Touchscreen_touched(XPT2046_Touchscreen *touchscreen) {
     return (touchscreen->zraw >= Z_THRESHOLD);
 }
 
-//Actualiza la info de la pantalla. No es necesaria por usar el display
+//Actualiza la info de la pantalla
 void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen) {
     // This function will implement the same data update logic found in the .cpp file
     // SPI transactions and data handling should be added here
@@ -48,9 +48,4 @@ void XPT2046_Touchscreen_readData(XPT2046_Touchscreen *touchscreen, uint16_t *x,
     *x = touchscreen->xraw;
     *y = touchscreen->yraw;
     *z = touchscreen->zraw;
-}
-
-//Setea rotación. Creo que esto no va
-void XPT2046_Touchscreen_setRotation(XPT2046_Touchscreen *touchscreen, uint8_t rotation) {
-    touchscreen->rotation = rotation % 4;
 }
