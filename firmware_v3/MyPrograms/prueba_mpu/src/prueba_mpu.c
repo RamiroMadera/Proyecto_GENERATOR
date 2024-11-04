@@ -1,46 +1,56 @@
-/*=============================================================================
- * Author: Tobias <->
- * Date: 2024/10/28
- * Version: 1
- *===========================================================================*/
-
-/*=====[Inclusions of function dependencies]=================================*/
-
-#include "prueba_mpu.h"
 #include "sapi.h"
-#include "mpu6050.h"
 
-// FUNCION PRINCIPAL, PUNTO DE ENTRADA AL PROGRAMA LUEGO DE ENCENDIDO O RESET.
-int main( void )
-{
-   // ---------- CONFIGURACIONES ------------------------------
+MPU60X0_address_t addr = MPU60X0_ADDRESS_0;
 
-   // Inicializar y configurar la plataforma
+int main(void){
    boardConfig();
+   printf("Inicializando MPU6050...\r\n" );
+   int8_t status;
+   status = mpu60X0Init( addr );
 
-   i2cInit(I2C0, 100000);
-   if (!mpu6050Init(I2C0)) {
-	   printf("Error al inicializar el MPU6050\n");
-	   while(1);  // Detener el programa si no se pudo inicializar
+   if( status < 0 ){
+      printf( "MPU6050 no inicializado, chequee las conexiones\r\n\r\n" );
+      while(1);
    }
-   printf("MPU6050 inicializado correctamente\n");
+   printf("MPU6050 inicializado correctamente.\r\n\r\n" );
+   float AccelX, AccelY, AccelZ, GyroX, GyroY, GyroZ;
+   float umbralGiroscopio = 5000.0; // Umbral para aceleración radial
+   float umbralAceleracion = 10000.0; // Umbral para aceleración lineal
+   /* ------------- REPETIR POR SIEMPRE ------------- */
+   while(TRUE){
 
-   int16_t ax, ay, az;
+      //Leer el sensor y guardar en estructura de control
+      mpu60X0Read();
 
-   // ---------- REPETIR POR SIEMPRE --------------------------
-   while( TRUE ) {
-	   // Leer los valores de aceleración
-	  if (mpu6050ReadAccel(&ax, &ay, &az)) {
-		  // Imprimir los valores de aceleración en consola
-		  printf("Ax: %d, Ay: %d, Az: %d\n", ax, ay, az);
-	  } else {
-		  printf("Error al leer el MPU6050\n");
-	  }
-	  delay(250);
+      GyroX = mpu60X0GetGyroX_rads();
+      GyroY = mpu60X0GetGyroY_rads();
+      GyroZ = mpu60X0GetGyroZ_rads();
+      printf( "Giroscopo:  (%f, %f, %f)   [rad/s]\r\n",GyroX, GyroY, GyroZ);
+      // Prender led si se esta girando
+      if ((GyroX > umbralAceleracion || GyroX < -umbralAceleracion) ||
+         (GyroY > umbralAceleracion || GyroY < -umbralAceleracion) ||
+         (GyroZ > umbralAceleracion || GyroZ < -umbralAceleracion)) {
+         gpioWrite(LED1,HIGH);
+      } else {
+         gpioWrite(LED1,LOW);
+      }
+      AccelX = mpu60X0GetAccelX_mss();
+      AccelY = mpu60X0GetAccelY_mss();
+      AccelZ = mpu60X0GetAccelZ_mss();
+      printf( "Acelerometro:  (%f, %f, %f)   [m/s2]\r\n",AccelX, AccelY, AccelZ);
+      // Prender led si se esta agitando
+      if ((AccelX > umbralAceleracion || AccelX < -umbralAceleracion) ||
+         (AccelY > umbralAceleracion || AccelY < -umbralAceleracion) ||
+         (AccelZ > umbralAceleracion || AccelZ < -umbralAceleracion)) {
+         gpioWrite(LED2,HIGH);
+      } else {
+         gpioWrite(LED2,LOW);
+      }
+		printf( "Temperatura:   %f [C]\r\n\r\n",
+              mpu60X0GetTemperature_C()
+            );
+
+      delay(1000);
    }
-
-   // NO DEBE LLEGAR NUNCA AQUI, debido a que a este programa se ejecuta
-   // directamenteno sobre un microcontroladore y no es llamado por ningun
-   // Sistema Operativo, como en el caso de un programa para PC.
-   return 0;
+   return 0 ;
 }
