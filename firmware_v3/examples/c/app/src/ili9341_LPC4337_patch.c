@@ -5,25 +5,13 @@ void ili9341_gpio_init(void){
     gpioConfig(CS_PIN, GPIO_OUTPUT);        //esto lo hice basándome en el ejemplo de examples>c>sapi>gpio>switches_leds
     gpioConfig(DC_PIN, GPIO_OUTPUT);
     gpioConfig(RST_PIN, GPIO_OUTPUT);
-   
-   tickConfig(1);
-   tickCallbackSet(diskTickHook, NULL);
 }
 
-/* 1MS Timer callback */
-
-void diskTickHook(void *ptr)
-{
-	/* Update Display driver timers. */
-	ili9341_1ms_timer_cb();
-}
 
 void ili9341_spi_init(void){
-    spiConfig(SPI0);                       //esto lo hice basándome en el ejemplo de examples>c>sapi>spi>sd_card>fatfss_list
+    spiInit(SPI0); // esto lo hice basándome en el ejemplo de examples>c>sapi>spi>sd_card>fatfss_list
 
-    //FSSDC_InitSPI();                // puede que esto sea solo para leer SD cards examples\c\sapi\spi\sd_card\fatfs_log_time_stamp\src\sd_spi.c
-
-    Chip_SSP_DMA_Enable(LPC_SSP1); // libs\lpc_open\lpc_chip_43xx\inc\ssp_18xx_43xx.h
+    //Chip_SSP_DMA_Enable(LPC_SSP1); // libs\lpc_open\lpc_chip_43xx\inc\ssp_18xx_43xx.h    ----> No sé pq lo puse jej
 }
 
 

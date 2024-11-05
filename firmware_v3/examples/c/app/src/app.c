@@ -9,6 +9,8 @@ int main(void) {
     boardConfig();
     ili9341_gpio_init();
     ili9341_spi_init();
+    tickConfig(1);
+    tickCallbackSet(diskTickHook, NULL);
 
     // Inicializaci�n y configuraci�n del display ILI9341
     ili9341_desc_ptr_t display;
@@ -53,4 +55,12 @@ int main(void) {
     while (1) {
         // C�digo de la aplicaci�n
     }
+}
+
+/* 1MS Timer callback */
+
+void diskTickHook(void *ptr)
+{
+    /* Update Display driver timers. */
+    ili9341_1ms_timer_cb();
 }
