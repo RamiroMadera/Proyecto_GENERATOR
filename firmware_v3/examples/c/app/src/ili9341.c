@@ -100,7 +100,7 @@ int _ili9341_init_display(const ili9341_desc_ptr_t desc, const ili9341_hw_cfg_t*
 	err |= _ili9341_write_data(desc, hw_cfg->vmctr1.params, sizeof(hw_cfg->vmctr1));
 	err |= _ili9341_write_cmd(desc, ILI9341_CMD_VMCTR2);
 	err |= _ili9341_write_data(desc, hw_cfg->vmctr2.params, sizeof(hw_cfg->vmctr2));
-	err |= _ili9341_write_cmd(desc, ILI9341_CMD_MADCTL);
+	err |= _ili9341_write_cmd(desc, ILI9341_CMD_MADC TL);
 	err |= _ili9341_write_data(desc, hw_cfg->madctl.params, sizeof(hw_cfg->madctl));
 	err |= _ili9341_write_cmd(desc, ILI9341_CMD_PIXFMT);
 	err |= _ili9341_write_data(desc, hw_cfg->pixfmt.params, sizeof(hw_cfg->pixfmt));
@@ -230,9 +230,11 @@ ili9341_hw_cfg_t ili9341_get_default_hw_cfg() {
 	uint8_t timctrlb[] = {0x66, 0x00};
 	//uint8_t timctrlb[] = {0xEA, 0x00, 0x00};
 	memcpy(def_cfg.timctrlb.params, &timctrlb, sizeof(ili9341_timctrlb_t));
-	uint8_t ponseqctrl[] = {0x64, 0x03, 0x12, 0x81};
+	//uint8_t ponseqctrl[] = {0x64, 0x03, 0x12, 0x81};
+	uint8_t ponseqctrl[] = {0x55, 0x01, 0x23, 0x01};
 	memcpy(def_cfg.ponseqctrl.params, &ponseqctrl, sizeof(ili9341_ponseqctrl_t));
-	uint8_t pumpratctrl[] = {0x20};
+	//uint8_t pumpratctrl[] = {0x20};
+	uint8_t pumpratctrl[] = {0x10};
 	memcpy(def_cfg.pumpratctrl.params, &pumpratctrl, sizeof(ili9341_pumpratctrl_t));
 	uint8_t pwctr1[] = {0x23};
 	memcpy(def_cfg.pwctr1.params, &pwctr1, sizeof(ili9341_pwctr1_t));
@@ -242,22 +244,24 @@ ili9341_hw_cfg_t ili9341_get_default_hw_cfg() {
 	memcpy(def_cfg.vmctr1.params, &vmctr1, sizeof(ili9341_vmctr1_t));
 	uint8_t vmctr2[] = {0x86};
 	memcpy(def_cfg.vmctr2.params, &vmctr2, sizeof(ili9341_vmctr2_t));
-	uint8_t madctl[] = {0x48};
+	uint8_t madctl[] = {0x48}; //0010 1000 p.127
 	memcpy(def_cfg.madctl.params, &madctl, sizeof(ili9341_madctl_t));
-	uint8_t pixfmt[] = {0x55};
+	uint8_t pixfmt[] = {0x55}; //bien p.134
 	memcpy(def_cfg.pixfmt.params, &pixfmt, sizeof(ili9341_pixfmt_t));
-	uint8_t frmctr1[] = {0x00, 0x18};
+	uint8_t frmctr1[] = {0x00, 0x18}; //p.155
 	memcpy(def_cfg.frmctr1.params, &frmctr1, sizeof(ili9341_frmctr1_t));
-	uint8_t dfunctr[] = {0x08, 0x82, 0x27};
+	//uint8_t dfunctr[] = {0x08, 0x82, 0x27};
+	uint8_t dfunctr[] = {0x08, 0x82, 0x27, 0x01};	//a chequear p.164
 	memcpy(def_cfg.dfunctr.params, &dfunctr, sizeof(ili9341_dfunctr_t));
-	uint8_t g3enable[] = {0x00};
+	//uint8_t g3enable[] = {0x00};
+	uint8_t g3enable[] = {0x02};	//p.201
 	memcpy(def_cfg.g3enable.params, &g3enable, sizeof(ili9341_3genable_t));
-	uint8_t gammaset[] = {0x01};
+	uint8_t gammaset[] = {0x01};	//p.107
 	memcpy(def_cfg.gammaset.params, &gammaset, sizeof(ili9341_gammaset_t));
 	uint8_t gmctrp1[] = {0x0F, 0x31, 0x2B, 0x0C, 0x0E, 0x08, 0x4E, 0xF1, 0x37, 0x07, 0x10, 0x03, 0x0E, 0x09, 0x00};
-	memcpy(def_cfg.gmctrp1.params, &gmctrp1, sizeof(ili9341_gmctrp1_t));
+	memcpy(def_cfg.gmctrp1.params, &gmctrp1, sizeof(ili9341_gmctrp1_t));	//p.188
 	uint8_t gmctrn1[] = {0x00, 0x0E, 0x14, 0x03, 0x11, 0x07, 0x31, 0xC1, 0x48, 0x08, 0x0F, 0x0C, 0x31, 0x36, 0x0F};
-	memcpy(def_cfg.gmctrn1.params, &gmctrn1, sizeof(ili9341_gmctrn1_t));
+	memcpy(def_cfg.gmctrn1.params, &gmctrn1, sizeof(ili9341_gmctrn1_t));	// p.189
 
 	return def_cfg;
 }

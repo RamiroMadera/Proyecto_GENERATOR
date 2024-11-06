@@ -1124,9 +1124,9 @@ typedef union {
  * Command ILI9341_CMD_PWCTRLB param
  */
 typedef union {
-	uint8_t params[3];
+	uint8_t params[2];
 	struct {
-		uint8_t unused1;
+		//uint8_t unused1;
 		uint8_t
 			param2_2: 3, ///< 0x1
 			pow_ctrl: 2, ///< 0x3
