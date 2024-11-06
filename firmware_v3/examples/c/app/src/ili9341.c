@@ -219,13 +219,16 @@ void _ili9341_fix_region(coord_2d_t* top_left, coord_2d_t* bottom_right) {
 
 ili9341_hw_cfg_t ili9341_get_default_hw_cfg() {
 	ili9341_hw_cfg_t def_cfg;
-	uint8_t powctrla[] = {0x39, 0x2C, 0x00, 0x34, 0x02};
+	uint8_t powctrla[] = {0x39, 0x2C, 0x00, 0x34, 0x02};		//correcto p.195
 	memcpy(def_cfg.pwctrla.params, &powctrla, sizeof(ili9341_pwctrla_t));
-	uint8_t powctrlb[] = {0x00, 0xC1, 0x30};
+	//uint8_t powctrlb[] = {0x00, 0xC1, 0x30};
+	uint8_t powctrlb[] = {0x00, 0xA2, 0xF0};					//p. 196
 	memcpy(def_cfg.pwctrlb.params, &powctrlb, sizeof(ili9341_pwctrlb_t));
-	uint8_t timctrla[] = {0x85, 0x00, 0x78};
+	//uint8_t timctrla[] = {0x85, 0x00, 0x78};
+	uint8_t timctrla[] = {0x84, 0x11, 0x7A};
 	memcpy(def_cfg.timctrla.params, &timctrla, sizeof(ili9341_timctrla_t));
-	uint8_t timctrlb[] = {0xEA, 0x00, 0x00};
+	uint8_t timctrlb[] = {0x66, 0x00};
+	//uint8_t timctrlb[] = {0xEA, 0x00, 0x00};
 	memcpy(def_cfg.timctrlb.params, &timctrlb, sizeof(ili9341_timctrlb_t));
 	uint8_t ponseqctrl[] = {0x64, 0x03, 0x12, 0x81};
 	memcpy(def_cfg.ponseqctrl.params, &ponseqctrl, sizeof(ili9341_ponseqctrl_t));

@@ -1164,7 +1164,8 @@ typedef union {
  * Gate driver timing control
  */
 typedef union {
-	uint8_t params[3];
+	//uint8_t params[3];
+	uint8_t params[2];
 	struct {
 		uint8_t
 			vg_sw_t1: 2, ///< 0 - 0unit, 1 - 1unit, 2 - 2units, 3 - 3units
