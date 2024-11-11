@@ -677,7 +677,7 @@ int ili9341_set_region(const ili9341_desc_ptr_t desc, coord_2d_t top_left, coord
 	return err;
 }
 
-int ili9341_display_drawPixel(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t color)	//Rxmaster89
+int ili9341_drawPixel(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t color)	//Rxmaster89
 {
 	int err = ILI9341_SUCCESS;
 
@@ -791,9 +791,9 @@ void ili9341_writeLine(const ili9341_desc_ptr_t desc, uint16_t x0, uint16_t y0, 
 
 	for (; x0 <= x1; x0++){
 		if (steep){
-			ili9341_display_drawPixel(desc, y0, x0, color);
+			ili9341_drawPixel(desc, y0, x0, color);
 		}else{
-			ili9341_display_drawPixel(desc, x0, y0, color);
+			ili9341_drawPixel(desc, x0, y0, color);
 		}
 		err -= dy;
 		if (error < 0)
@@ -897,7 +897,7 @@ uint16_t ili9341_get_screen_height(const ili9341_desc_ptr_t desc) {
 	@param  c  The 8-bit ascii character to write
 */
 /**************************************************************************/
-void ili9341_display_print(const ili9341_desc_ptr_t desc, uint8_t c)
+void ili9341_print(const ili9341_desc_ptr_t desc, uint8_t c)
 {
 
 	if (c == ' ' && cursor_x == 0 && wrap)
@@ -921,16 +921,16 @@ void ili9341_display_print(const ili9341_desc_ptr_t desc, uint8_t c)
 			if (line & 1)
 			{
 				if (textsize == 1)
-					ili9341_display_drawPixel(desc, cursor_x + i, cursor_y + j, textcolor);
+					ili9341_drawPixel(desc, cursor_x + i, cursor_y + j, textcolor);
 				else
-					ili9341_display_fillRect(desc, cursor_x + i * textsize, cursor_y + j * textsize, textsize, textsize, textcolor);
+					ili9341_fillRect(desc, cursor_x + i * textsize, cursor_y + j * textsize, textsize, textsize, textcolor);
 			}
 			else if (textbgcolor != textcolor)
 			{
 				if (textsize == 1)
-					ili9341_display_drawPixel(desc, cursor_x + i, cursor_y + j, textbgcolor);
+					ili9341_drawPixel(desc, cursor_x + i, cursor_y + j, textbgcolor);
 				else
-					ili9341_display_fillRect(desc, cursor_x + i * textsize, cursor_y + j * textsize, textsize, textsize, textbgcolor);
+					ili9341_fillRect(desc, cursor_x + i * textsize, cursor_y + j * textsize, textsize, textsize, textbgcolor);
 			}
 		}
 	}
@@ -938,9 +938,9 @@ void ili9341_display_print(const ili9341_desc_ptr_t desc, uint8_t c)
 	if (textbgcolor != textcolor)
 	{ // If opaque, draw vertical line for last column
 		if (textsize == 1)
-			ili9341_display_drawVLine(desc, cursor_x + 5, cursor_y, 8, textbgcolor);
+			ili9341_drawVLine(desc, cursor_x + 5, cursor_y, 8, textbgcolor);
 		else
-			ili9341_display_fillRect(desc, cursor_x + 5 * textsize, cursor_y, textsize, 8 * textsize, textbgcolor);
+			ili9341_fillRect(desc, cursor_x + 5 * textsize, cursor_y, textsize, 8 * textsize, textbgcolor);
 	}
 
 	cursor_x += textsize * 6;
@@ -948,7 +948,7 @@ void ili9341_display_print(const ili9341_desc_ptr_t desc, uint8_t c)
 	if (cursor_x > ((uint16_t)(desc->current_width) + textsize * 6))
 		cursor_x = desc->current_width;
 
-	if (wrap && (cursor_x + (textsize * 5)) > display_width)
+	if (wrap && (cursor_x + (textsize * 5)) > desc->current_width)
 	{
 		cursor_x = 0;
 		cursor_y += textsize * 8;
@@ -959,6 +959,51 @@ void ili9341_display_print(const ili9341_desc_ptr_t desc, uint8_t c)
 
 /**************************************************************************/
 /*!
+   @brief   Draw a single character
+	@param    x   Bottom left corner x coordinate
+	@param    y   Bottom left corner y coordinate
+	@param    c   The 8-bit font-indexed character (likely ascii)
+	@param    color 16-bit 5-6-5 Color to draw chraracter with
+	@param    bg 16-bit 5-6-5 Color to fill background with (if same as color, no background)
+	@param    size  Font magnification level, 1 is 'original' size
+*/
+/**************************************************************************/
+void ili9341_drawChar(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint8_t c, uint16_t color, uint16_t bg,
+							  uint8_t size)
+{
+	uint16_t prev_x = cursor_x,
+			 prev_y = cursor_y,
+			 prev_color = textcolor,
+			 prev_bg = textbgcolor;
+	uint8_t prev_size = textsize;
+
+	ili9341_setCursor(desc,x, y);
+	ili9341_setTextSize(desc,size);
+	ili9341_setTextColor(desc,color, bg);
+	ili9341_print(desc,c);
+
+	cursor_x = prev_x;
+	cursor_y = prev_y;
+	textcolor = prev_color;
+	textbgcolor = prev_bg;
+	textsize = prev_size;
+}
+void ili9341_setCursor(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y)
+{
+	cursor_x = x;
+	cursor_y = y;
+}
+void ili9341_setTextSize(const ili9341_desc_ptr_t desc, uint8_t s)
+{
+	textsize = (s > 0) ? s : 1;
+}
+void ili9341_setTextColor(const ili9341_desc_ptr_t desc, uint16_t c, uint16_t b)
+{
+	textcolor = c;
+	textbgcolor = b;
+}
+/**************************************************************************/
+/*!
    @brief    Fill a rectangle completely with one color.
 	@param    x   Top left corner x coordinate
 	@param    y   Top left corner y coordinate
@@ -967,7 +1012,7 @@ void ili9341_display_print(const ili9341_desc_ptr_t desc, uint8_t c)
    @param    color 16-bit 5-6-5 Color to fill with
 */
 /**************************************************************************/
-void ili9341_display_fillRect(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color)
+void ili9341_fillRect(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color)
 {
 	if (w && h)
 	{ // Nonzero width and height?
@@ -981,7 +1026,15 @@ void ili9341_display_fillRect(const ili9341_desc_ptr_t desc, uint16_t x, uint16_
 
 		coord_2d_t top_left = {x, y}; // (320-100)/2, (240-100)/2
 		coord_2d_t bottom_right = {x + w - 1, y + h - 1};
-		ili9341_set_region(display, top_left, bottom_right);
-		ili9341_fill_region(display, color);
+		ili9341_set_region(desc, top_left, bottom_right);
+		ili9341_fill_region(desc, color);
+	}
+}
+
+void ili9341_print_str(const ili9341_desc_ptr_t desc, const char *message)
+{
+	for (uint8_t i = 0; i < strlen(message); i++)
+	{
+		ili9341_print(desc, message[i]);
 	}
 }

@@ -223,6 +223,14 @@ int ili9341_drawVLine(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uin
 void ili9341_writeLine(const ili9341_desc_ptr_t desc, uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color); // Rxmaster89
 int ili9341_drawLine(const ili9341_desc_ptr_t desc, uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);   // Rxmaster89
 
+void ili9341_fillRect(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color); // Rxmaster89
+void ili9341_drawChar(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint8_t c, uint16_t color, uint16_t bg, uint8_t size); //Rxmaster89
+void ili9341_print(const ili9341_desc_ptr_t desc, uint8_t c);																		// Rxmaster89
+void ili9341_setCursor(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y);														// Rxmaster89
+void ili9341_setTextSize(const ili9341_desc_ptr_t desc, uint8_t s);																	// Rxmaster89
+void ili9341_setTextColor(const ili9341_desc_ptr_t desc, uint16_t c, uint16_t b);													// Rxmaster89
+void ili9341_print_str(const ili9341_desc_ptr_t desc, const char *message);															//Rxmaster89
+
 /**
  * Fill display region by solid color.
  *
