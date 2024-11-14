@@ -3,10 +3,12 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <sapi_spi.h>
 
 #define Z_THRESHOLD 300
 #define Z_THRESHOLD_INT 75
 #define MSEC_THRESHOLD 3
+#define PENIRQ_PIN 11
 
 //Estrctura de punto
 typedef struct {
@@ -27,13 +29,13 @@ typedef struct {
     int16_t yraw;
     int16_t zraw;
     uint32_t msraw;
-    bool isrWake;
+    bool_t isrWake;
 } XPT2046_Touchscreen;
 
 //Declaración de funciones
-bool XPT2046_Touchscreen_begin(XPT2046_Touchscreen *touchscreen, uint8_t csPin, uint8_t tirqPin);
+bool_t XPT2046_Touchscreen_begin(XPT2046_Touchscreen *touchscreen, uint8_t csPin, uint8_t tirqPin);
 TS_Point XPT2046_Touchscreen_getPoint(XPT2046_Touchscreen *touchscreen);
-bool XPT2046_Touchscreen_touched(XPT2046_Touchscreen *touchscreen);
+bool_t XPT2046_Touchscreen_touched(XPT2046_Touchscreen *touchscreen);
 void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen);
 void XPT2046_Touchscreen_readData(XPT2046_Touchscreen *touchscreen, uint16_t *x, uint16_t *y, uint8_t *z);
 
