@@ -10350,7 +10350,7 @@
 			(justify left bottom mirror)
 		)
 	)
-	(gr_text "Í"
+	(gr_text "I"
 		(at 102.647214 81.283317 0)
 		(layer "B.Cu")
 		(uuid "e5aa0a13-8be1-4b20-978a-fab539416746")
