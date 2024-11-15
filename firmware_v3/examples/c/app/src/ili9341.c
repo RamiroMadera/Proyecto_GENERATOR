@@ -72,7 +72,7 @@ uint16_t
 uint8_t
 	textsize = 1; ///< Desired magnification of text to print()
 bool
-	wrap = TRUE; ///< If set, 'wrap' text at right edge of display
+	wrap = 1; ///< If set, 'wrap' text at right edge of display
 
 // Standard ASCII 5x7 font
 #ifndef FONT5X7_H

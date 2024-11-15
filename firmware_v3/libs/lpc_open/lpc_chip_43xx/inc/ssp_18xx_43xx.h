@@ -1,4 +1,4 @@
-Chip_SSP_DMA_Enable/*
+/*
  * @brief LPC18xx/43xx SSP driver
  *
  * @note

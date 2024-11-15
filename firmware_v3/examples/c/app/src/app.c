@@ -46,8 +46,8 @@ int main(void) {
     ili9341_fill_region(display, BLACK);
 
     //Imprimir algunas líneas
-    uint16_t start_X = 110;
-    uint16_t start_Y = 70;
+    uint16_t start_X = 55;
+    uint16_t start_Y = 35;
     ili9341_drawLine(display, start_X, start_Y, start_X + 40, start_Y, RED);
     ili9341_drawLine(display, start_X, start_Y, start_X + 37, start_Y + 16, BLUE);
     ili9341_drawLine(display, start_X, start_Y, start_X + 29, start_Y + 29, YELLOW);
@@ -76,18 +76,17 @@ int main(void) {
     }
 
     //Imprimir carácteres
-    uint16_t x = 110;
+    uint16_t x = 55;
     uint16_t y = 190;
-    uint8_t size = 1;
-    uint16_t color = BLACK;
-    uint16_t bg = PINK;
+    uint8_t size = 2;
+    uint16_t color = GREEN;
+    uint16_t bg = BLACK;
 
     ili9341_setCursor(display, x, y);
     ili9341_setTextSize(display, size);
     ili9341_setTextColor(display, color, bg);
-    print_message(desc, "Hola fucking mundo!!");
-    ili9341_print(display, ":");
-    ili9341_print(display, ")");
+    ili9341_print_str(display, "HOLA FUCKING MUNDO!!");
+    ili9341_print_str(display, "");
 
     while (1) {
         // C�digo de la aplicaci�n
