@@ -42,7 +42,7 @@
 #define MAGENTA     0xF81F
 #define YELLOW      0xFFE0
 #define WHITE       0xFFFF
-#define ORANGE      0xFD20
+#define ORANGE 		0xFBE0
 #define GREENYELLOW 0xAFE5
 #define PINK        0xF81F
 
