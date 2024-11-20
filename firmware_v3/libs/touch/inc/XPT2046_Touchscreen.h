@@ -38,7 +38,7 @@ typedef struct {
 } XPT2046_Touchscreen;
 
 //Declaración de funciones
-bool_t XPT2046_Touchscreen_begin(XPT2046_Touchscreen *touchscreen, uint8_t csPin, uint8_t tirqPin);
+bool_t XPT2046_Touchscreen_begin(XPT2046_Touchscreen *touchscreen);
 TS_Point XPT2046_Touchscreen_getPoint(XPT2046_Touchscreen *touchscreen);
 bool_t XPT2046_Touchscreen_touched(XPT2046_Touchscreen *touchscreen);
 void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen);

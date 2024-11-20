@@ -10,15 +10,15 @@ bool_t TS_Point_notEqual(TS_Point *p1, TS_Point *p2) {
 }
 
 //Inicializa el táctil
-bool_t XPT2046_Touchscreen_begin(XPT2046_Touchscreen *touchscreen, uint8_t csPin, uint8_t tirqPin) {
-    touchscreen->csPin = csPin;
-    touchscreen->tirqPin = tirqPin;
-    touchscreen->rotation = 1;
-    touchscreen->isrWake = true;
+bool_t XPT2046_Touchscreen_begin(XPT2046_Touchscreen *touchscreen) {
+    //touchscreen->csPin = csPin;
+    //touchscreen->tirqPin = tirqPin;
+    //touchscreen->rotation = 1;
+    //touchscreen->isrWake = true;
     touchscreen->xraw = 0;
     touchscreen->yraw = 0;
     touchscreen->zraw = 0;
-    touchscreen->msraw = 0x80000000;
+    //touchscreen->msraw = 0x80000000;
     //Inicialización de SPI
     bool ans=spiInit(SPI0);
     return true;
