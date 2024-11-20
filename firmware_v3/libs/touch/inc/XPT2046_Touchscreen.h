@@ -10,6 +10,11 @@
 #define MSEC_THRESHOLD 3
 #define PENIRQ_PIN 11
 
+#define CMD_READ_X  0x90  // Command for X
+#define CMD_READ_Y  0xD0  // Command for Y
+#define CMD_READ_Z1 0xB0  // Command for Z1
+#define CMD_READ_Z2 0xF0  // Command for Z2
+
 //Estrctura de punto
 typedef struct {
     int16_t x;
@@ -25,9 +30,9 @@ typedef struct {
     uint8_t csPin;
     uint8_t tirqPin;
     uint8_t rotation;
-    int16_t xraw;
-    int16_t yraw;
-    int16_t zraw;
+    uint16_t xraw;
+    uint16_t yraw;
+    uint16_t zraw;
     uint32_t msraw;
     bool_t isrWake;
 } XPT2046_Touchscreen;

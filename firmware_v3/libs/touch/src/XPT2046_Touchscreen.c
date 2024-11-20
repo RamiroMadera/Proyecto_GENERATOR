@@ -1,7 +1,5 @@
 #include "XPT2046_Touchscreen.h"
 
-spiMap_T spi;
-
 // Auxiliares
 bool_t TS_Point_equal(TS_Point *p1, TS_Point *p2) {
     return (p1->x == p2->x && p1->y == p2->y && p1->z == p2->z);
@@ -22,7 +20,7 @@ bool_t XPT2046_Touchscreen_begin(XPT2046_Touchscreen *touchscreen, uint8_t csPin
     touchscreen->zraw = 0;
     touchscreen->msraw = 0x80000000;
     //Inicialización de SPI
-    bool ans=spiInit(spi);
+    bool ans=spiInit(SPI0);
     return true;
 }
 
@@ -43,8 +41,42 @@ bool_t XPT2046_Touchscreen_touched(XPT2046_Touchscreen *touchscreen) {
 void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen) {
     // This function will implement the same data update logic found in the .cpp file
     // SPI transactions and data handling should be added here
-    bool_t spiRead(spi, uint8_t* buffer, 8);    //Cambiar el buffer
-    bool_t spiRead(spi, uint8_t* buffer, 8);
+    uint8_t read[2];
+    uint8_t write;
+    uint8_t res;
+
+    write=CMD_READ_X;
+    spiWrite(SPI0, &write, 1);
+    spiRead(SPI0, &read[0], 2);
+    res=(read[0] << 8) | (read[1] & 0xF0);
+    res>>=4;
+    touchscreen->xraw=res;
+
+    write=CMD_READ_Y;
+    spiWrite(SPI0, &write, 1);
+    spiRead(SPI0, &read[0], 2);
+    res=(read[0] << 8) | (read[1] & 0xF0);
+    res>>=4;
+    touchscreen->yraw=res;
+
+    uint16_t z1,z2,z;
+    write=CMD_READ_Z1;
+    spiWrite(SPI0, &write, 1);
+    spiRead(SPI0, &read[0], 2);
+    res=(read[0] << 8) | (read[1] & 0xF0);
+    res>>=4;
+    z1=res;
+
+    write=CMD_READ_Z2;
+    spiWrite(SPI0, &write, 1);
+    spiRead(SPI0, &read[0], 2);
+    res=(read[0] << 8) | (read[1] & 0xF0);
+    res>>=4;
+    z2=res;
+
+    z=z1/z2;
+    touchscreen->zraw=z;
+
 }
 
 //Lee datos de la pantalla
