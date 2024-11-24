@@ -13,6 +13,7 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <ili9341_LPC4337_patch.h>
 
 /*=====[C++ - begin]=========================================================*/
 
@@ -39,3 +40,4 @@ extern "C" {
 /*=====[Avoid multiple inclusion - end]======================================*/
 
 #endif /* __PRUEBA_MPU_H__ */
+
