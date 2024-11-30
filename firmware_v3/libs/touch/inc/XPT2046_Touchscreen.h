@@ -22,8 +22,8 @@ typedef struct {
     int16_t z;
 } TS_Point;
 
-bool TS_Point_equal(TS_Point *p1, TS_Point *p2);
-bool TS_Point_notEqual(TS_Point *p1, TS_Point *p2);
+bool_t TS_Point_equal(TS_Point *p1, TS_Point *p2);
+bool_t TS_Point_notEqual(TS_Point *p1, TS_Point *p2);
 
 //Estructura del táctil
 typedef struct {

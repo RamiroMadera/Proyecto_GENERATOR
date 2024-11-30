@@ -43,7 +43,7 @@ void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen) {
     // SPI transactions and data handling should be added here
     uint8_t read[2];
     uint8_t write;
-    uint8_t res;
+    uint16_t res;
 
     write=CMD_READ_X;
     spiWrite(SPI0, &write, 1);

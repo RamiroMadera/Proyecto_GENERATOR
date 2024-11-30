@@ -1,32 +1,43 @@
-/*============================================================================
- * Licencia:
- * Autor:
- * Fecha:
+/*=============================================================================
+ * Author: Ulises <->
+ * Date: 2024/11/21
+ * Version: 1
  *===========================================================================*/
 
-#ifndef _APP_H_
-#define _APP_H_
+/*=====[Avoid multiple inclusion - begin]====================================*/
 
-/*==================[inclusiones]============================================*/
+#ifndef __PRUEBA_MPU_H__
+#define __PRUEBA_MPU_H__
 
-/*==================[c++]====================================================*/
+/*=====[Inclusions of public function dependencies]==========================*/
+
+#include <stdint.h>
+#include <stddef.h>
+#include <ili9341_LPC4337_patch.h>
+
+/*=====[C++ - begin]=========================================================*/
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/*==================[macros]=================================================*/
+/*=====[Definition macros of public constants]===============================*/
 
-/*==================[tipos de datos declarados por el usuario]===============*/
+/*=====[Public function-like macros]=========================================*/
 
-/*==================[declaraciones de datos externos]========================*/
+/*=====[Definitions of public data types]====================================*/
 
-/*==================[declaraciones de funciones externas]====================*/
+/*=====[Prototypes (declarations) of public functions]=======================*/
 
-/*==================[c++]====================================================*/
+/*=====[Prototypes (declarations) of public interrupt functions]=============*/
+
+/*=====[C++ - end]===========================================================*/
+
 #ifdef __cplusplus
 }
 #endif
 
-/*==================[end of file]============================================*/
-#endif /* _APP_H_ */
+/*=====[Avoid multiple inclusion - end]======================================*/
+
+#endif /* __PRUEBA_MPU_H__ */
+
