@@ -22,7 +22,7 @@ bool_t XPT2046_Touchscreen_begin(XPT2046_Touchscreen *touchscreen) {
     //Inicialización de SPI
     gpioConfig(CST_PIN, GPIO_OUTPUT);        //esto lo hice basándome en el ejemplo de examples>c>sapi>gpio>switches_leds
     gpioConfig(IRQT_PIN, GPIO_INPUT);
-    bool ans=spiInit(SPI0); Ya lo hace el display
+    bool ans=spiInit(SPI0); //Ya lo hace el display
     return ans;
 }
 
