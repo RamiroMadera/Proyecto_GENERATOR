@@ -66,7 +66,7 @@ int main(void) {
    while(TRUE){
 
       //Leer el sensor y guardar en estructura de control
-      XPT2046_Touchscreen_readData(pantallita, &posx, &posy, &posz);
+      XPT2046_Touchscreen_readData(&pantallita, &posx, &posy, &posz);
 
       printf( "Coordenada X:  (%d)\r\n",posx);
       printf( "Coordenada Y:  (%d)\r\n",posy);

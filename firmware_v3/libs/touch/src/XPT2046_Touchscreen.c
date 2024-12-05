@@ -20,8 +20,10 @@ bool_t XPT2046_Touchscreen_begin(XPT2046_Touchscreen *touchscreen) {
     touchscreen->zraw = 0;
     //touchscreen->msraw = 0x80000000;
     //Inicialización de SPI
-    bool ans=spiInit(SPI0);
-    return true;
+    gpioConfig(CST_PIN, GPIO_OUTPUT);        //esto lo hice basándome en el ejemplo de examples>c>sapi>gpio>switches_leds
+    gpioConfig(IRQT_PIN, GPIO_INPUT);
+    bool ans=spiInit(SPI0); Ya lo hace el display
+    return ans;
 }
 
 //Devuelve el punto tocado
@@ -44,6 +46,8 @@ void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen) {
     uint8_t read[2];
     uint8_t write;
     uint16_t res;
+
+    gpioWrite(CS_PIN, 0);
 
     write=CMD_READ_X;
     spiWrite(SPI0, &write, 1);
@@ -76,6 +80,8 @@ void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen) {
 
     z=z1/z2;
     touchscreen->zraw=z;
+
+    gpioWrite(CS_PIN, 1);
 
 }
 
