@@ -1,61 +1,60 @@
 #include "sapi.h"
+#include <math.h> // Para sqrt, pow, fabs
 
 MPU60X0_address_t addr = MPU60X0_ADDRESS_0;
 
-int main(void){
-   boardConfig();
-   printf("Inicializando MPU6050...\r\n" );
-   int8_t status;
-   status = mpu60X0Init( addr );
+int main(void) {
+    // Inicializar la placa
+    boardConfig();
+    printf("Inicializando MPU6050...\r\n");
+    
+    // Inicializar el sensor MPU6050
+    int8_t status = mpu60X0Init(addr);
+    if (status < 0) {
+        printf("MPU6050 no inicializado, chequee las conexiones\r\n\r\n");
+        while (1);
+    }
+    printf("MPU6050 inicializado correctamente.\r\n\r\n");
 
-   if( status < 0 ){
-      printf( "MPU6050 no inicializado, chequee las conexiones\r\n\r\n" );
-      while(1);
-   }
-   printf("MPU6050 inicializado correctamente.\r\n\r\n" );
-   float AccelX, AccelY, AccelZ, GyroX, GyroY, GyroZ, AccelX1, AccelY1, AccelZ1, GyroX1, GyroY1, GyroZ1;
-   float umbralGiroscopio = 4; // Umbral para aceleración radial
-   float umbralAceleracion = 4; // Umbral para aceleración lineal
-   mpu60X0Read();
-   GyroX1 = mpu60X0GetGyroX_rads();
-   GyroY1 = mpu60X0GetGyroY_rads();
-   GyroZ1 = mpu60X0GetGyroZ_rads();
-   AccelX1 = mpu60X0GetAccelX_mss();
-   AccelY1 = mpu60X0GetAccelY_mss();
-   AccelZ1 = mpu60X0GetAccelZ_mss();
-   /* ------------- REPETIR POR SIEMPRE ------------- */
-   while(TRUE){
+    // Variables para las lecturas del acelerómetro
+    float AccelX, AccelY, AccelZ;
+    float prevMagnitude = 0, currentMagnitude;
+    float umbralCambioMagnitud = 1.6; // Nivel de sensibilidad
 
-      //Leer el sensor y guardar en estructura de control
-      mpu60X0Read();
+    // Leer los valores iniciales para calibrar
+    mpu60X0Read();
+    AccelX = mpu60X0GetAccelX_mss();
+    AccelY = mpu60X0GetAccelY_mss();
+    AccelZ = mpu60X0GetAccelZ_mss();
+    prevMagnitude = sqrt(pow(AccelX, 2) + pow(AccelY, 2) + pow(AccelZ, 2));
 
-      GyroX = mpu60X0GetGyroX_rads() - GyroX1;
-      GyroY = mpu60X0GetGyroY_rads() - GyroY1;
-      GyroZ = mpu60X0GetGyroZ_rads() - GyroZ1;
-      printf( "Giroscopo:  (%f, %f, %f)   [rad/s]\r\n",GyroX, GyroY, GyroZ);
-      // Prender led si se esta girando
-      if ((GyroX > umbralGiroscopio || GyroX < -umbralGiroscopio) ||
-         (GyroY > umbralGiroscopio || GyroY < -umbralGiroscopio) ||
-         (GyroZ > umbralGiroscopio || GyroZ < -umbralGiroscopio)) {
-         gpioWrite(LED1,HIGH);
-      } else {
-         gpioWrite(LED1,LOW);
-      }
-      AccelX = mpu60X0GetAccelX_mss() - AccelX1;
-      AccelY = mpu60X0GetAccelY_mss() - AccelY1;
-      AccelZ = mpu60X0GetAccelZ_mss() - AccelZ1;
-      printf( "Acelerometro:  (%f, %f, %f)   [m/s2]\r\n",AccelX, AccelY, AccelZ);
-      // Prender led si se esta agitando
-      if ((AccelX > umbralAceleracion || AccelX < -umbralAceleracion) ||
-         (AccelY > umbralAceleracion || AccelY < -umbralAceleracion) ||
-         (AccelZ > umbralAceleracion || AccelZ < -umbralAceleracion)) {
-         gpioWrite(LED2,HIGH);
-      } else {
-         gpioWrite(LED2,LOW);
-      }
-		//printf( "Temperatura:   %f [C]\r\n\r\n",  mpu60X0GetTemperature_C() );
+    // Bucle principal
+    while (TRUE) {
+        // Leer el sensor
+        mpu60X0Read();
 
-      delay(500);
-   }
-   return 0 ;
+        // Lecturas del acelerómetro
+        AccelX = mpu60X0GetAccelX_mss();
+        AccelY = mpu60X0GetAccelY_mss();
+        AccelZ = mpu60X0GetAccelZ_mss();
+
+        // Calcular la magnitud actual
+        currentMagnitude = sqrt(pow(AccelX, 2) + pow(AccelY, 2) + pow(AccelZ, 2));
+
+        // Detectar cambios en la magnitud
+        if (fabs(currentMagnitude - prevMagnitude) > umbralCambioMagnitud) {
+            gpioWrite(LED2, HIGH); // Movimiento detectado
+        } else {
+            gpioWrite(LED2, LOW);  // Sin movimiento
+        }
+
+        // Actualizar la magnitud previa
+        prevMagnitude = currentMagnitude;
+
+        // Imprimir las lecturas
+        //printf("Aceleración: (%f, %f, %f) [m/s2], Magnitud: %f\r\n", AccelX, AccelY, AccelZ, currentMagnitude);
+
+        delay(400); // Esperar 
+    }
+    return 0;
 }
