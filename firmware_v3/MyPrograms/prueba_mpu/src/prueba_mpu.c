@@ -19,7 +19,7 @@ int main(void) {
     // Variables para las lecturas del acelerómetro
     float AccelX, AccelY, AccelZ;
     float prevMagnitude = 0, currentMagnitude;
-    float umbralCambioMagnitud = 1.6; // Nivel de sensibilidad
+    float umbralMagnitudAccel = 1.6; // Nivel de sensibilidad
 
     // Leer los valores iniciales para calibrar
     mpu60X0Read();
@@ -42,7 +42,7 @@ int main(void) {
         currentMagnitude = sqrt(pow(AccelX, 2) + pow(AccelY, 2) + pow(AccelZ, 2));
 
         // Detectar cambios en la magnitud
-        if (fabs(currentMagnitude - prevMagnitude) > umbralCambioMagnitud) {
+        if (fabs(currentMagnitude - prevMagnitude) > umbralMagnitudAccel) {
             gpioWrite(LED2, HIGH); // Movimiento detectado
         } else {
             gpioWrite(LED2, LOW);  // Sin movimiento
