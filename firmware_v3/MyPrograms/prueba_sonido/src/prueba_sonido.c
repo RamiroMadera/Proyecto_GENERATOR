@@ -8,39 +8,43 @@
 #include "prueba_sonido.h"
 #include "sapi.h"
 #include "dados.h"
+#include "victoria.h"
 
-unsigned short audioData10Bit[DATA_SIZE / 2];
-static uint32_t i = 0;
-
-void playAudio(void);
+void reproducirDados(void);
+void reproducirVictoria(void);
 
 int main(void) {
-   bool_t buttonValue = OFF;
-   bool_t ok = OFF;
+   uint8_t button1 = 0,button2 = 0, dados = 0, victoria = 0;
    /* ------------- INICIALIZACIONES ------------- */
    boardConfig();
-   uartConfig(UART_USB, 115200);   // Inicializar UART
    dacConfig(DAC_ENABLE);         // Inicializar DAC
    while(1){
-      buttonValue = gpioRead( CIAA_BOARD_BUTTON );
-      if (!buttonValue) {
-         ok=TRUE;
-         delay(200);
+      button1 = gpioRead( TEC1);
+      button2 = gpioRead( TEC2);
+      if (!button1) {
+         // Reproducir sonido de dados
+         reproducirDados();
+         button1 = 0;
       }
-      if (ok){
-         for (int j = 0; j < DATA_SIZE / 2; j++) {
-            dacWrite(DAC, rawData[j]);
-            delayInaccurateUs(125);
-         }
-         ok=OFF;
+      if (!button2) {
+         // Reproducir sonido victoria
+         reproducirVictoria();
+         button2 = 0;
       }
    }
    return 0;
 }
 
-void playAudio(void) {
-   if (i==0) printf("Comenzando \r\n");
-   if (i==(DATA_SIZE)) printf("Fin \r\n\r\n");
-   dacWrite(DAC, rawData[i]);
-   i = (i + 1) % DATA_SIZE;
+void reproducirDados(void){
+   for (int j = 0; j < DATA_DADOS; j++) {
+            dacWrite(DAC, audioDados[j]);
+            delayInaccurateUs(95);
+         }
 }
+
+void reproducirVictoria(void){
+   for (int j = 0; j < DATA_VICTORIA; j++) {
+            dacWrite(DAC, audioVictoria[j]);
+            delayInaccurateUs(85);
+         }
+} 
