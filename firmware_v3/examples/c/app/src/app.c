@@ -64,7 +64,11 @@ int main(void) {
     int WIDTH = 100;
     int HEIGHT = 100;
 
-    uint8_t image_data[WIDTH * HEIGHT * 2]; // Array para la imagen 100x100
+    uint8_t *image_data = (uint8_t *)malloc(WIDTH * HEIGHT * 2);
+    if (image_data == NULL)
+    {
+        return -1; // Error: no se pudo asignar memoria
+    }
     for (int y = 0; y < HEIGHT; y++)
     {
         for (int x = 0; x < WIDTH; x++)
@@ -83,13 +87,27 @@ int main(void) {
     }
 
     coord_2d_t top_left = {1, 1};         // Esquina superior izquierda (x, y)
-    coord_2d_t bottom_right = {1 + WIDTH, 1+ HEIGHT}; // Esquina inferior derecha (x, y) para una pantalla completa 320x240
-    uint32_t image_size = 100 * 100 * 2;  // Cada píxel ocupa 2 bytes en RGB565.
+    coord_2d_t bottom_right = {WIDTH, HEIGHT}; // Esquina inferior derecha (x, y) para una pantalla completa 320x240
+                                               // Llamar a ili9341_set_region
+    if (ili9341_set_region(desc, top_left, bottom_right) != ILI9341_SUCCESS)
+    {
+        free(image_data); // Liberar memoria antes de salir
+        return -1;        // Error al configurar la región
+    }
 
-    int result = ili9341_set_region(display, top_left, bottom_right);
+    // Tamaño de la imagen en bytes
+    uint32_t image_size = WIDTH * HEIGHT * 2;
 
-    result = ili9341_draw_RGB565_dma(display, image_data, image_size);
+    // Dibujar la imagen en la región configurada
+    if (ili9341_draw_RGB565_dma(desc, image_data, image_size) != ILI9341_SUCCESS)
+    {
+        free(image_data); // Liberar memoria antes de salir
+        return -1;        // Error al dibujar la imagen
+    }
 
+    // Liberar memoria después de usarla
+    free(image_data);
+    return 0; // Éxito
     while (1) {
         // C�digo de la aplicaci�n
     }
