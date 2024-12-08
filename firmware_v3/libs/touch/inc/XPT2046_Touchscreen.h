@@ -16,8 +16,8 @@
 #define CMD_READ_Z1 0xB0  // Command for Z1
 #define CMD_READ_Z2 0xF0  // Command for Z2
 
-#define CST_PIN     GPI03
-#define IRQT_PIN    GPI01
+#define CST_PIN     GPIO3
+#define IRQT_PIN    GPIO1
 
 //Estrctura de punto
 typedef struct {
@@ -46,6 +46,6 @@ bool_t XPT2046_Touchscreen_begin(XPT2046_Touchscreen *touchscreen);
 TS_Point XPT2046_Touchscreen_getPoint(XPT2046_Touchscreen *touchscreen);
 bool_t XPT2046_Touchscreen_touched(XPT2046_Touchscreen *touchscreen);
 void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen);
-void XPT2046_Touchscreen_readData(XPT2046_Touchscreen *touchscreen, uint16_t *x, uint16_t *y, uint8_t *z);
+void XPT2046_Touchscreen_readData(XPT2046_Touchscreen *touchscreen, uint16_t *x, uint16_t *y, uint16_t *z);
 
 #endif // XPT2046_TOUCHSCREEN_H

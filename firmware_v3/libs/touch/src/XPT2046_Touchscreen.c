@@ -47,13 +47,14 @@ void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen) {
     uint8_t write;
     uint16_t res;
 
-    gpioWrite(CS_PIN, 0);
+    gpioWrite(CST_PIN, 0);
 
     write=CMD_READ_X;
     spiWrite(SPI0, &write, 1);
     spiRead(SPI0, &read[0], 2);
     res=(read[0] << 8) | (read[1] & 0xF0);
     res>>=4;
+    res&=0x0FFF;
     touchscreen->xraw=res;
 
     write=CMD_READ_Y;
@@ -61,6 +62,7 @@ void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen) {
     spiRead(SPI0, &read[0], 2);
     res=(read[0] << 8) | (read[1] & 0xF0);
     res>>=4;
+    res&=0x0FFF;
     touchscreen->yraw=res;
 
     uint16_t z1,z2,z;
@@ -69,19 +71,21 @@ void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen) {
     spiRead(SPI0, &read[0], 2);
     res=(read[0] << 8) | (read[1] & 0xF0);
     res>>=4;
+    res&=0x0FFF;
     z1=res;
 
-    write=CMD_READ_Z2;
-    spiWrite(SPI0, &write, 1);
-    spiRead(SPI0, &read[0], 2);
-    res=(read[0] << 8) | (read[1] & 0xF0);
-    res>>=4;
-    z2=res;
+   write=CMD_READ_Z2;
+   spiWrite(SPI0, &write, 1);
+   spiRead(SPI0, &read[0], 2);
+   res=(read[0] << 8) | (read[1] & 0xF0);
+   res>>=4;
+   res&=0x0FFF;
+   z2=res;
 
     z=z1/z2;
     touchscreen->zraw=z;
 
-    gpioWrite(CS_PIN, 1);
+    gpioWrite(CST_PIN, 1);
 
 }
 
