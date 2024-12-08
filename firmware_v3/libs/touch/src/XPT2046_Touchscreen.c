@@ -90,7 +90,7 @@ void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen) {
 }
 
 //Lee datos de la pantalla
-void XPT2046_Touchscreen_readData(XPT2046_Touchscreen *touchscreen, uint16_t *x, uint16_t *y, uint8_t *z) {
+void XPT2046_Touchscreen_readData(XPT2046_Touchscreen *touchscreen, uint16_t *x, uint16_t *y, uint16_t *z) {
     XPT2046_Touchscreen_update(touchscreen);
     *x = touchscreen->xraw;
     *y = touchscreen->yraw;
