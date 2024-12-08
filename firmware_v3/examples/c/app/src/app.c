@@ -45,36 +45,6 @@ int main(void) {
     ili9341_set_region(display, square_top_left, square_bottom_right);
     ili9341_fill_region(display, BLACK);
 
-    //Imprimir algunas líneas
-    uint16_t start_X = 55;
-    uint16_t start_Y = 35;
-    ili9341_drawLine(display, start_X, start_Y, start_X + 40, start_Y, RED);
-    ili9341_drawLine(display, start_X, start_Y, start_X + 37, start_Y + 16, BLUE);
-    ili9341_drawLine(display, start_X, start_Y, start_X + 29, start_Y + 29, YELLOW);
-    ili9341_drawLine(display, start_X, start_Y, start_X + 16, start_Y + 37, GREEN);
-    ili9341_drawLine(display, start_X, start_Y, start_X + 0 , start_Y + 40, BLUE);
-
-
-    //Imprimir píxeles sobre región cuadrada
-    uint16_t startX = 110;    // X-coordinate of the top-left corner of the square
-    uint16_t startY = 70;     // Y-coordinate of the top-left corner of the square
-    uint16_t width = 100;     // Width of the square
-    uint16_t height = 100;    // Height of the square
-    int numPixels = 500;      // Number of random pixels to draw
-    // Loop to draw random pixels
-    for (int i = 0; i < numPixels; i++)
-    {
-        // Generate random (x, y) within the square
-        uint16_t x = startX + (rand() % width);
-        uint16_t y = startY + (rand() % height);
-
-        // Generate a random color (RGB565 format)
-        uint16_t color = (rand() % 0xFFFF); // RGB565 uses 16 bits for color
-
-        // Draw the pixel (assuming ili9341_drawPixel is already defined)
-        ili9341_drawPixel(display, x, y, color);
-    }
-
     //Imprimir carácteres
     uint16_t x = 55;
     uint16_t y = 190;
@@ -87,6 +57,38 @@ int main(void) {
     ili9341_setTextColor(display, color, bg);
     ili9341_print_str(display, "HOLA FUCKING MUNDO!!");
     ili9341_print_str(display, "");
+
+
+
+    //imprimir imagen
+    int WIDTH = 100;
+    int HEIGHT = 100;
+
+    uint8_t image_data[WIDTH * HEIGHT * 2]; // Array para la imagen 100x100
+    for (int y = 0; y < HEIGHT; y++)
+    {
+        for (int x = 0; x < WIDTH; x++)
+        {
+            // Generar un color basado en las coordenadas (x, y)
+            uint16_t red = (x * 31) / WIDTH;                   // Rojo: 5 bits (0-31)
+            uint16_t green = (y * 63) / HEIGHT;                // Verde: 6 bits (0-63)
+            uint16_t blue = ((x + y) * 31) / (WIDTH + HEIGHT); // Azul: 5 bits (0-31)
+
+            uint16_t color = (red << 11) | (green << 5) | blue; // RGB565
+            int index = (y * WIDTH + x) * 2;
+
+            image_data[index] = (color >> 8) & 0xFF; // Byte alto
+            image_data[index + 1] = color & 0xFF;    // Byte bajo
+        }
+    }
+
+    coord_2d_t top_left = {1, 1};         // Esquina superior izquierda (x, y)
+    coord_2d_t bottom_right = {1 + WIDTH, 1+ HEIGHT}; // Esquina inferior derecha (x, y) para una pantalla completa 320x240
+    uint32_t image_size = 100 * 100 * 2;  // Cada píxel ocupa 2 bytes en RGB565.
+
+    int result = ili9341_set_region(display, top_left, bottom_right);
+
+    result = ili9341_draw_RGB565_dma(display, image_data, image_size);
 
     while (1) {
         // C�digo de la aplicaci�n
