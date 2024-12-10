@@ -9,7 +9,7 @@ bool_t TS_Point_notEqual(TS_Point *p1, TS_Point *p2) {
     return (p1->x != p2->x || p1->y != p2->y || p1->z != p2->z);
 }
 
-//Inicializa el tÃ¡ctil
+//Inicializa el táctil
 bool_t XPT2046_Touchscreen_begin(XPT2046_Touchscreen *touchscreen) {
     //touchscreen->csPin = csPin;
     //touchscreen->tirqPin = tirqPin;
@@ -19,8 +19,8 @@ bool_t XPT2046_Touchscreen_begin(XPT2046_Touchscreen *touchscreen) {
     touchscreen->yraw = 0;
     touchscreen->zraw = 0;
     //touchscreen->msraw = 0x80000000;
-    //InicializaciÃ³n de SPI
-    gpioConfig(CST_PIN, GPIO_OUTPUT);        //esto lo hice basÃ¡ndome en el ejemplo de examples>c>sapi>gpio>switches_leds
+    //Inicialización de SPI
+    gpioConfig(CST_PIN, GPIO_OUTPUT);        //esto lo hice basándome en el ejemplo de examples>c>sapi>gpio>switches_leds
     gpioConfig(IRQT_PIN, GPIO_INPUT);
     bool ans=spiInit(SPI0); //Ya lo hace el display
     return ans;
@@ -33,7 +33,7 @@ TS_Point XPT2046_Touchscreen_getPoint(XPT2046_Touchscreen *touchscreen) {
     return point;
 }
 
-//Se fija si la pantalla estÃ¡ siendo tocada
+//Se fija si la pantalla está siendo tocada
 bool_t XPT2046_Touchscreen_touched(XPT2046_Touchscreen *touchscreen) {
     XPT2046_Touchscreen_update(touchscreen);
     return (touchscreen->zraw >= Z_THRESHOLD);
@@ -51,50 +51,23 @@ void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen) {
 
     write=CMD_READ_X;
     spiWrite(SPI0, &write, 1);
-<<<<<<< HEAD
-    spiRead(SPI0, read, 2);
-    res=(read[0] << 8) | (read[1]);
-    //res>>=4;
-=======
     spiRead(SPI0, &read[0], 2);
     res=(read[0] << 8) | (read[1] & 0xF0);
     res>>=4;
->>>>>>> c24ab444a9a5ce61363263f5145c6d0bfe5984f2
     res&=0x0FFF;
     touchscreen->xraw=res;
 
     write=CMD_READ_Y;
     spiWrite(SPI0, &write, 1);
-<<<<<<< HEAD
-    spiRead(SPI0, read, 2);
-    res=(read[0] << 8) | (read[1]);
-    //res>>=4;
-=======
     spiRead(SPI0, &read[0], 2);
     res=(read[0] << 8) | (read[1] & 0xF0);
     res>>=4;
->>>>>>> c24ab444a9a5ce61363263f5145c6d0bfe5984f2
     res&=0x0FFF;
     touchscreen->yraw=res;
 
     uint16_t z1,z2,z;
     write=CMD_READ_Z1;
     spiWrite(SPI0, &write, 1);
-<<<<<<< HEAD
-    spiRead(SPI0, read, 2);
-    res=(read[0] << 8) | (read[1]);
-    //res>>=4;
-    res&=0x0FFF;
-    z1=res;
-
-    write=CMD_READ_Z2;
-    spiWrite(SPI0, &write, 1);
-    spiRead(SPI0, read, 2);
-    res=(read[0] << 8) | (read[1]);
-    //res>>=4;
-    res&=0x0FFF;
-    z2=res;
-=======
     spiRead(SPI0, &read[0], 2);
     res=(read[0] << 8) | (read[1] & 0xF0);
     res>>=4;
@@ -108,7 +81,6 @@ void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen) {
    res>>=4;
    res&=0x0FFF;
    z2=res;
->>>>>>> c24ab444a9a5ce61363263f5145c6d0bfe5984f2
 
     z=z1/z2;
     touchscreen->zraw=z;

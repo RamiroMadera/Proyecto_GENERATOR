@@ -14,7 +14,7 @@
 #define CMD_READ_X  0x90  // Command for X
 #define CMD_READ_Y  0xD0  // Command for Y
 #define CMD_READ_Z1 0xB0  // Command for Z1
-#define CMD_READ_Z2 0xC0 // Command for Z2
+#define CMD_READ_Z2 0xF0  // Command for Z2
 
 #define CST_PIN     GPIO3
 #define IRQT_PIN    GPIO1
@@ -29,7 +29,7 @@ typedef struct {
 bool_t TS_Point_equal(TS_Point *p1, TS_Point *p2);
 bool_t TS_Point_notEqual(TS_Point *p1, TS_Point *p2);
 
-//Estructura del t√°ctil
+//Estructura del t·ctil
 typedef struct {
     uint8_t csPin;
     uint8_t tirqPin;
@@ -41,7 +41,7 @@ typedef struct {
     bool_t isrWake;
 } XPT2046_Touchscreen;
 
-//Declaraci√≥n de funciones
+//DeclaraciÛn de funciones
 bool_t XPT2046_Touchscreen_begin(XPT2046_Touchscreen *touchscreen);
 TS_Point XPT2046_Touchscreen_getPoint(XPT2046_Touchscreen *touchscreen);
 bool_t XPT2046_Touchscreen_touched(XPT2046_Touchscreen *touchscreen);

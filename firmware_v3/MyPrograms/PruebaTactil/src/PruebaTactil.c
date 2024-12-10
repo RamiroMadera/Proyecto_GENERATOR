@@ -34,7 +34,7 @@ int main(void) {
     if (display == NULL) {
         //Error_Handler();
 
-        //ojal√° no entre ac√° xd
+        //ojal· no entre ac· xd
     }
 
     // C digo de aplicaci n
@@ -43,12 +43,12 @@ int main(void) {
     coord_2d_t square_top_left = {110, 70}; // (320-100)/2, (240-100)/2
     coord_2d_t square_bottom_right = {210, 170};
     ili9341_set_region(display, square_top_left, square_bottom_right);
-    ili9341_fill_region(display, IBLACK);
+    ili9341_fill_region(display, BLACK);
 
-    //AC√Å VA TU CODIGO
+    //AC¡ VA TU CODIGO
 
    boardConfig();
-   printf("Inicializando T√°ctil...\r\n" );
+   printf("Inicializando T·ctil...\r\n" );
    XPT2046_Touchscreen pantallita;
    bool_t status;
    status = XPT2046_Touchscreen_begin(&pantallita);
@@ -59,8 +59,8 @@ int main(void) {
    }
    printf("Touch inicializado correctamente.\r\n\r\n" );
    //float AccelX, AccelY, AccelZ, GyroX, GyroY, GyroZ;
-   //float umbralGiroscopio = 5000.0; // Umbral para aceleraciÔøΩn radial
-   //float umbralAceleracion = 10000.0; // Umbral para aceleraciÔøΩn lineal
+   //float umbralGiroscopio = 5000.0; // Umbral para aceleraci?n radial
+   //float umbralAceleracion = 10000.0; // Umbral para aceleraci?n lineal
    uint16_t posx=-1,posy=-1,posz=-1;
    /* ------------- REPETIR POR SIEMPRE ------------- */
    while(TRUE){
@@ -68,15 +68,15 @@ int main(void) {
       //Leer el sensor y guardar en estructura de control
       XPT2046_Touchscreen_readData(&pantallita, &posx, &posy, &posz);
 
-      printf( "Coordenada X:  (%d)  ",posx);
-      printf( "Coordenada Y:  (%d)\r\n",posy);
+      printf( "Coordenada X:  (%d) ",posx-2057);
+      printf( "Coordenada Y:  (%d)\r\n",posy-2057);
       //printf( "Presion:  (%d)\r\n",posz);
 
         // Imprimir un cuadrado
         coord_2d_t square_top_left = {posx, posy}; // (320-100)/2, (240-100)/2
         coord_2d_t square_bottom_right = {posx+30, posy+30};
         ili9341_set_region(display, square_top_left, square_bottom_right);
-        ili9341_fill_region(display, IBLACK);
+        ili9341_fill_region(display, BLACK);
 
       delay(1000);
    }
