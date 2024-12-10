@@ -51,23 +51,36 @@ void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen) {
 
     write=CMD_READ_X;
     spiWrite(SPI0, &write, 1);
+<<<<<<< HEAD
     spiRead(SPI0, read, 2);
     res=(read[0] << 8) | (read[1]);
     //res>>=4;
+=======
+    spiRead(SPI0, &read[0], 2);
+    res=(read[0] << 8) | (read[1] & 0xF0);
+    res>>=4;
+>>>>>>> c24ab444a9a5ce61363263f5145c6d0bfe5984f2
     res&=0x0FFF;
     touchscreen->xraw=res;
 
     write=CMD_READ_Y;
     spiWrite(SPI0, &write, 1);
+<<<<<<< HEAD
     spiRead(SPI0, read, 2);
     res=(read[0] << 8) | (read[1]);
     //res>>=4;
+=======
+    spiRead(SPI0, &read[0], 2);
+    res=(read[0] << 8) | (read[1] & 0xF0);
+    res>>=4;
+>>>>>>> c24ab444a9a5ce61363263f5145c6d0bfe5984f2
     res&=0x0FFF;
     touchscreen->yraw=res;
 
     uint16_t z1,z2,z;
     write=CMD_READ_Z1;
     spiWrite(SPI0, &write, 1);
+<<<<<<< HEAD
     spiRead(SPI0, read, 2);
     res=(read[0] << 8) | (read[1]);
     //res>>=4;
@@ -81,6 +94,21 @@ void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen) {
     //res>>=4;
     res&=0x0FFF;
     z2=res;
+=======
+    spiRead(SPI0, &read[0], 2);
+    res=(read[0] << 8) | (read[1] & 0xF0);
+    res>>=4;
+    res&=0x0FFF;
+    z1=res;
+
+   write=CMD_READ_Z2;
+   spiWrite(SPI0, &write, 1);
+   spiRead(SPI0, &read[0], 2);
+   res=(read[0] << 8) | (read[1] & 0xF0);
+   res>>=4;
+   res&=0x0FFF;
+   z2=res;
+>>>>>>> c24ab444a9a5ce61363263f5145c6d0bfe5984f2
 
     z=z1/z2;
     touchscreen->zraw=z;
@@ -90,7 +118,7 @@ void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen) {
 }
 
 //Lee datos de la pantalla
-void XPT2046_Touchscreen_readData(XPT2046_Touchscreen *touchscreen, uint16_t *x, uint16_t *y, uint8_t *z) {
+void XPT2046_Touchscreen_readData(XPT2046_Touchscreen *touchscreen, uint16_t *x, uint16_t *y, uint16_t *z) {
     XPT2046_Touchscreen_update(touchscreen);
     *x = touchscreen->xraw;
     *y = touchscreen->yraw;
