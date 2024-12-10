@@ -14,10 +14,10 @@
 #define CMD_READ_X  0x90  // Command for X
 #define CMD_READ_Y  0xD0  // Command for Y
 #define CMD_READ_Z1 0xB0  // Command for Z1
-#define CMD_READ_Z2 0xF0  // Command for Z2
+#define CMD_READ_Z2 0xC0 // Command for Z2
 
-#define CST_PIN     GPI03
-#define IRQT_PIN    GPI01
+#define CST_PIN     GPIO3
+#define IRQT_PIN    GPIO1
 
 //Estrctura de punto
 typedef struct {
