@@ -29,6 +29,7 @@ typedef struct {
 bool_t TS_Point_equal(TS_Point *p1, TS_Point *p2);
 bool_t TS_Point_notEqual(TS_Point *p1, TS_Point *p2);
 
+/*
 //Estructura del táctil
 typedef struct {
     uint8_t csPin;
@@ -40,12 +41,13 @@ typedef struct {
     uint32_t msraw;
     bool_t isrWake;
 } XPT2046_Touchscreen;
+*/
 
 //Declaración de funciones
-bool_t XPT2046_Touchscreen_begin(XPT2046_Touchscreen *touchscreen);
-TS_Point XPT2046_Touchscreen_getPoint(XPT2046_Touchscreen *touchscreen);
-bool_t XPT2046_Touchscreen_touched(XPT2046_Touchscreen *touchscreen);
-void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen);
-void XPT2046_Touchscreen_readData(XPT2046_Touchscreen *touchscreen, uint16_t *x, uint16_t *y, uint16_t *z);
+bool_t XPT2046_Touchscreen_begin(void);
+//TS_Point XPT2046_Touchscreen_getPoint(XPT2046_Touchscreen *touchscreen);
+//bool_t XPT2046_Touchscreen_touched(XPT2046_Touchscreen *touchscreen);
+//void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen);
+void XPT2046_Touchscreen_readData(TS_Point *punto);
 
 #endif // XPT2046_TOUCHSCREEN_H

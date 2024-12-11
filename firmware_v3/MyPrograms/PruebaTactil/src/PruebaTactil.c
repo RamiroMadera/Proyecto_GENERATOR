@@ -49,9 +49,8 @@ int main(void) {
 
    boardConfig();
    printf("Inicializando Táctil...\r\n" );
-   XPT2046_Touchscreen pantallita;
    bool_t status;
-   status = XPT2046_Touchscreen_begin(&pantallita);
+   status = XPT2046_Touchscreen_begin();
 
    if( !status ){
       printf( "Touch no inicializado, chequee las conexiones\r\n\r\n" );
@@ -61,14 +60,15 @@ int main(void) {
    //float AccelX, AccelY, AccelZ, GyroX, GyroY, GyroZ;
    //float umbralGiroscopio = 5000.0; // Umbral para aceleraci?n radial
    //float umbralAceleracion = 10000.0; // Umbral para aceleraci?n lineal
+   TS_Point puntoaux;
    uint16_t posx=-1,posy=-1,posz=-1;
    /* ------------- REPETIR POR SIEMPRE ------------- */
    while(TRUE){
 
       //Leer el sensor y guardar en estructura de control
-      XPT2046_Touchscreen_readData(&pantallita, &posx, &posy, &posz);
-      posx=round((float)(posx-2185)*(320)/(3977-2185));
-      posy=round((float)(posy-2185)*(240)/(3977-2185));
+      XPT2046_Touchscreen_readData(&puntoaux);
+      posx=round((float)(puntoaux.x-2185)*(320)/(3977-2185));
+      posy=round((float)(puntoaux.y-2185)*(240)/(3977-2185));
       printf( "Coordenada X:  (%d) ",posx);
       printf( "Coordenada Y:  (%d)\r\n",posy);
       //printf( "Presion:  (%d)\r\n",posz);
