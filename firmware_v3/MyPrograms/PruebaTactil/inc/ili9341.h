@@ -23,6 +23,8 @@
 #include "ili9341_hw_cfg.h"
 
 #define ILI9341_MAX_DRIVERS_CNT       (2)  /**< Maximal number of driver instances (displays attached). */
+#define SCALE_X 0.1786
+#define SCALE_Y 0.1341
 
 /* Colors */
 
