@@ -56,6 +56,6 @@ void XPT2046_Touchscreen_readData(TS_Point *punto);
 
 
 // Function to set a user-defined callback
-void touch_set_callback(void (*callback)(int));
+//void touch_set_callback(void (*callback)(int));
 
 #endif // XPT2046_TOUCHSCREEN_H

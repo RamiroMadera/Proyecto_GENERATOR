@@ -1,26 +1,14 @@
 #include "XPT2046_Touchscreen.h"
 
 // Function pointer for the user-defined callback
-static void (*user_callback)(int param) = NULL;
+//static void (*user_callback)(int param) = NULL;
 
-// PENIRQ interrupt handler
-void GPIO1_IRQHandler(void) {
-    // Check if PENIRQ is LOW (screen touched)
-    if (Chip_PININT_GetFallStates(LPC_GPIO_PIN_INT) & PININTCH(1)) {
-        if (user_callback != NULL) {
-            user_callback(1); // Example parameter passed to the callback
-        }
-        printf("Detecta flag\r\n");
-    }
-    printf("Entra rutina\r\n");
-    // Clear interrupt flag
-    Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH(1));
-}
+
 
 // Function to set the user-defined callback
-void touch_set_callback(void (*callback)(int)) {
-    user_callback = callback;
-}
+//void touch_set_callback(void (*callback)(int)) {
+//    user_callback = callback;
+//}
 
 
 //Inicializa el táctil
