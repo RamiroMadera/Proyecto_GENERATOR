@@ -84,3 +84,65 @@ void diskTickHook(void *ptr)
     /* Update Display driver timers. */
     ili9341_1ms_timer_cb();
 }
+
+
+/*
+#include "sapi.h"
+
+/* Definimos el pin de la interrupción y la configuración del borde de la interrupción */
+#define GPIO_INTERRUPT_PIN 1    // Pin 1 (GPIO1)
+#define FALLING_EDGE          0  // Interrupción en el borde de bajada
+
+/* Variable global */
+uint32_t interruptCount = 0;
+
+/* Función para manejar la interrupción del GPIO */
+void GPIO1_IRQHandler(void)
+{
+   // Si la interrupción es por borde descendente
+   if ( Chip_PININT_GetFallStates(LPC_GPIO_PIN_INT) & PININTCH(1) ) {
+      interruptCount++;
+      printf("Interrupción en GPIO1 detectada, cuenta: %d\n", interruptCount);
+   }
+
+   // Limpiar la interrupción
+   Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH(1));
+}
+
+/* Función de inicialización del GPIO y las interrupciones */
+static void initGPIOIrqs()
+{
+   // Inicializar el módulo de interrupciones GPIO
+   Chip_PININT_Init(LPC_GPIO_PIN_INT);
+
+   // Configurar la interrupción para GPIO1
+   Chip_SCU_GPIOIntPinSel(1, 0, 1); // Seleccionamos el canal de interrupción 1 para el GPIO1
+   Chip_PININT_SetPinModeEdge(LPC_GPIO_PIN_INT, PININTCH(1)); // Configurar modo de borde
+   Chip_PININT_EnableIntLow(LPC_GPIO_PIN_INT, PININTCH(1)); 
+
+   // Limpiar cualquier interrupción pendiente
+   NVIC_ClearPendingIRQ(PIN_INT1_IRQn);
+   // Habilitar la interrupción en el NVIC
+   NVIC_EnableIRQ(PIN_INT1_IRQn);
+}
+
+/* Función principal */
+int main(void)
+{
+   // Inicializar la placa
+   boardConfig();
+
+   // Inicializar la interrupción GPIO para el GPIO1
+   initGPIOIrqs();
+
+   // Mensaje inicial
+   printf("Esperando interrupciones en GPIO1...\n");
+
+   // Bucle principal
+   while (1) {
+      // El programa puede seguir ejecutando otras tareas mientras espera la interrupción
+   }
+
+   return 0;
+}
+*/
