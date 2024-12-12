@@ -2,7 +2,20 @@
 #include "PruebaTactil.h"
 #include "ili9341.h"
 #include "sapi.h"
+#include <math.h>
 
+TS_Point puntoaux;
+uint16_t posx=-1,posy=-1,posz=-1;
+
+void my_touch_callback(int param) {
+    printf("Touch detected with param: %d\n", param);
+    //Leer el sensor y guardar en estructura de control
+    XPT2046_Touchscreen_readData(&puntoaux);
+    posx=round((float)(puntoaux.x-2185)*(320)/(3977-2185));
+    posy=round((float)(puntoaux.y-2185)*(240)/(3977-2185));
+    printf( "Coordenada X:  (%d) ",posx);
+    printf( "Coordenada Y:  (%d)\r\n",posy);
+}
 
 int main(void) {
 
@@ -39,15 +52,9 @@ int main(void) {
 
     // C digo de aplicaci n
 
-    // Imprimir un cuadrado
-    coord_2d_t square_top_left = {110, 70}; // (320-100)/2, (240-100)/2
-    coord_2d_t square_bottom_right = {210, 170};
-    ili9341_set_region(display, square_top_left, square_bottom_right);
-    ili9341_fill_region(display, BLACK);
-
     //ACÁ VA TU CODIGO
 
-   boardConfig();
+   //boardConfig();
    printf("Inicializando Táctil...\r\n" );
    bool_t status;
    status = XPT2046_Touchscreen_begin();
@@ -57,29 +64,12 @@ int main(void) {
       while(1);
    }
    printf("Touch inicializado correctamente.\r\n\r\n" );
-   //float AccelX, AccelY, AccelZ, GyroX, GyroY, GyroZ;
-   //float umbralGiroscopio = 5000.0; // Umbral para aceleraci?n radial
-   //float umbralAceleracion = 10000.0; // Umbral para aceleraci?n lineal
-   TS_Point puntoaux;
-   uint16_t posx=-1,posy=-1,posz=-1;
+   
+   touch_set_callback(my_touch_callback);
    /* ------------- REPETIR POR SIEMPRE ------------- */
    while(TRUE){
-
-      //Leer el sensor y guardar en estructura de control
-      XPT2046_Touchscreen_readData(&puntoaux);
-      posx=round((float)(puntoaux.x-2185)*(320)/(3977-2185));
-      posy=round((float)(puntoaux.y-2185)*(240)/(3977-2185));
-      printf( "Coordenada X:  (%d) ",posx);
-      printf( "Coordenada Y:  (%d)\r\n",posy);
-      //printf( "Presion:  (%d)\r\n",posz);
-
-        // Imprimir un cuadrado
-        coord_2d_t square_top_left = {posx, posy}; // (320-100)/2, (240-100)/2
-        coord_2d_t square_bottom_right = {posx+30, posy+30};
-        ili9341_set_region(display, square_top_left, square_bottom_right);
-        ili9341_fill_region(display, BLACK);
-
-      delay(1000);
+      //printf("Loop %d\r\n",gpioRead(GPIO1));
+      delay(500);
    }
 
     /*while (1) {

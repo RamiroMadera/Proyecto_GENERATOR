@@ -1,5 +1,26 @@
 #include "XPT2046_Touchscreen.h"
 
+// Function pointer for the user-defined callback
+static void (*user_callback)(int param) = NULL;
+
+// PENIRQ interrupt handler
+void GPIO1_IRQHandler(void) {
+    // Check if PENIRQ is LOW (screen touched)
+    if (Chip_PININT_GetFallStates(LPC_GPIO_PIN_INT) & PININTCH(1)) {
+        if (user_callback != NULL) {
+            user_callback(1); // Example parameter passed to the callback
+        }
+        printf("Detecta flag\r\n");
+    }
+    printf("Entra rutina\r\n");
+    // Clear interrupt flag
+    Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH(1));
+}
+
+// Function to set the user-defined callback
+void touch_set_callback(void (*callback)(int)) {
+    user_callback = callback;
+}
 
 
 //Inicializa el táctil
@@ -16,8 +37,37 @@ bool_t XPT2046_Touchscreen_begin(void) {
     
    
     gpioConfig(CST_PIN, GPIO_OUTPUT);        //esto lo hice basándome en el ejemplo de examples>c>sapi>gpio>switches_leds
-    gpioConfig(IRQT_PIN, GPIO_INPUT);
+    //gpioConfig(IRQT_PIN, GPIO_INPUT);
     
+   
+   
+   
+    // Configure PENIRQ as input with pull-up
+    //Chip_GPIO_SetPinDIRInput(LPC_GPIO_PORT, 0, IRQT_PIN);
+    //Chip_GPIO_SetPinMode(LPC_GPIO_PORT, 0, IRQT_PIN, SCU_MODE_PULLUP);
+
+    // Configure falling edge interrupt
+    //Chip_GPIO_SetupPinInt(LPC_GPIO_PORT, 0, IRQT_PIN, GPIO_INT_FALLING_EDGE);
+
+    // Enable interrupt
+    //NVIC_EnableIRQ(PIN_INT0_IRQn);
+    
+    
+    
+    
+    // Inicializar el módulo de interrupciones GPIO
+    Chip_PININT_Init(LPC_GPIO_PIN_INT);
+
+    // Configurar la interrupción para GPIO1 en borde ascendente
+    Chip_SCU_GPIOIntPinSel(1, 3, 3); // Seleccionamos el canal de interrupción 1 para el GPIO1
+    Chip_PININT_SetPinModeEdge(LPC_GPIO_PIN_INT, PININTCH(1)); // Configurar modo de borde
+    Chip_PININT_EnableIntLow(LPC_GPIO_PIN_INT, PININTCH(1));  // Habilitar interrupción en borde descendente
+
+    // Limpiar cualquier interrupción pendiente 
+    NVIC_ClearPendingIRQ(PIN_INT1_IRQn);
+    // Habilitar la interrupción en el NVIC
+    NVIC_EnableIRQ(PIN_INT1_IRQn);
+
    
     bool ans=spiInit(SPI0); //Ya lo hace el display
     return ans;

@@ -19,6 +19,10 @@
 #define CST_PIN     GPIO3
 #define IRQT_PIN    GPIO1
 
+#define GPIO_INTERRUPT_PIN 1    // Pin 1 (GPIO1)
+#define RAISING_EDGE          0  // Interrupción en el borde de subida
+
+
 //Estrctura de punto
 typedef struct {
     int16_t x;
@@ -49,5 +53,9 @@ bool_t XPT2046_Touchscreen_begin(void);
 //bool_t XPT2046_Touchscreen_touched(XPT2046_Touchscreen *touchscreen);
 //void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen);
 void XPT2046_Touchscreen_readData(TS_Point *punto);
+
+
+// Function to set a user-defined callback
+void touch_set_callback(void (*callback)(int));
 
 #endif // XPT2046_TOUCHSCREEN_H
