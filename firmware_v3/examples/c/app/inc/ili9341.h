@@ -235,6 +235,7 @@ void ili9341_setDadoFondo(const ili9341_desc_ptr_t desc, uint16_t c);
 void ili9341_setDadoBorde(const ili9341_desc_ptr_t desc, uint16_t c);
 void ili9341_dibujar_punto(const ili9341_desc_ptr_t desc, uint8_t num, uint16_t x, uint16_t y, uint16_t color);
 void ili9341_dibujar_dado_base(const ili9341_desc_ptr_t desc, uint8_t num);
+int ili9341_randomizar_dado(const ili9341_desc_ptr_t desc, uint8_t num, uint8_t seed);
 
 /**
  * Fill display region by solid color.
