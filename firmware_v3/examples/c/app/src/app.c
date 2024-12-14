@@ -20,7 +20,7 @@ int main(void) {
         .rst_pin = gpio_rst_pin,
         .spi_tx_dma = spi_tx_dma_b,
         .spi_tx_ready = spi_tx_dma_ready,
-        .orientation = ILI9341_ORIENTATION_HORIZONTAL,
+        .orientation = ILI9341_ORIENTATION_HORIZONTAL_UD,
         .width = 320,
         .height = 240,
         .timeout_ms = 10000,
