@@ -46,7 +46,7 @@ int main(void) {
     ili9341_fill_region(display, BLACK);
 
     //Imprimir carácteres
-    uint16_t x = 55;
+    /*uint16_t x = 55;
     uint16_t y = 190;
     uint8_t size = 2;
     uint16_t color = GREEN;
@@ -57,59 +57,17 @@ int main(void) {
     ili9341_setTextColor(display, color, bg);
     ili9341_print_str(display, "HOLA FUCKING MUNDO!!");
     ili9341_print_str(display, "");
+    */
 
 
-
-    //imprimir imagen
-    int WIDTH = 100;
-    int HEIGHT = 100;
-
-    uint8_t *image_data = (uint8_t *)malloc(WIDTH * HEIGHT * 2);
-    if (image_data == NULL)
+    //imprimir dados
+    for (int i = 1; i < 6; i++)
     {
-        return -1; // Error: no se pudo asignar memoria
+        ili9341_dibujar_dado_base(display, i);
     }
-    for (int y = 0; y < HEIGHT; y++)
+    for (int i = 1; i < 6; i++)
     {
-        for (int x = 0; x < WIDTH; x++)
-        {
-            // Generar un color basado en las coordenadas (x, y)
-            uint16_t red = (x * 31) / WIDTH;                   // Rojo: 5 bits (0-31)
-            uint16_t green = (y * 63) / HEIGHT;                // Verde: 6 bits (0-63)
-            uint16_t blue = ((x + y) * 31) / (WIDTH + HEIGHT); // Azul: 5 bits (0-31)
-
-            uint16_t color = (red << 11) | (green << 5) | blue; // RGB565
-            int index = (y * WIDTH + x) * 2;
-
-            image_data[index] = (color >> 8) & 0xFF; // Byte alto
-            image_data[index + 1] = color & 0xFF;    // Byte bajo
-        }
-    }
-
-    coord_2d_t top_left = {1, 1};         // Esquina superior izquierda (x, y)
-    coord_2d_t bottom_right = {WIDTH, HEIGHT}; // Esquina inferior derecha (x, y) para una pantalla completa 320x240
-                                               // Llamar a ili9341_set_region
-    if (ili9341_set_region(desc, top_left, bottom_right) != ILI9341_SUCCESS)
-    {
-        free(image_data); // Liberar memoria antes de salir
-        return -1;        // Error al configurar la región
-    }
-
-    // Tamaño de la imagen en bytes
-    uint32_t image_size = WIDTH * HEIGHT * 2;
-
-    // Dibujar la imagen en la región configurada
-    if (ili9341_draw_RGB565_dma(desc, image_data, image_size) != ILI9341_SUCCESS)
-    {
-        free(image_data); // Liberar memoria antes de salir
-        return -1;        // Error al dibujar la imagen
-    }
-
-    // Liberar memoria después de usarla
-    free(image_data);
-    return 0; // Éxito
-    while (1) {
-        // C�digo de la aplicaci�n
+        ili9341_randomizar_dado(display, i, i*11);
     }
 }
 
