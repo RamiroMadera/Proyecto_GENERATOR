@@ -55,7 +55,9 @@ bool_t XPT2046_Touchscreen_begin(void) {
     NVIC_ClearPendingIRQ(PIN_INT1_IRQn);
     // Habilitar la interrupción en el NVIC
     NVIC_EnableIRQ(PIN_INT1_IRQn);
-
+    
+    
+    
    
     bool ans=spiInit(SPI0); //Ya lo hace el display
     return ans;
@@ -70,7 +72,9 @@ void XPT2046_Touchscreen_readData(TS_Point *punto) {
     uint8_t read[2];
     uint8_t write;
     uint16_t res;
-
+   
+    NVIC_DisableIRQ(PIN_INT1_IRQn);
+    
     gpioWrite(CST_PIN, 0);
 
     write=CMD_READ_X;
@@ -78,7 +82,7 @@ void XPT2046_Touchscreen_readData(TS_Point *punto) {
     spiRead(SPI0, &read[0], 2);
     res=(read[0] << 8) | (read[1] & 0xF0);
     res>>=4;
-    res&=0x0FFF;
+    //res&=0x0FFF;
     punto->x=res;
 
     write=CMD_READ_Y;
@@ -86,23 +90,23 @@ void XPT2046_Touchscreen_readData(TS_Point *punto) {
     spiRead(SPI0, &read[0], 2);
     res=(read[0] << 8) | (read[1] & 0xF0);
     res>>=4;
-    res&=0x0FFF;
+    //res&=0x0FFF;
     punto->y=res;
 
     uint16_t z1,z2,z;
     write=CMD_READ_Z1;
     spiWrite(SPI0, &write, 1);
     spiRead(SPI0, &read[0], 2);
-    res=(read[0] << 8) | (read[1] & 0xF0);
-    res>>=4;
+    res=(read[0] << 8) | (read[1] & 0xFF);
+    //res>>=4;
     res&=0x0FFF;
     z1=res;
 
    write=CMD_READ_Z2;
    spiWrite(SPI0, &write, 1);
    spiRead(SPI0, &read[0], 2);
-   res=(read[0] << 8) | (read[1] & 0xF0);
-   res>>=4;
+   res=(read[0] << 8) | (read[1] & 0xFF);
+   //res>>=4;
    res&=0x0FFF;
    z2=res;
 
@@ -110,6 +114,7 @@ void XPT2046_Touchscreen_readData(TS_Point *punto) {
     punto->z=z;
 
     gpioWrite(CST_PIN, 1);
+    NVIC_EnableIRQ(PIN_INT1_IRQn);
 
 }
 

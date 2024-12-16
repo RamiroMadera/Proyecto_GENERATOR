@@ -4,26 +4,36 @@
 #include "sapi.h"
 #include <math.h>
 
-TS_Point puntoaux;
-uint16_t posx=-1,posy=-1,posz=-1;
+volatile TS_Point puntoaux;
+volatile uint16_t posx=-1,posy=-1,posz=-1;
 
 
 // PENIRQ interrupt handler
 void GPIO1_IRQHandler(void) {
     // Check if PENIRQ is LOW (screen touched)
     if (Chip_PININT_GetFallStates(LPC_GPIO_PIN_INT) & PININTCH(1)) {
-        //Leer el sensor y guardar en estructura de control
+          //Leer el sensor y guardar en estructura de control
           XPT2046_Touchscreen_readData(&puntoaux);
           posx=round((float)(puntoaux.x-2185)*(320)/(3977-2185));
           posy=round((float)(puntoaux.y-2185)*(240)/(3977-2185));
           printf( "Coordenada X:  (%d) ",posx);
           printf( "Coordenada Y:  (%d)\r\n",posy);
-        printf("Detecta flag\r\n");
+          printf("Detecta flag\r\n");
     }
     printf("Entra rutina\r\n");
     // Clear interrupt flag
+    
+     if (Chip_GPIO_GetPinState(LPC_GPIO_PORT, 3, 3) == 0) {  // Check if the pin is still low
+        // The interrupt condition is still active; wait or handle accordingly
+        while (Chip_GPIO_GetPinState(LPC_GPIO_PORT, 3, 3) == 0) {
+            // Optional: Add a timeout here to avoid an infinite loop
+           delay(10);
+        }
+    }
     Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH(1));
+    printf("Sale flag clear \r\n");
 }
+
 
 int main(void) {
 
@@ -77,7 +87,18 @@ int main(void) {
    /* ------------- REPETIR POR SIEMPRE ------------- */
    while(TRUE){
       //printf("Loop %d\r\n",gpioRead(GPIO1));
-      delay(500);
+      /*
+          XPT2046_Touchscreen_readData(&puntoaux);
+          posx=puntoaux.x;
+          posy=puntoaux.y;
+          //posx=round((float)(puntoaux.x-2185)*(320)/(3977-2185));
+          //posy=round((float)(puntoaux.y-2185)*(240)/(3977-2185));
+          printf( "Coordenada X:  (%d) ",posx);
+          printf( "Coordenada Y:  (%d)\r\n",posy);
+          //printf("Pussi\n");
+          //printf("Detecta flag\r\n");
+      */
+      delay(1000);
    }
 
     /*while (1) {
