@@ -40,8 +40,8 @@ int main(void) {
     // C�digo de aplicaci�n
 
     // Imprimir un cuadrado
-    coord_2d_t square_top_left = {110, 70}; // (320-100)/2, (240-100)/2
-    coord_2d_t square_bottom_right = {210, 170};
+    coord_2d_t square_top_left = {0, 0}; // (320-100)/2, (240-100)/2
+    coord_2d_t square_bottom_right = {319, 239};
     ili9341_set_region(display, square_top_left, square_bottom_right);
     ili9341_fill_region(display, BLACK);
 

@@ -338,7 +338,7 @@ static const uint8_t font[256][5] = {
 
 int16_t
 	DadoBorde = 0xFFFF, ///< x location to start print()ing text
-	DadoFondo = 0xFFB5; ///< y location to start print()ing text
+	DadoFondo = 0x0500; ///< y location to start print()ing text
 
 /* Private methods. */
 void _ili9341_enable(const ili9341_desc_ptr_t desc);
@@ -1127,6 +1127,21 @@ void ili9341_dibujar_dado_base(const ili9341_desc_ptr_t desc, uint8_t num){
 	ili9341_fill_region(desc, DadoFondo);
 
 	//dibujar los bordes
+	ili9341_drawLine(desc, x + 7, y, x + 7 + 66, y, DadoBorde);
+	ili9341_drawLine(desc, x + 5, y + 1, x + 5 + 70, y + 1, DadoBorde);
+	ili9341_drawLine(desc, x + 4, y + 2, x + 4 + 72, y + 2, DadoBorde);
+	ili9341_drawLine(desc, x + 3, y + 3, x + 3 + 74, y + 3, DadoBorde);
+	ili9341_drawLine(desc, x + 2, y + 4, x + 2 + 7, y + 4, DadoBorde);
+	ili9341_drawLine(desc, x + 72, y + 4, x + 72 + 7, y + 4, DadoBorde);
+	ili9341_drawLine(desc, x + 1, y + 5, x + 1 + 6, y + 5, DadoBorde);
+	ili9341_drawLine(desc, x + 74, y + 5, x + 74 + 6, y + 5, DadoBorde);
+	ili9341_drawLine(desc, x + 1, y + 6, x + 1 + 5, y + 6, DadoBorde);
+	ili9341_drawLine(desc, x + 75, y + 6, x + 75 + 5, y + 6, DadoBorde);
+	ili9341_drawLine(desc, x, y + 7, x + 0 + 5, y + 7, DadoBorde);
+	ili9341_drawLine(desc, x + 76, y + 7, x + 76 + 5, y + 7, DadoBorde);
+	ili9341_drawLine(desc, x, y + 8, x + 0 + 5, y + 8, DadoBorde);
+	ili9341_drawLine(desc, x + 76, y + 8, x + 76 + 5, y + 8, DadoBorde);
+	/*
 	ili9341_drawHLine(desc, x + 7, y, 66, DadoBorde);
 	ili9341_drawHLine(desc, x + 5, y + 1, 70, DadoBorde);
 	ili9341_drawHLine(desc, x + 4, y + 2, 72, DadoBorde);
@@ -1141,6 +1156,7 @@ void ili9341_dibujar_dado_base(const ili9341_desc_ptr_t desc, uint8_t num){
 	ili9341_drawHLine(desc, x + 76, y + 7, 5, DadoBorde);
 	ili9341_drawHLine(desc, x, y + 8, 5, DadoBorde);
 	ili9341_drawHLine(desc, x + 76, y + 8, 5, DadoBorde);
+	*/
 	top_left.x = x;
 	top_left.y = y + 9;
 	bottom_right.x = x + 3;
@@ -1151,6 +1167,23 @@ void ili9341_dibujar_dado_base(const ili9341_desc_ptr_t desc, uint8_t num){
 	bottom_right.x = x + 80;
 	ili9341_set_region(desc, top_left, bottom_right);
 	ili9341_fill_region(desc, DadoBorde);
+
+	ili9341_drawLine(desc, x, y + 72, x + 5, y + 72, DadoBorde);
+	ili9341_drawLine(desc, x + 76, y + 72, x + 76 + 5, y + 72, DadoBorde);
+	ili9341_drawLine(desc, x, y + 73, x + 5, y + 73, DadoBorde);
+	ili9341_drawLine(desc, x + 76, y + 73, x + 76 + 5, y + 73, DadoBorde);
+	ili9341_drawLine(desc, x + 1, y + 74, x + 1 + 5, y + 74, DadoBorde);
+	ili9341_drawLine(desc, x + 75, y + 74, x + 75 + 5, y + 74, DadoBorde);
+	ili9341_drawLine(desc, x + 1, y + 75, x + 1 + 6, y + 75, DadoBorde);
+	ili9341_drawLine(desc, x + 74, y + 75, x + 74 + 6, y + 75, DadoBorde);
+	ili9341_drawLine(desc, x + 2, y + 76, x + 2 + 7, y + 76, DadoBorde);
+	ili9341_drawLine(desc, x + 72, y + 76, x + 72 + 7, y + 76, DadoBorde);
+	ili9341_drawLine(desc, x + 3, y + 77, x + 3 + 74, y + 77, DadoBorde);
+	ili9341_drawLine(desc, x + 4, y + 78, x + 4 + 72, y + 78, DadoBorde);
+	ili9341_drawLine(desc, x + 5, y + 79, x + 5 + 70, y + 79, DadoBorde);
+	ili9341_drawLine(desc, x + 7, y + 80, x + 7 + 66, y + 80, DadoBorde);
+
+	/*
 	ili9341_drawHLine(desc, x, y + 72, 5, DadoBorde);
 	ili9341_drawHLine(desc, x + 76, y + 72, 5, DadoBorde);
 	ili9341_drawHLine(desc, x, y + 73, 5, DadoBorde);
@@ -1165,7 +1198,7 @@ void ili9341_dibujar_dado_base(const ili9341_desc_ptr_t desc, uint8_t num){
 	ili9341_drawHLine(desc, x + 4, y + 78, 72, DadoBorde);
 	ili9341_drawHLine(desc, x + 5, y + 79, 70, DadoBorde);
 	ili9341_drawHLine(desc, x + 7, y + 80, 66, DadoBorde);
-}
+	*/
 
 int ili9341_randomizar_dado(const ili9341_desc_ptr_t desc, uint8_t num, uint8_t seed){
 	srand(seed);
