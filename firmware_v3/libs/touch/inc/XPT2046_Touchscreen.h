@@ -11,8 +11,8 @@
 #define MSEC_THRESHOLD 3
 #define PENIRQ_PIN 11
 
-#define CMD_READ_X  0x90  // Command for X
-#define CMD_READ_Y  0xD0  // Command for Y
+#define CMD_READ_X  0xD4  // Command for X
+#define CMD_READ_Y  0xA4  // Command for Y
 #define CMD_READ_Z1 0xB0  // Command for Z1
 #define CMD_READ_Z2 0xF0  // Command for Z2
 

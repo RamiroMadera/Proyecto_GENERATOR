@@ -7,7 +7,7 @@
 volatile TS_Point puntoaux;
 volatile uint16_t posx=-1,posy=-1,posz=-1;
 
-
+/*
 // PENIRQ interrupt handler
 void GPIO1_IRQHandler(void) {
     // Check if PENIRQ is LOW (screen touched)
@@ -33,7 +33,7 @@ void GPIO1_IRQHandler(void) {
     Chip_PININT_ClearIntStatus(LPC_GPIO_PIN_INT, PININTCH(1));
     printf("Sale flag clear \r\n");
 }
-
+*/
 
 int main(void) {
 
@@ -87,7 +87,7 @@ int main(void) {
    /* ------------- REPETIR POR SIEMPRE ------------- */
    while(TRUE){
       //printf("Loop %d\r\n",gpioRead(GPIO1));
-      /*
+      
           XPT2046_Touchscreen_readData(&puntoaux);
           posx=puntoaux.x;
           posy=puntoaux.y;
@@ -97,7 +97,7 @@ int main(void) {
           printf( "Coordenada Y:  (%d)\r\n",posy);
           //printf("Pussi\n");
           //printf("Detecta flag\r\n");
-      */
+      
       delay(1000);
    }
 

@@ -42,7 +42,7 @@ bool_t XPT2046_Touchscreen_begin(void) {
     
     
     
-    
+    /*
     // Inicializar el módulo de interrupciones GPIO
     Chip_PININT_Init(LPC_GPIO_PIN_INT);
 
@@ -55,7 +55,7 @@ bool_t XPT2046_Touchscreen_begin(void) {
     NVIC_ClearPendingIRQ(PIN_INT1_IRQn);
     // Habilitar la interrupción en el NVIC
     NVIC_EnableIRQ(PIN_INT1_IRQn);
-    
+    */
     
     
    
