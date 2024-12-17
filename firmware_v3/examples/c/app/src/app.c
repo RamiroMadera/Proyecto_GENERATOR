@@ -45,8 +45,19 @@ int main(void) {
     ili9341_set_region(display, square_top_left, square_bottom_right);
     ili9341_fill_region(display, BLACK);
 
+    //imprimir dados
+    char numeros[6];
+    for (int i = 1; i < 6; i++)
+    {
+        ili9341_dibujar_dado_base(display, i);
+    }
+    for (int i = 1; i < 6; i++)
+    {
+        numeros[i-1]= ili9341_randomizar_dado(display, i, i*11) + '0';
+    }
+
     //Imprimir carácteres
-    /*uint16_t x = 55;
+    uint16_t x = 55;
     uint16_t y = 190;
     uint8_t size = 2;
     uint16_t color = GREEN;
@@ -55,20 +66,10 @@ int main(void) {
     ili9341_setCursor(display, x, y);
     ili9341_setTextSize(display, size);
     ili9341_setTextColor(display, color, bg);
-    ili9341_print_str(display, "HOLA FUCKING MUNDO!!");
-    ili9341_print_str(display, "");
-    */
+    //ili9341_print_str(display, "Imprimiendo:");
+    ili9341_print_str(display, numeros);
 
-
-    //imprimir dados
-    for (int i = 1; i < 6; i++)
-    {
-        ili9341_dibujar_dado_base(display, i);
-    }
-    for (int i = 1; i < 6; i++)
-    {
-        ili9341_randomizar_dado(display, i, i*11);
-    }
+   
 }
 
 /* 1MS Timer callback */
