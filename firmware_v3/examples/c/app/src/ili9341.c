@@ -709,10 +709,6 @@ int ili9341_drawHLine(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uin
 {
 	int err = ILI9341_SUCCESS;
 
-	uint8_t buffer[2];						 // Buffer temporal que contenerá el color con el que se va a llenar la región
-	buffer[0] = (color >> 8) & 0xFF;		 // Byte más significativo del color
-	buffer[1] = color & 0xFF;				 // Byte menos significativo del color
-
 	if(w == 0)
 		return ILI9341_ERR_INVALID_SIZE;
 	if (w < 0)
@@ -721,13 +717,12 @@ int ili9341_drawHLine(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uin
 	if ((x < desc->current_width) && (y < desc->current_height))	{
 		if ((x + w - 1) >= desc->current_width)
 			w = desc->current_width - x;
-		ili9341_set_region_by_size(desc, x, y, w, 1);
-		while (w--)
-		{
-			err |= _ili9341_write_bytes(desc, buffer, 2);
-			_ili9341_wait_for_spi_ready(desc);
-		}
-		_ili9341_write_bytes_end(desc);
+
+		coord_2d_t top_left = {x, y};
+		coord_2d_t bottom_right = {x + w - 1, y};
+		ili9341_set_region(desc, top_left, bottom_right);
+		ili9341_fill_region(desc, color);
+
 	} else {
 		err = ILI9341_ERR_PIXEL_OUT_OF_BOUNDS;
 	}
@@ -739,9 +734,6 @@ int ili9341_drawVLine(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uin
 {
 	int err = ILI9341_SUCCESS;
 
-	uint8_t buffer[2];				 // Buffer temporal que contenerá el color con el que se va a llenar la región
-	buffer[0] = (color >> 8) & 0xFF; // Byte más significativo del color
-	buffer[1] = color & 0xFF;		 // Byte menos significativo del color
 
 	if (h == 0)
 		return ILI9341_ERR_INVALID_SIZE;
@@ -751,12 +743,12 @@ int ili9341_drawVLine(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uin
 	if ((x < desc->current_width) && (y < desc->current_height)){
 		if ((y + h - 1) >= desc->current_height)
 			h = desc->current_height - y;
-		ili9341_set_region_by_size(desc, x, y, 1, h);
-		while (h--) {
-			err |= _ili9341_write_bytes(desc, buffer, 2);
-			_ili9341_wait_for_spi_ready(desc);
-		}
-		_ili9341_write_bytes_end(desc);
+
+		coord_2d_t top_left = {x, y};
+		coord_2d_t bottom_right = {x, y + h - 1};
+		ili9341_set_region(desc, top_left, bottom_right);
+		ili9341_fill_region(desc, color);
+
 	}else{
 		err = ILI9341_ERR_PIXEL_OUT_OF_BOUNDS;
 	}
@@ -1043,10 +1035,10 @@ void ili9341_print_str(const ili9341_desc_ptr_t desc, const char *message)
 	}
 }
 
-void ili9341_setDadoFondo(const ili9341_desc_ptr_t desc, uint16_t c){
+void ili9341_setDadoFondo(uint16_t c){
 	DadoFondo = c;
 }
-void ili9341_setDadoBorde(const ili9341_desc_ptr_t desc, uint16_t c){
+void ili9341_setDadoBorde(uint16_t c){
 	DadoBorde = c;
 }
 
@@ -1127,21 +1119,7 @@ void ili9341_dibujar_dado_base(const ili9341_desc_ptr_t desc, uint8_t num){
 	ili9341_fill_region(desc, DadoFondo);
 
 	//dibujar los bordes
-	ili9341_drawLine(desc, x + 7, y, x + 7 + 66, y, DadoBorde);
-	ili9341_drawLine(desc, x + 5, y + 1, x + 5 + 70, y + 1, DadoBorde);
-	ili9341_drawLine(desc, x + 4, y + 2, x + 4 + 72, y + 2, DadoBorde);
-	ili9341_drawLine(desc, x + 3, y + 3, x + 3 + 74, y + 3, DadoBorde);
-	ili9341_drawLine(desc, x + 2, y + 4, x + 2 + 7, y + 4, DadoBorde);
-	ili9341_drawLine(desc, x + 72, y + 4, x + 72 + 7, y + 4, DadoBorde);
-	ili9341_drawLine(desc, x + 1, y + 5, x + 1 + 6, y + 5, DadoBorde);
-	ili9341_drawLine(desc, x + 74, y + 5, x + 74 + 6, y + 5, DadoBorde);
-	ili9341_drawLine(desc, x + 1, y + 6, x + 1 + 5, y + 6, DadoBorde);
-	ili9341_drawLine(desc, x + 75, y + 6, x + 75 + 5, y + 6, DadoBorde);
-	ili9341_drawLine(desc, x, y + 7, x + 0 + 5, y + 7, DadoBorde);
-	ili9341_drawLine(desc, x + 76, y + 7, x + 76 + 5, y + 7, DadoBorde);
-	ili9341_drawLine(desc, x, y + 8, x + 0 + 5, y + 8, DadoBorde);
-	ili9341_drawLine(desc, x + 76, y + 8, x + 76 + 5, y + 8, DadoBorde);
-	/*
+	
 	ili9341_drawHLine(desc, x + 7, y, 66, DadoBorde);
 	ili9341_drawHLine(desc, x + 5, y + 1, 70, DadoBorde);
 	ili9341_drawHLine(desc, x + 4, y + 2, 72, DadoBorde);
@@ -1156,7 +1134,7 @@ void ili9341_dibujar_dado_base(const ili9341_desc_ptr_t desc, uint8_t num){
 	ili9341_drawHLine(desc, x + 76, y + 7, 5, DadoBorde);
 	ili9341_drawHLine(desc, x, y + 8, 5, DadoBorde);
 	ili9341_drawHLine(desc, x + 76, y + 8, 5, DadoBorde);
-	*/
+	
 	top_left.x = x;
 	top_left.y = y + 9;
 	bottom_right.x = x + 3;
@@ -1168,22 +1146,6 @@ void ili9341_dibujar_dado_base(const ili9341_desc_ptr_t desc, uint8_t num){
 	ili9341_set_region(desc, top_left, bottom_right);
 	ili9341_fill_region(desc, DadoBorde);
 
-	ili9341_drawLine(desc, x, y + 72, x + 5, y + 72, DadoBorde);
-	ili9341_drawLine(desc, x + 76, y + 72, x + 76 + 5, y + 72, DadoBorde);
-	ili9341_drawLine(desc, x, y + 73, x + 5, y + 73, DadoBorde);
-	ili9341_drawLine(desc, x + 76, y + 73, x + 76 + 5, y + 73, DadoBorde);
-	ili9341_drawLine(desc, x + 1, y + 74, x + 1 + 5, y + 74, DadoBorde);
-	ili9341_drawLine(desc, x + 75, y + 74, x + 75 + 5, y + 74, DadoBorde);
-	ili9341_drawLine(desc, x + 1, y + 75, x + 1 + 6, y + 75, DadoBorde);
-	ili9341_drawLine(desc, x + 74, y + 75, x + 74 + 6, y + 75, DadoBorde);
-	ili9341_drawLine(desc, x + 2, y + 76, x + 2 + 7, y + 76, DadoBorde);
-	ili9341_drawLine(desc, x + 72, y + 76, x + 72 + 7, y + 76, DadoBorde);
-	ili9341_drawLine(desc, x + 3, y + 77, x + 3 + 74, y + 77, DadoBorde);
-	ili9341_drawLine(desc, x + 4, y + 78, x + 4 + 72, y + 78, DadoBorde);
-	ili9341_drawLine(desc, x + 5, y + 79, x + 5 + 70, y + 79, DadoBorde);
-	ili9341_drawLine(desc, x + 7, y + 80, x + 7 + 66, y + 80, DadoBorde);
-
-	/*
 	ili9341_drawHLine(desc, x, y + 72, 5, DadoBorde);
 	ili9341_drawHLine(desc, x + 76, y + 72, 5, DadoBorde);
 	ili9341_drawHLine(desc, x, y + 73, 5, DadoBorde);
@@ -1198,7 +1160,6 @@ void ili9341_dibujar_dado_base(const ili9341_desc_ptr_t desc, uint8_t num){
 	ili9341_drawHLine(desc, x + 4, y + 78, 72, DadoBorde);
 	ili9341_drawHLine(desc, x + 5, y + 79, 70, DadoBorde);
 	ili9341_drawHLine(desc, x + 7, y + 80, 66, DadoBorde);
-	*/
 
 int ili9341_randomizar_dado(const ili9341_desc_ptr_t desc, uint8_t num, uint8_t seed){
 	srand(seed);

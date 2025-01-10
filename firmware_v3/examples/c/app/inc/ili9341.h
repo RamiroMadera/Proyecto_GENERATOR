@@ -231,8 +231,8 @@ void ili9341_setTextSize(const ili9341_desc_ptr_t desc, uint8_t s);													
 void ili9341_setTextColor(const ili9341_desc_ptr_t desc, uint16_t c, uint16_t b);													// Rxmaster89
 void ili9341_print_str(const ili9341_desc_ptr_t desc, const char *message);															//Rxmaster89
 
-void ili9341_setDadoFondo(const ili9341_desc_ptr_t desc, uint16_t c);
-void ili9341_setDadoBorde(const ili9341_desc_ptr_t desc, uint16_t c);
+void ili9341_setDadoFondo(uint16_t c);
+void ili9341_setDadoBorde(uint16_t c);
 void ili9341_dibujar_punto(const ili9341_desc_ptr_t desc, uint8_t num, uint16_t x, uint16_t y, uint16_t color);
 void ili9341_dibujar_dado_base(const ili9341_desc_ptr_t desc, uint8_t num);
 int ili9341_randomizar_dado(const ili9341_desc_ptr_t desc, uint8_t num, uint8_t seed);
