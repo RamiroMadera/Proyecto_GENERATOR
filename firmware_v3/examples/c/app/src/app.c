@@ -12,7 +12,7 @@ int main(void) {
     tickConfig(1);
     tickCallbackSet(diskTickHook, NULL);
 
-    // Inicializaci�n y configuraci�n del display ILI9341
+    // Inicializaci n y configuraci n del display ILI9341
     ili9341_desc_ptr_t display;
     const ili9341_cfg_t display_cfg = {
         .cs_pin = gpio_cs_pin,
@@ -37,19 +37,38 @@ int main(void) {
         //ojalá no entre acá xd
     }
 
-    // C�digo de aplicaci�n
+    // C digo de aplicaci n
 
-    // Imprimir líneas horizontales
-    ili9341_drawHLine(display, 10, 10, 180, RED);
-    ili9341_drawHLine(display, 20, 20, 200, ORANGE);
-    ili9341_drawHLine(display, 15, 30, 190, BLUE);
-    ili9341_drawHLine(display, 30, 40, 170, GREEN);
+    // Imprimir un cuadrado
+    coord_2d_t square_top_left = {0, 0}; // (320-100)/2, (240-100)/2
+    coord_2d_t square_bottom_right = {319, 239};
+    ili9341_set_region(display, square_top_left, square_bottom_right);
+    ili9341_fill_region(display, BLACK);
 
-    // Imprimir líneas verticales
-    ili9341_drawHLine(display, 40, 10, 180, RED);
-    ili9341_drawHLine(display, 50, 20, 200, ORANGE);
-    ili9341_drawHLine(display, 60, 15, 190, BLUE);
-    ili9341_drawHLine(display, 70, 30, 170, GREEN);
+    //imprimir dados
+    char numeros[6];
+    for (int i = 1; i < 6; i++)
+    {
+        ili9341_dibujar_dado_base(display, i);
+    }
+    for (int i = 1; i < 6; i++)
+    {
+       ili9341_dibujar_dado_numero(display, i, i)
+    }
+
+    //Imprimir carácteres
+    uint16_t x = 55;
+    uint16_t y = 190;
+    uint8_t size = 2;
+    uint16_t color = GREEN;
+    uint16_t bg = BLACK;
+   /*
+    ili9341_setCursor(display, x, y);
+    ili9341_setTextSize(display, size);
+    ili9341_setTextColor(display, color, bg);
+    //ili9341_print_str(display, "Imprimiendo:");
+    ili9341_print_str(display, numeros);
+    */
 
    
 }

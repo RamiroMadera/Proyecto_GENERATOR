@@ -1161,13 +1161,10 @@ void ili9341_dibujar_dado_base(const ili9341_desc_ptr_t desc, uint8_t num){
 	ili9341_drawHLine(desc, x + 5, y + 79, 70, DadoBorde);
 	ili9341_drawHLine(desc, x + 7, y + 80, 66, DadoBorde);
 
-int ili9341_randomizar_dado(const ili9341_desc_ptr_t desc, uint8_t num, uint8_t seed){
-	srand(seed);
-	uint8_t result = (rand() % 6) + 1;
-
+int ili9341_dibujar_dado_numero(const ili9341_desc_ptr_t desc, uint8_t dado, uint8_t numero){
 	uint16_t x;
 	uint16_t y;
-	switch (num) // ajusto la posicion segun el numero que identifica el dado
+	switch (dado) // ajusto la posicion segun el numero que identifica el dado
 	{
 	case 1:
 		x = 15;
@@ -1194,54 +1191,58 @@ int ili9341_randomizar_dado(const ili9341_desc_ptr_t desc, uint8_t num, uint8_t 
 		break;
 	}
 
+	// borro los puntos anteriores
+	coord_2d_t top_left = {x + 8, y + 8};
+	coord_2d_t bottom_right = {x + 72, y + 72};
+	ili9341_set_region(desc, top_left, bottom_right);
+	ili9341_fill_region(desc, DadoFondo);
+
 	x += 11;	// llevo las coordenadas de la esquina del dado a la esquina del punto 1
 	y += 11; 
 
     uint16_t coloresPuntos[7] = {DadoFondo, DadoFondo, DadoFondo, DadoFondo, DadoFondo, DadoFondo, DadoFondo};
 
-	switch (result)
+	switch (numero)
 	{
 	case 1:
-		coloresPuntos[3] = DadoBorde;
+		ili9341_dibujar_punto(desc, 4, x, y, DadoBorde);
 		break;
 	case 2:
-		coloresPuntos[0] = DadoBorde;
-		coloresPuntos[6] = DadoBorde;
+		ili9341_dibujar_punto(desc, 1, x, y, DadoBorde);
+		ili9341_dibujar_punto(desc, 7, x, y, DadoBorde);
 		break;
 	case 3:
-		coloresPuntos[0] = DadoBorde;
-		coloresPuntos[3] = DadoBorde;
-		coloresPuntos[6] = DadoBorde;
+		ili9341_dibujar_punto(desc, 1, x, y, DadoBorde);
+		ili9341_dibujar_punto(desc, 4, x, y, DadoBorde);
+		ili9341_dibujar_punto(desc, 7, x, y, DadoBorde);
 		break;
 	case 4:
-		coloresPuntos[0] = DadoBorde;
-		coloresPuntos[1] = DadoBorde;
-		coloresPuntos[5] = DadoBorde;
-		coloresPuntos[6] = DadoBorde;
+		ili9341_dibujar_punto(desc, 1, x, y, DadoBorde);
+		ili9341_dibujar_punto(desc, 2, x, y, DadoBorde);
+		ili9341_dibujar_punto(desc, 6, x, y, DadoBorde);
+		ili9341_dibujar_punto(desc, 7, x, y, DadoBorde);
 		break;
 	case 5:
-		coloresPuntos[0] = DadoBorde;
-		coloresPuntos[1] = DadoBorde;
-		coloresPuntos[3] = DadoBorde;
-		coloresPuntos[5] = DadoBorde;
-		coloresPuntos[6] = DadoBorde;
+
+		ili9341_dibujar_punto(desc, 1, x, y, DadoBorde);
+		ili9341_dibujar_punto(desc, 2, x, y, DadoBorde);
+		ili9341_dibujar_punto(desc, 4, x, y, DadoBorde);
+		ili9341_dibujar_punto(desc, 6, x, y, DadoBorde);
+		ili9341_dibujar_punto(desc, 7, x, y, DadoBorde);
 		break;
 	case 6:
-		coloresPuntos[0] = DadoBorde;
-		coloresPuntos[1] = DadoBorde;
-		coloresPuntos[2] = DadoBorde;
-		coloresPuntos[4] = DadoBorde;
-		coloresPuntos[5] = DadoBorde;
-		coloresPuntos[6] = DadoBorde;
+
+		ili9341_dibujar_punto(desc, 1, x, y, DadoBorde);
+		ili9341_dibujar_punto(desc, 2, x, y, DadoBorde);
+		ili9341_dibujar_punto(desc, 3, x, y, DadoBorde);
+		ili9341_dibujar_punto(desc, 5, x, y, DadoBorde);
+		ili9341_dibujar_punto(desc, 6, x, y, DadoBorde);
+		ili9341_dibujar_punto(desc, 7, x, y, DadoBorde);
 		break;
 
 	default:
 		break;
 	}
 
-	for (int i = 0; i < 7; i++)	{
-		ili9341_dibujar_punto(desc, i, x, y, coloresPuntos[i]);
-	}
-
-	return result;
+	return numero;
 }
