@@ -17,7 +17,7 @@ bool_t XPT2046_Touchscreen_begin(void) {
     
    
     gpioConfig(CST_PIN, GPIO_OUTPUT);        //esto lo hice basándome en el ejemplo de examples>c>sapi>gpio>switches_leds
-    //gpioConfig(IRQT_PIN, GPIO_INPUT);
+    gpioConfig(IRQT_PIN, GPIO_INPUT);
     
     bool ans=spiInit(SPI0); //Ya lo hace el display
     return ans;
@@ -32,7 +32,7 @@ void XPT2046_Touchscreen_readData(TS_Point *punto) {
     uint8_t read[2];
     uint8_t write;
     uint16_t res;
-
+   
     gpioWrite(CST_PIN, 0);
 
     write=CMD_READ_X;
