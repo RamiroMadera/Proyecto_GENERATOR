@@ -5,16 +5,16 @@
 #include <math.h>
 
 /* Variable global */
-uint32_t interruptCount = 0;
-uint32_t flag=0;
+volatile uint32_t interruptCount = 0;
+volatile uint32_t flag=0;
 
 /* Función para manejar la interrupción del GPIO */
 void GPIO1_IRQHandler(void)
 {
    // Si la interrupción es por borde descendente
-   if ( Chip_PININT_GetFallStates(LPC_GPIO_PIN_INT) & PININTCH(1) ) {
+   if ( Chip_PININT_GetFallStates(LPC_GPIO_PIN_INT) & PININTCH(1) && !(flag)) {
       interruptCount++;
-      printf("Interrupción en GPIO1 detectada, cuenta: %d\r\n", interruptCount);
+      //printf("Interrupción en GPIO1 detectada, cuenta: %d\r\n", interruptCount);
       flag=1;
    }
    // Limpiar la interrupción
@@ -61,18 +61,35 @@ int main(void) {
    int ant=-1,act=-1;
    // Bucle principal
    while (1) {
-      act=gpioRead(GPIO3);
-      if (ant != act) printf("GPIO3: (%d)\r\n", act);
+      act=gpioRead(GPIO1);
+      if (ant != act) printf("GPIO1: (%d)\r\n", act);
+      //printf("GPIO1: (%d)\r\n", act);
       ant=act;
       if (flag) {
          NVIC_DisableIRQ(PIN_INT1_IRQn);
-         XPT2046_Touchscreen_readData(&puntoaux);
+         //////////////////////////////
+         uint8_t read[2];
+         uint8_t write;
+         uint16_t res;
+
+         gpioWrite(CST_PIN, 0);
+
+         write=CMD_READ_X;
+         //spiWrite(SPI0, &write, 1);
+         while (Chip_SSP_GetStatus(LPC_SSP1, SSP_STAT_BSY) == 1);
+         //spiRead(SPI0, &read[0], 2);
+
+         gpioWrite(CST_PIN, 1);
+         
+         printf("X: (%d) ", posx);
+         printf("Y: (%d) \r\n", posy);
+         /*XPT2046_Touchscreen_readData(&puntoaux);
          posx = puntoaux.x;
          posy = puntoaux.y;
          posz = puntoaux.z;
          printf("X: (%d) ", posx);
          printf("Y: (%d) ", posy);
-         printf("Presion: (%d)\r\n", posz);
+         printf("Presion: (%d)\r\n", posz);*/
          flag = 0;
          NVIC_ClearPendingIRQ(PIN_INT1_IRQn);
          NVIC_EnableIRQ(PIN_INT1_IRQn);

@@ -34,7 +34,6 @@ void XPT2046_Touchscreen_readData(TS_Point *punto) {
     uint16_t res;
    
     gpioWrite(CST_PIN, 0);
-
     write=CMD_READ_X;
     spiWrite(SPI0, &write, 1);
     spiRead(SPI0, &read[0], 2);
