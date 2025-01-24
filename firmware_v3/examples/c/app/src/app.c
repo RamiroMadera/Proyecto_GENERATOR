@@ -53,7 +53,7 @@ int main(void) {
     }
     for (int i = 1; i < 6; i++)
     {
-       ili9341_dibujar_dado_numero(display, i, i)
+       ili9341_dibujar_dado_numero(display, i, i);
     }
 
     //Imprimir carácteres
