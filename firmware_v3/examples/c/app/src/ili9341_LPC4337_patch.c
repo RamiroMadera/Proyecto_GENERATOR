@@ -9,7 +9,7 @@ void ili9341_gpio_init(void){
 
 
 void ili9341_spi_init(void){
-    spiInit(SPI0); // esto lo hice basándome en el ejemplo de examples>c>sapi>spi>sd_card>fatfss_list
+    //spiInit(SPI0); // esto lo hice basándome en el ejemplo de examples>c>sapi>spi>sd_card>fatfss_list
     //Chip_SSP_SetBitRate(SPI0, 100000);
     //Chip_SSP_DMA_Enable(LPC_SSP1); // libs\lpc_open\lpc_chip_43xx\inc\ssp_18xx_43xx.h    ----> No sé pq lo puse jej
 }
