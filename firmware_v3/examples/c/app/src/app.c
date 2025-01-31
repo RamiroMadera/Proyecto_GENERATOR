@@ -55,7 +55,7 @@ int main(void) {
     {
        ili9341_dibujar_dado_numero(display, i, i);
     }
-
+    Chip_SSP_DeInit(LPC_SSP1);
     spiInit(SPI0, 400000);
 
     for (int i = 3; i < 6; i++)
