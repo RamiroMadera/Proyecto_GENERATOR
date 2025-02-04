@@ -8,7 +8,8 @@ int main(void) {
 
     boardConfig();
     ili9341_gpio_init();
-    ili9341_spi_init();
+    //ili9341_spi_init();
+    ili9341_spi_init(100000000);
     tickConfig(1);
     tickCallbackSet(diskTickHook, NULL);
 
@@ -47,16 +48,28 @@ int main(void) {
     ili9341_fill_region(display, BLACK);
 
     //imprimir dados
-    char numeros[6];
-    for (int i = 1; i < 6; i++)
+    ili9341_setDadoFondo(MAGENTA);
+
+    for (int i = 1; i < 3; i++)
     {
         ili9341_dibujar_dado_base(display, i);
     }
-    for (int i = 1; i < 6; i++)
+    for (int i = 1; i < 3; i++)
     {
        ili9341_dibujar_dado_numero(display, i, i);
     }
 
+
+    ili9341_spi_init(400000);
+    ili9341_setDadoFondo(MAROON);
+    for (int i = 3; i < 6; i++)
+    {
+        ili9341_dibujar_dado_base(display, i);
+    }
+    for (int i = 3; i < 6; i++)
+    {
+        ili9341_dibujar_dado_numero(display, i, i);
+    }
     //Imprimir carácteres
     uint16_t x = 55;
     uint16_t y = 190;
