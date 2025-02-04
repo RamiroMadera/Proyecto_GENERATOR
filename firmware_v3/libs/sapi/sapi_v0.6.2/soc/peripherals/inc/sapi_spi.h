@@ -51,7 +51,7 @@ extern "C" {
 
 /*==================[external functions definition]==========================*/
 
-bool_t spiInit( spiMap_t spi, uint32_t speed);
+bool_t spiInit(spiMap_t spi, uint32_t bitRate);
 
 bool_t spiRead( spiMap_t spi, uint8_t* buffer, uint32_t bufferSize );
 

@@ -14,7 +14,7 @@
 
 void diskTickHook(void *ptr);
 void ili9341_gpio_init(void);
-void ili9341_spi_init(void);
+void ili9341_spi_init(uint32_t bitRate);
 void gpio_cs_pin(ili9341_gpio_pin_value_t value);
 void gpio_dc_pin(ili9341_gpio_pin_value_t value);
 void gpio_rst_pin(ili9341_gpio_pin_value_t value);

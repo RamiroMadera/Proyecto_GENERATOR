@@ -56,7 +56,7 @@
 
 /*==================[external functions definition]==========================*/
 
-bool_t spiInit(spiMap_t spi, uint32_t speed)
+bool_t spiInit(spiMap_t spi, uint32_t bitRate)
 {
 
    bool_t retVal = TRUE;
@@ -73,7 +73,7 @@ bool_t spiInit(spiMap_t spi, uint32_t speed)
          Chip_SCU_PinMuxSet( 0x1, 4, (SCU_MODE_PULLUP | SCU_MODE_FUNC5)); // SSP1_MOSI
 
          // Initialize SSP Peripheral
-         Chip_SSP_Init( LPC_SSP1, speed );
+         Chip_SSP_Init(LPC_SSP1, bitRate);
          Chip_SSP_Enable( LPC_SSP1 );
       #endif
 

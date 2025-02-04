@@ -7,13 +7,14 @@ void ili9341_gpio_init(void){
     gpioConfig(RST_PIN, GPIO_OUTPUT);
 }
 
-
-void ili9341_spi_init(void){
-    //spiInit(SPI0); // esto lo hice basándome en el ejemplo de examples>c>sapi>spi>sd_card>fatfss_list
-    //Chip_SSP_SetBitRate(SPI0, 100000);
-    //Chip_SSP_DMA_Enable(LPC_SSP1); // libs\lpc_open\lpc_chip_43xx\inc\ssp_18xx_43xx.h    ----> No sé pq lo puse jej
+void ili9341_spi_init(uint32_t bitRate){
+    static uint32_t first = 1;
+    if (first)
+        first = 0;
+    else
+        Chip_SSP_DeInit(LPC_SSP1);
+    spiInit(SPI0, bitRate);
 }
-
 
 void gpio_cs_pin(ili9341_gpio_pin_value_t value) {
     if (value == ILI9341_PIN_RESET) {
