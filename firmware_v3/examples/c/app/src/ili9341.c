@@ -1027,7 +1027,16 @@ void ili9341_fillRect(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uin
 	}
 }
 
-void ili9341_print_str(const ili9341_desc_ptr_t desc, const char *message)
+void ili9341_paint_background(const ili9341_desc_ptr_t desc, uint16_t color){
+	coord_2d_t top_left = {0, 0};
+	coord_2d_t bottom_right = {
+		desc->current_width -1, 
+		desc->current_height -1};
+	ili9341_set_region(desc, top_left, bottom_right);
+	ili9341_fill_region(desc, color);
+}
+
+	void ili9341_print_str(const ili9341_desc_ptr_t desc, const char *message)
 {
 	for (uint8_t i = 0; i < strlen(message); i++)
 	{

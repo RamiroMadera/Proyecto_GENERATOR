@@ -39,6 +39,7 @@ int main(void) {
 
     // C digo de aplicaci n
 
+    ili9341_paint_background(display, RED);
     // Imprimir un cuadrado
     coord_2d_t square_top_left = {0, 0}; // (320-100)/2, (240-100)/2
     coord_2d_t square_bottom_right = {319, 239};
