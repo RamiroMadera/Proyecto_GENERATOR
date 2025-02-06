@@ -973,9 +973,9 @@ void ili9341_drawChar(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uin
 			 prev_bg = textbgcolor;
 	uint8_t prev_size = textsize;
 
-	ili9341_setCursor(desc,x, y);
-	ili9341_setTextSize(desc,size);
-	ili9341_setTextColor(desc,color, bg);
+	ili9341_setCursor(x, y);
+	ili9341_setTextSize(size);
+	ili9341_setTextColor(color, bg);
 	ili9341_print(desc,c);
 
 	cursor_x = prev_x;
@@ -984,16 +984,16 @@ void ili9341_drawChar(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uin
 	textbgcolor = prev_bg;
 	textsize = prev_size;
 }
-void ili9341_setCursor(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y)
+void ili9341_setCursor(uint16_t x, uint16_t y)
 {
 	cursor_x = x;
 	cursor_y = y;
 }
-void ili9341_setTextSize(const ili9341_desc_ptr_t desc, uint8_t s)
+void ili9341_setTextSize(uint8_t s)
 {
 	textsize = (s > 0) ? s : 1;
 }
-void ili9341_setTextColor(const ili9341_desc_ptr_t desc, uint16_t c, uint16_t b)
+void ili9341_setTextColor(uint16_t c, uint16_t b)
 {
 	textcolor = c;
 	textbgcolor = b;
@@ -1008,12 +1008,13 @@ void ili9341_setTextColor(const ili9341_desc_ptr_t desc, uint16_t c, uint16_t b)
    @param    color 16-bit 5-6-5 Color to fill with
 */
 /**************************************************************************/
-void ili9341_fillRect(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color)
+void ili9341_drawRectangle(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color)
 {
 	if (w && h)
 	{ // Nonzero width and height?
-		uint8_t hi = color >> 8, lo = color;
 		if ((x >= desc->current_width) || (y >= desc->current_height))
+			return;
+		if ((x == 0) || (y == 0))
 			return;
 		if ((x + w - 1) >= desc->current_width)
 			w = desc->current_width - x;
@@ -1027,7 +1028,7 @@ void ili9341_fillRect(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uin
 	}
 }
 
-void ili9341_paint_background(const ili9341_desc_ptr_t desc, uint16_t color){
+void ili9341_paintBackground(const ili9341_desc_ptr_t desc, uint16_t color){
 	coord_2d_t top_left = {0, 0};
 	coord_2d_t bottom_right = {
 		desc->current_width -1, 
@@ -1036,7 +1037,7 @@ void ili9341_paint_background(const ili9341_desc_ptr_t desc, uint16_t color){
 	ili9341_fill_region(desc, color);
 }
 
-	void ili9341_print_str(const ili9341_desc_ptr_t desc, const char *message)
+	void ili9341_printStr(const ili9341_desc_ptr_t desc, const char *message)
 {
 	for (uint8_t i = 0; i < strlen(message); i++)
 	{
@@ -1092,10 +1093,10 @@ void ili9341_dibujar_punto(const ili9341_desc_ptr_t desc, uint8_t num, uint16_t 
 	ili9341_drawHLine(desc, x + 3, y + 11, 6, color);
 }
 
-void ili9341_dibujar_dado_base(const ili9341_desc_ptr_t desc, uint8_t num){
+void ili9341_drawDadoBase(const ili9341_desc_ptr_t desc, uint8_t pos){
 	uint16_t x;
 	uint16_t y;
-	switch (num) // ajusto la posicion segun el numero que identifica el dado
+	switch (pos) // ajusto la posicion segun el numero que identifica el dado
 	{
 	case 1:
 		x = 15;
@@ -1170,10 +1171,10 @@ void ili9341_dibujar_dado_base(const ili9341_desc_ptr_t desc, uint8_t num){
 	ili9341_drawHLine(desc, x + 5, y + 78, 69, DadoBorde);
 	ili9341_drawHLine(desc, x + 7, y + 79, 65, DadoBorde);
 }
-int ili9341_dibujar_dado_numero(const ili9341_desc_ptr_t desc, uint8_t dado, uint8_t numero){
+int ili9341_drawDadoNumero(const ili9341_desc_ptr_t desc, uint8_t pos, uint8_t numero){
 	uint16_t x;
 	uint16_t y;
-	switch (dado) // ajusto la posicion segun el numero que identifica el dado
+	switch (pos) // ajusto la posicion segun el numero que identifica el dado
 	{
 	case 1:
 		x = 15;
@@ -1208,8 +1209,6 @@ int ili9341_dibujar_dado_numero(const ili9341_desc_ptr_t desc, uint8_t dado, uin
 
 	x += 11;	// llevo las coordenadas de la esquina del dado a la esquina del punto 1
 	y += 11; 
-
-    uint16_t coloresPuntos[7] = {DadoFondo, DadoFondo, DadoFondo, DadoFondo, DadoFondo, DadoFondo, DadoFondo};
 
 	switch (numero)
 	{

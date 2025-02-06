@@ -8,7 +8,6 @@ int main(void) {
 
     boardConfig();
     ili9341_gpio_init();
-    //ili9341_spi_init();
     ili9341_spi_init(100000000);
     tickConfig(1);
     tickCallbackSet(diskTickHook, NULL);
@@ -34,15 +33,13 @@ int main(void) {
     display = ili9341_init(&display_cfg, &hw_cfg);
     if (display == NULL) {
         //Error_Handler();
-
-        //ojalá no entre acá xd
     }
 
     // C digo de aplicaci n
 
-    ili9341_paint_background(display, RED);
+    ili9341_paintBackground(display, RED);
     // Imprimir un cuadrado
-    coord_2d_t square_top_left = {0, 0}; // (320-100)/2, (240-100)/2
+    coord_2d_t square_top_left = {100, 100}; // (320-100)/2, (240-100)/2
     coord_2d_t square_bottom_right = {319, 239};
     ili9341_set_region(display, square_top_left, square_bottom_right);
     ili9341_fill_region(display, BLACK);
@@ -52,11 +49,11 @@ int main(void) {
 
     for (int i = 1; i < 3; i++)
     {
-        ili9341_dibujar_dado_base(display, i);
+        ili9341_drawDadoBase(display, i);
     }
     for (int i = 1; i < 3; i++)
     {
-       ili9341_dibujar_dado_numero(display, i, i);
+       ili9341_drawDadoNumero(display, i, i);
     }
 
 
@@ -64,11 +61,11 @@ int main(void) {
     ili9341_setDadoFondo(MAROON);
     for (int i = 3; i < 6; i++)
     {
-        ili9341_dibujar_dado_base(display, i);
+        ili9341_drawDadoBase(display, i);
     }
     for (int i = 3; i < 6; i++)
     {
-        ili9341_dibujar_dado_numero(display, i, i);
+        ili9341_drawDadoNumero(display, i, i);
     }
     //Imprimir carácteres
     uint16_t x = 55;
@@ -77,11 +74,11 @@ int main(void) {
     uint16_t color = GREEN;
     uint16_t bg = BLACK;
    /*
-    ili9341_setCursor(display, x, y);
-    ili9341_setTextSize(display, size);
-    ili9341_setTextColor(display, color, bg);
-    //ili9341_print_str(display, "Imprimiendo:");
-    ili9341_print_str(display, numeros);
+    ili9341_setCursor(x, y);
+    ili9341_setTextSize(size);
+    ili9341_setTextColor(color, bg);
+    //ili9341_printStr(display, "Imprimiendo:");
+    ili9341_printStr(display, numeros);
     */
 
    
