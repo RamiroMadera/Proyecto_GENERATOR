@@ -1254,3 +1254,51 @@ int ili9341_drawDadoNumero(const ili9341_desc_ptr_t desc, uint8_t pos, uint8_t n
 
 	return numero;
 }
+
+int ili9341_seleccionarDado(const ili9341_desc_ptr_t desc, uint8_t pos, uint16_t color){
+	uint16_t x;
+	uint16_t y;
+	uint16_t largo = 40;
+	uint16_t correccion = 40;
+	switch (pos) // ajusto la posicion segun el numero que identifica el dado
+	{
+	case 1:
+		x = 15;
+		y = 20;
+		break;
+	case 2:
+		x = 224;
+		y = 20;
+		break;
+	case 3:
+		x = 120;
+		y = 80;
+		break;
+	case 4:
+		x = 15;
+		y = 140;
+		break;
+	case 5:
+		x = 224;
+		y = 140;
+		break;
+
+	default:
+		break;
+	}
+
+	x -= 5;
+	y -= 5;
+
+	ili9341_drawRectangle(desc, x, y, largo, 2, color);	//nor-oeste
+	ili9341_drawRectangle(desc, x, y, 2, largo, color);
+
+	ili9341_drawRectangle(desc, x + 90 - largo + correccion, y, largo, 2, color);	//nor-este
+	ili9341_drawRectangle(desc, x + 89, y, 2, largo, color);
+
+	ili9341_drawRectangle(desc, x + 90 - largo + correccion, y + 89, largo, 2, color); // sur-este
+	ili9341_drawRectangle(desc, x + 89, y + 90 - largo + correccion, 2, largo, color);
+
+	ili9341_drawRectangle(desc, x, y + 89, largo, 2, color);	//sur-oeste
+	ili9341_drawRectangle(desc, x, y + 90 - largo + correccion, 2, largo, color);
+}
