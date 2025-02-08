@@ -11,10 +11,10 @@
 #define MSEC_THRESHOLD 3
 #define PENIRQ_PIN 11
 
-#define CMD_READ_X  0xD4  // Command for X
-#define CMD_READ_Y  0xA4  // Command for Y
-#define CMD_READ_Z1 0xB0  // Command for Z1
-#define CMD_READ_Z2 0xF0  // Command for Z2
+#define CMD_READ_X  0x95  // Command for X
+#define CMD_READ_Y  0xD5  // Command for Y
+#define CMD_READ_Z1 0xB5  // Command for Z1
+#define CMD_READ_Z2 0xC5  // Command for Z2
 
 #define CST_PIN     GPIO3
 #define IRQT_PIN    GPIO1
