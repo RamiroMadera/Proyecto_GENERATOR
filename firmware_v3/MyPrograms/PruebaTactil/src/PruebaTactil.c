@@ -91,10 +91,12 @@ int main(void) {
           XPT2046_Touchscreen_readData(&puntoaux);
           posx=puntoaux.x;
           posy=puntoaux.y;
-          //posx=round((float)(puntoaux.x-2185)*(320)/(3977-2185));
-          //posy=round((float)(puntoaux.y-2185)*(240)/(3977-2185));
+          posz=puntoaux.z;
+          //posx=round((float)(puntoaux.x-2186)*(15)/(3978-2186));
+          //posy=round((float)(puntoaux.y-2186)*(14)/(3850-2186));
           printf( "Coordenada X:  (%d) ",posx);
           printf( "Coordenada Y:  (%d)\r\n",posy);
+          //printf( "Presion:  (%d)\r\n",posz);
           //printf("Pussi\n");
           //printf("Detecta flag\r\n");
       
