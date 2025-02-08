@@ -1,32 +1,26 @@
 #include "mpu6050.h"
 
-// Inicializa el MPU6050 configurando su registro de gestión de energía
-bool_t mpu6050Init(i2cMap_t i2cNumber) {
-   uint8_t data[2];
-   data[0] = MPU6050_PWR_MGMT_1; // Dirección del registro de gestión de energía
-   data[1] = 0x00;               // Valor a escribir en el registro para activar el sensor
+static MPU60X0_address_t addr = MPU60X0_ADDRESS_0;
+static float prevMagnitude = 0;
+static float umbralMagnitudAccel = 1.6;
 
-   if (!i2cWrite(i2cNumber, MPU6050_ADDRESS, data, 2, TRUE)) {
-      return FALSE;  // Error en la comunicación I2C
-   }
-    
-    return TRUE;  // Sensor inicializado correctamente
+void mpu6050Init() {
+   boardConfig();
+   mpu60X0Init(addr);
+   mpu60X0Read();
+   float AccelX = mpu60X0GetAccelX_mss();
+   float AccelY = mpu60X0GetAccelY_mss();
+   float AccelZ = mpu60X0GetAccelZ_mss();
+   prevMagnitude = sqrt(pow(AccelX, 2) + pow(AccelY, 2) + pow(AccelZ, 2));
 }
 
-bool_t mpu6050ReadAccel(int16_t* accelX, int16_t* accelY, int16_t* accelZ) {
-    uint8_t rawData[6]; // Buffer para almacenar los datos de aceleración
-    bool_t result;
-
-    // Lee los datos de aceleración desde el registro de salida del MPU6050
-    result = i2cRead(I2C0, MPU6050_ADDRESS, rawData, 6, TRUE);
-
-    if (result) {
-        // Convierte los datos recibidos a valores de aceleración en bruto (16 bits)
-        *accelX = (int16_t)((rawData[0] << 8) | rawData[1]);
-        *accelY = (int16_t)((rawData[2] << 8) | rawData[3]);
-        *accelZ = (int16_t)((rawData[4] << 8) | rawData[5]);
-    }
-
-    return result; // Devuelve el estado de la lectura (TRUE si tuvo éxito)
+int agitando() {
+   mpu60X0Read();
+   float AccelX = mpu60X0GetAccelX_mss();
+   float AccelY = mpu60X0GetAccelY_mss();
+   float AccelZ = mpu60X0GetAccelZ_mss();
+   float currentMagnitude = sqrt(pow(AccelX, 2) + pow(AccelY, 2) + pow(AccelZ, 2));
+   int movimiento = fabs(currentMagnitude - prevMagnitude) > umbralMagnitudAccel ? 1 : 0;
+   prevMagnitude = currentMagnitude;
+   return movimiento;
 }
-
