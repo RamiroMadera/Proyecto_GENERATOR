@@ -2,29 +2,39 @@
 
 #include "ili9341.h"
 #include "sapi.h"
+#include "XPT2046_Touchscreen.h"
+
+typedef enum {inicio,reposo,sacudiendo,apagado} State;
+
+TS_Point valPantalla;
+State estado,estadoAnt;
 
 void inicializacion(void);
 
 int main(void) {
 
     inicializacion();
-    inicializar todo
+    
 
-    // C digo de aplicaci n
+    // C digo de aplicacion
     while(1){
+        //Lecturas de los perifericos
+        XPT2046_Touchscreen_readData(valPantalla);  //Esto puede quedar aca o dentro de los cases
+        //Aca tiene que ir la lectura del MPU para ver si se esta moviendo
+
+        //MEF de control del dibujito
         switch (estado){
-
             case inicio:
-                if (estadoAnt!= inicio)
-                    dibujo de menu principal con nombre de juego y boton de "iniciar" 
+                if (estadoAnt!= inicio){
+                    //dibujo de menu principal con nombre de juego y boton de "iniciar" 
                     
-              
+                    //Actualizamos estado previo
+                    estadoAnt = inicio;
+                }
 
-                estadoAnt = inicio;
-                leerTouch();
-
-                if (boton apretado)
+                if (InStart(valPantalla)){
                     estado = reposo;
+                }
             break;
             case reposo:
                 if (estadoAnt != reposo){
@@ -38,7 +48,8 @@ int main(void) {
                     Imprimir nombre del juego
                     Imprimir puntaje
 
-                    if(leerTouch() == algunDado){
+                    int16_t dado=SelectDado(valPantalla);
+                    if(dado){
                         Selecciono/deselecciono el dado
                         Y dibujo la seleccion
                     }
@@ -119,6 +130,23 @@ void inicializacion(void){
     {
         // Error_Handler();
     }
+
+    //Inicializacion del XPT2046
+    if(!XPT2046_Touchscreen_begin()){
+        printf( "Error al Inicializar el Touch.");
+    }
+    valPantalla.firsttouch=false;
+    valPantalla.x=-1;
+    valPantalla.y=-1;
+    valPantalla.z=-1;
+
+    //Aca va la inicializacion del MPU
+
+    //Aca va la inicializacion del AmpOp de sonido
+
+    estado=reposo;
+    estadoAnt=apagado;
+    return;
 }
 
 void diskTickHook(void *ptr){

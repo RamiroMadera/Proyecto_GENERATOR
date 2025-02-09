@@ -20,7 +20,7 @@
 #define IRQT_PIN    GPIO1
 
 #define GPIO_INTERRUPT_PIN 1    // Pin 1 (GPIO1)
-#define RAISING_EDGE          0  // Interrupción en el borde de subida
+#define RAISING_EDGE          0  // Interrupciï¿½n en el borde de subida
 
 
 //Estrctura de punto
@@ -28,34 +28,24 @@ typedef struct {
     int16_t x;
     int16_t y;
     int16_t z;
+    bool_t firsttouch;
 } TS_Point;
+
+typedef struct{
+    int16_t xi;
+    int16_t xs;
+    int16_t yi;
+    int16_t ys;
+}Rectangle;
 
 bool_t TS_Point_equal(TS_Point *p1, TS_Point *p2);
 bool_t TS_Point_notEqual(TS_Point *p1, TS_Point *p2);
 
-/*
-//Estructura del táctil
-typedef struct {
-    uint8_t csPin;
-    uint8_t tirqPin;
-    uint8_t rotation;
-    uint16_t xraw;
-    uint16_t yraw;
-    uint16_t zraw;
-    uint32_t msraw;
-    bool_t isrWake;
-} XPT2046_Touchscreen;
-*/
-
-//Declaración de funciones
+//Declaraciï¿½n de funciones
 bool_t XPT2046_Touchscreen_begin(void);
-//TS_Point XPT2046_Touchscreen_getPoint(XPT2046_Touchscreen *touchscreen);
-//bool_t XPT2046_Touchscreen_touched(XPT2046_Touchscreen *touchscreen);
-//void XPT2046_Touchscreen_update(XPT2046_Touchscreen *touchscreen);
 void XPT2046_Touchscreen_readData(TS_Point *punto);
-
-
-// Function to set a user-defined callback
-//void touch_set_callback(void (*callback)(int));
+bool_t PointInRectangle(TS_Point *punto, Rectangle *boton);
+int16_t SelectDado(TS_Point *punto);
+bool_t InStart(TS_Point *punto);
 
 #endif // XPT2046_TOUCHSCREEN_H
