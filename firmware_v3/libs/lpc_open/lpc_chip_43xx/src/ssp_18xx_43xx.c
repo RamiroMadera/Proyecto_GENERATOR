@@ -447,14 +447,14 @@ void Chip_SSP_SetBitRate(LPC_SSP_T *pSSP, uint32_t bitRate)
 }
 
 /* Initialize the SSP */
-void Chip_SSP_Init(LPC_SSP_T *pSSP)
+void Chip_SSP_Init(LPC_SSP_T *pSSP, uint32_t bitRate)
 {
 	Chip_Clock_Enable(Chip_SSP_GetClockIndex(pSSP));
 	Chip_Clock_Enable(Chip_SSP_GetPeriphClockIndex(pSSP));
 
 	Chip_SSP_Set_Mode(pSSP, SSP_MODE_MASTER);
 	Chip_SSP_SetFormat(pSSP, SSP_BITS_8, SSP_FRAMEFORMAT_SPI, SSP_CLOCK_CPHA0_CPOL0);
-	Chip_SSP_SetBitRate(pSSP, 100000);
+	Chip_SSP_SetBitRate(pSSP, bitRate);
 }
 
 /* De-initializes the SSP peripheral */

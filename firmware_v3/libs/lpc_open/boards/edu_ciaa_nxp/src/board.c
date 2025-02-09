@@ -154,7 +154,7 @@ static void Board_I2C_Init()
 
 static void Board_SPI_Init()
 {
-   Chip_SSP_Init(LPC_SSP1);
+   Chip_SSP_Init(LPC_SSP1,1000000);
    Chip_SSP_Set_Mode(LPC_SSP1, BOARD_SPI_MODE);
    Chip_SSP_SetFormat(LPC_SSP1, BOARD_SPI_BITS, BOARD_SPI_FORMAT,
                       BOARD_SPI_POLARITY);

@@ -17,7 +17,6 @@
 
 
 /*=====[C++ - begin]=========================================================*/
-/*=====[C++ - begin]=========================================================*/
 
 #ifdef __cplusplus
 extern "C" {
@@ -30,18 +29,8 @@ extern "C" {
 /*=====[Definitions of public data types]====================================*/
 
 /*=====[Prototypes (declarations) of public functions]=======================*/
-/*=====[Definition macros of public constants]===============================*/
-
-/*=====[Public function-like macros]=========================================*/
-
-/*=====[Definitions of public data types]====================================*/
-
-/*=====[Prototypes (declarations) of public functions]=======================*/
 
 /*=====[Prototypes (declarations) of public interrupt functions]=============*/
-/*=====[Prototypes (declarations) of public interrupt functions]=============*/
-
-/*=====[C++ - end]===========================================================*/
 
 /*=====[C++ - end]===========================================================*/
 

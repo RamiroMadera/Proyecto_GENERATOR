@@ -1,46 +1,50 @@
-/*============================================================================
- * Autor:
- * Licencia:
- * Fecha:
- *===========================================================================*/
+#include "../inc/app.h"
 
-// Inlcusiones
+#include "ili9341.h"
+#include "sapi.h"
 
-#include "app.h"         // <= Su propia cabecera
-#include "sapi.h"        // <= Biblioteca sAPI
-#include "mpu6050.h"
 
-// FUNCION PRINCIPAL, PUNTO DE ENTRADA AL PROGRAMA LUEGO DE ENCENDIDO O RESET.
-int main( void )
+int main(void) {
+
+    boardConfig();
+    ili9341_gpio_init();
+    ili9341_spi_init(100000000);
+    tickConfig(1);
+    tickCallbackSet(diskTickHook, NULL);
+
+    // Inicializaci n y configuraci n del display ILI9341
+    ili9341_desc_ptr_t display;
+    const ili9341_cfg_t display_cfg = {
+        .cs_pin = gpio_cs_pin,
+        .dc_pin = gpio_dc_pin,
+        .rst_pin = gpio_rst_pin,
+        .spi_tx_dma = spi_tx_dma_b,
+        .spi_tx_ready = spi_tx_dma_ready,
+        .orientation = ILI9341_ORIENTATION_HORIZONTAL_UD,
+        .width = 320,
+        .height = 240,
+        .timeout_ms = 10000,
+        .wup_delay_ms = 20,
+        .restart_delay_ms = 20
+    };
+
+    const ili9341_hw_cfg_t hw_cfg = ili9341_get_default_hw_cfg();
+
+    display = ili9341_init(&display_cfg, &hw_cfg);
+    if (display == NULL) {
+        //Error_Handler();
+    }
+
+    // C digo de aplicaci n
+
+    
+   
+}
+
+/* 1MS Timer callback */
+
+void diskTickHook(void *ptr)
 {
-   // ---------- CONFIGURACIONES ------------------------------
-
-   // Inicializar y configurar la plataforma
-   boardConfig();
-
-   i2cInit(I2C0, 100000);
-   if (!mpu6050Init(I2C0)) {
-	   printf("Error al inicializar el MPU6050\n");
-	   while(1);  // Detener el programa si no se pudo inicializar
-   }
-   printf("MPU6050 inicializado correctamente\n");
-
-   int16_t ax, ay, az;
-
-   // ---------- REPETIR POR SIEMPRE --------------------------
-   while( TRUE ) {
-	   // Leer los valores de aceleración
-	  if (mpu6050ReadAccel(&ax, &ay, &az)) {
-		  // Imprimir los valores de aceleración en consola
-		  printf("Ax: %d, Ay: %d, Az: %d\n", ax, ay, az);
-	  } else {
-		  printf("Error al leer el MPU6050\n");
-	  }
-	  delay(250);
-   }
-
-   // NO DEBE LLEGAR NUNCA AQUI, debido a que a este programa se ejecuta
-   // directamenteno sobre un microcontroladore y no es llamado por ningun
-   // Sistema Operativo, como en el caso de un programa para PC.
-   return 0;
+    /* Update Display driver timers. */
+    ili9341_1ms_timer_cb();
 }

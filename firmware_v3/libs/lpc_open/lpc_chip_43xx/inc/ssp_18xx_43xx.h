@@ -561,7 +561,7 @@ uint32_t Chip_SSP_ReadFrames_Blocking(LPC_SSP_T *pSSP, uint8_t *buffer, uint32_t
  * @param	pSSP			: The base SSP peripheral on the chip
  * @return	Nothing
  */
-void Chip_SSP_Init(LPC_SSP_T *pSSP);
+void Chip_SSP_Init(LPC_SSP_T *pSSP, uint32_t bitRate);
 
 /**
  * @brief	Deinitialise the SSP
