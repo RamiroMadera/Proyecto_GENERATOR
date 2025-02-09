@@ -1,4 +1,4 @@
-#include "../inc/app.h"
+#include "../inc/Generator.h"
 
 #include "ili9341.h"
 #include "sapi.h"
@@ -6,10 +6,13 @@
 
 typedef enum {inicio,reposo,sacudiendo,apagado} State;
 
+ili9341_desc_ptr_t display;
 TS_Point valPantalla;
 State estado,estadoAnt;
 
 void inicializacion(void);
+
+void LeerPantalla(void);
 
 int main(void) {
 
@@ -18,14 +21,13 @@ int main(void) {
 
     // C digo de aplicacion
     while(1){
-        //Lecturas de los perifericos
-        XPT2046_Touchscreen_readData(valPantalla);  //Esto puede quedar aca o dentro de los cases
+        //Lecturas de perifericos
         //Aca tiene que ir la lectura del MPU para ver si se esta moviendo
 
         //MEF de control del dibujito
         switch (estado){
             case inicio:
-                if (estadoAnt!= inicio)
+                if (estadoAnt!= inicio){
                     //dibujo de menu principal con nombre de juego y boton de "iniciar"
                     ili9341_spi_init(100000000);
                     ili9341_paintBackground(display, 0);
@@ -41,10 +43,11 @@ int main(void) {
                     ili9341_printStr(display, "Iniciar");
 
                     estadoAnt = inicio;
-                    leerTouch();
-
-                if (InStart(valPantalla)){
+                }
+                LeerPantalla();
+                if (InStart(&valPantalla)){
                     estado = reposo;
+                    printf("Cambio de estado \r\n");
                 }
             break;
             case reposo:
@@ -59,9 +62,11 @@ int main(void) {
                         ili9341_drawDadoBase(display, i);
                     }
                 }
+                
                 estadoAnt = reposo;
+                
 
-                if (no es la primera vez)
+                if (true)   //No es la primera vez
                 {
                     // Seleccionar todos los dados
                     ili9341_spi_init(100000000);
@@ -80,16 +85,19 @@ int main(void) {
                     ili9341_setTextSize(5);;
                     ili9341_setCursor(130, 180);
                     ili9341_printStr(display, "50");
-
-                    int16_t dado=SelectDado(valPantalla);
-                    if(dado){
-                        Selecciono/deselecciono el dado
-                        Y dibujo la seleccion
-                    }
-
+                    
+                }  
+                LeerPantalla();
+                int16_t dado=SelectDado(&valPantalla);
+                if(dado){
+                   printf("Dado Numero (%d) \r\n");
+                   //Selecciono/deselecciono el dado
+                   //Y dibujo la seleccion
                 }
 
                 
+
+                /*                
                 if(Se sacude && algun dado sin seleccionar){
                     veces++;
                     if veces>5 {
@@ -97,7 +105,7 @@ int main(void) {
                         veces = 0;
                     }
                 }
-
+                */
                 break;
 
             case sacudiendo:
@@ -110,9 +118,11 @@ int main(void) {
                 for (int i = 1; i < 6; i++){
                     ili9341_drawDadoNumero(display, i, 6);
                 }
+                /*
                 cada(x veces){
                     Reproducir sonido
                 }
+                
 
                 if(NO Se sacude){
                     veces++;
@@ -121,13 +131,14 @@ int main(void) {
                         veces = 0;
                     }
                 }
+                */
 
                 break;
 
             default:
                 break;
             }
-        wait(0.25s);
+        delay_ms(100);
     }
 
 
@@ -147,7 +158,7 @@ void inicializacion(void){
     tickCallbackSet(diskTickHook, NULL);
 
     // Inicializaci n y configuraci n del display ILI9341
-    ili9341_desc_ptr_t display;
+    
     const ili9341_cfg_t display_cfg = {
         .cs_pin = gpio_cs_pin,
         .dc_pin = gpio_dc_pin,
@@ -177,14 +188,22 @@ void inicializacion(void){
     valPantalla.x=-1;
     valPantalla.y=-1;
     valPantalla.z=-1;
+    valPantalla.amount=0;
+    valPantalla.firsttouch=false;
 
     //Aca va la inicializacion del MPU
 
     //Aca va la inicializacion del AmpOp de sonido
 
-    estado=reposo;
+    estado=inicio;
     estadoAnt=apagado;
     return;
+}
+
+void LeerPantalla(void){
+   ili9341_spi_init(400000);
+   XPT2046_Touchscreen_readData(&valPantalla);  //Esto puede quedar aca o dentro de los cases
+   ili9341_spi_init(100000000);
 }
 
 void diskTickHook(void *ptr){

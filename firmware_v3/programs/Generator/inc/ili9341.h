@@ -237,7 +237,7 @@ void ili9341_setDadoBorde(uint16_t c);
 void ili9341_dibujar_punto(const ili9341_desc_ptr_t desc, uint8_t num, uint16_t x, uint16_t y, uint16_t color);
 void ili9341_drawDadoBase(const ili9341_desc_ptr_t desc, uint8_t pos);
 int ili9341_drawDadoNumero(const ili9341_desc_ptr_t desc, uint8_t pos, uint8_t numero);
-void ili9341_seleccionarDado(const ili9341_desc_ptr_t desc, uint16_t pos, uint8_t color);
+void ili9341_seleccionarDado(const ili9341_desc_ptr_t desc, uint16_t pos, uint16_t color);
 
 /**
  * Fill display region by solid color.

@@ -8,7 +8,7 @@ static void InitRectangles(){
     Dado3.xi=0; Dado3.yi=0; Dado3.xs=0; Dado3.ys=0;
     Dado4.xi=0; Dado4.yi=0; Dado4.xs=0; Dado4.ys=0;
     Dado5.xi=0; Dado5.yi=0; Dado5.xs=0; Dado5.ys=0;
-    Push2Start.xi=0; Push2Start.yi=0; Push2Start.xs=0; Push2Start.ys=0;
+    Push2Start.xi=3; Push2Start.yi=3; Push2Start.xs=11; Push2Start.ys=5;
     return;
 }
 
@@ -17,7 +17,8 @@ bool_t XPT2046_Touchscreen_begin(void) {
     gpioConfig(CST_PIN, GPIO_OUTPUT);        //Configura canal de comunicacion activo en bajo
     //gpioConfig(IRQT_PIN, GPIO_INPUT);      //Para interrupcion
     InitRectangles();
-    bool ans=spiInit(SPI0); //Ya lo hace el display
+    //bool ans=spiInit(SPI0,100000000); //Ya lo hace el display
+    bool ans=true;
     return ans;
 }
 
@@ -25,10 +26,10 @@ bool_t XPT2046_Touchscreen_begin(void) {
 
 //Actualiza la info de la pantalla
 void XPT2046_Touchscreen_readData(TS_Point *punto) {
-    
     uint8_t read[2];
     uint8_t write;
     uint16_t res;
+    uint16_t x,y;
    
     //NVIC_DisableIRQ(PIN_INT1_IRQn);
     
@@ -41,7 +42,7 @@ void XPT2046_Touchscreen_readData(TS_Point *punto) {
     res>>=4;
     //res&=0x0FFF;
     res=round((float)(res-2185)*(14)/(3977-2185));
-    punto->x=res;
+    x=res;
     gpioWrite(CST_PIN, 1);
 
     gpioWrite(CST_PIN, 0);
@@ -52,7 +53,7 @@ void XPT2046_Touchscreen_readData(TS_Point *punto) {
     res>>=4;
     //res&=0x0FFF;
     res=round((float)(res-2185)*(13)/(3849-2185));
-    punto->y=res;
+    y=res;
     gpioWrite(CST_PIN, 1);
 
     uint16_t z1,z2,z;
@@ -77,32 +78,43 @@ void XPT2046_Touchscreen_readData(TS_Point *punto) {
     z2=res;
     //printf( "Zeta 2:  (%d) ",z2);
     gpioWrite(CST_PIN, 1);
+    //printf("Coord Z1: (%d)   Coord Z2: (%d)   \r\n",z1,z2);
     z=z1/z2;
     punto->z=z;
 
-    if(punto->firsttouch) punto->firsttouch=false;
-    else if(punto->x != 10 && punto->y != 5) punto->firsttouch=true;
 
+    printf("Coord X : (%d)   Coord Y: (%d)   ",punto->x,punto->y);
+    if(punto->x != x || punto->y !=y){
+       punto->amount=0;
+    }else punto->amount=(punto->amount)+1;
+    printf("Cantidad: (%d)   \r\n",punto->amount);
+    punto->x=x;
+    punto->y=y;
+    if(punto->amount >= 5){
+       //printf("Estoy tocando algooo");
+       if(punto->firsttouch) punto->firsttouch=false;
+       else punto->firsttouch=true;
+    }
     //NVIC_EnableIRQ(PIN_INT1_IRQn);
 
 }
 
 bool_t PointInRectangle(TS_Point *punto, Rectangle *boton){
-    if((punto->firsttouch == false) || (punto->x == 10 && punto->y == 5)) return false;
+    if((punto->firsttouch == false)) return false;
     if((punto->x)>=(boton->xi) && (punto->x)<=(boton->xs) && (punto->y)>=(boton->yi) && (punto->y)<=(boton->ys)) return true;
     else return false;
 }
 
 int16_t SelectDado(TS_Point *punto){
-    if(PointInRectangle(punto,Dado1)) return 1;
-    if(PointInRectangle(punto,Dado2)) return 2;
-    if(PointInRectangle(punto,Dado3)) return 3;
-    if(PointInRectangle(punto,Dado4)) return 4;
-    if(PointInRectangle(punto,Dado5)) return 5;
+    if(PointInRectangle(punto,&Dado1)) return 1;
+    if(PointInRectangle(punto,&Dado2)) return 2;
+    if(PointInRectangle(punto,&Dado3)) return 3;
+    if(PointInRectangle(punto,&Dado4)) return 4;
+    if(PointInRectangle(punto,&Dado5)) return 5;
     return 0;
 }
 
 bool_t InStart(TS_Point *punto){
-    if(PointInRectangle(punto,Push2Start)) return 1;
+    if(PointInRectangle(punto,&Push2Start)) return 1;
     return 0;
 }

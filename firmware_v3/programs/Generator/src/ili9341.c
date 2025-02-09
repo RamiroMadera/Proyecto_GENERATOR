@@ -955,6 +955,35 @@ void ili9341_print(const ili9341_desc_ptr_t desc, uint8_t c)
 
 /**************************************************************************/
 /*!
+   @brief    Fill a rectangle completely with one color.
+	@param    x   Top left corner x coordinate
+	@param    y   Top left corner y coordinate
+	@param    w   Width in pixels
+	@param    h   Height in pixels
+   @param    color 16-bit 5-6-5 Color to fill with
+*/
+/**************************************************************************/
+void ili9341_fillRect(const ili9341_desc_ptr_t desc, uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color)
+{
+	if (w && h)
+	{ // Nonzero width and height?
+		uint8_t hi = color >> 8, lo = color;
+		if ((x >= desc->current_width) || (y >= desc->current_height))
+			return;
+		if ((x + w - 1) >= desc->current_width)
+			w = desc->current_width - x;
+		if ((y + h - 1) >= desc->current_height)
+			h = desc->current_height - y;
+
+		coord_2d_t top_left = {x, y}; // (320-100)/2, (240-100)/2
+		coord_2d_t bottom_right = {x + w - 1, y + h - 1};
+		ili9341_set_region(desc, top_left, bottom_right);
+		ili9341_fill_region(desc, color);
+	}
+}
+
+/**************************************************************************/
+/*!
    @brief   Draw a single character
 	@param    x   Bottom left corner x coordinate
 	@param    y   Bottom left corner y coordinate
@@ -1255,7 +1284,7 @@ int ili9341_drawDadoNumero(const ili9341_desc_ptr_t desc, uint8_t pos, uint8_t n
 	return numero;
 }
 
-void ili9341_seleccionarDado(const ili9341_desc_ptr_t desc, uint8_t pos, uint16_t color){
+void ili9341_seleccionarDado(const ili9341_desc_ptr_t desc, uint16_t pos, uint16_t color){
 	uint16_t x;
 	uint16_t y;
 	uint16_t largo = 40;
