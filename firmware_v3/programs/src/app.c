@@ -37,16 +37,38 @@ int main(void) {
                         estado = reposo;
                     break;
             case reposo:
-                if (estadoAnt != reposo){
-                    dibujar el fondo y borde de dados
+                if ((estadoAnt != reposo)&&(estadoAnt != sacudiendo)){
+                    //dibujar el fondo y borde de dados
+
+                    ili9341_spi_init(100000000);
+                    ili9341_paintBackground(display, 0xfd35);
+                    ili9341_setDadoFondo(0xFFFF);
+                    ili9341_setDadoBorde(0);
+                    for (int i = 1; i < 6; i++){
+                        ili9341_drawDadoBase(display, i);
+                    }
                 }
                 estadoAnt = reposo;
 
                 if (no es la primera vez)
                 {
-                    Seleccionar todos los dados
-                    Imprimir nombre del juego
-                    Imprimir puntaje
+                    // Seleccionar todos los dados
+                    ili9341_spi_init(100000000);
+                    for (int i = 1; i < 6; i++){
+                        ili9341_seleccionarDado(display, i, 0);
+                    }
+                    //Imprimir nombre del juego
+                    //acá falta implementar la funcion que calcule estas dos cosas
+                    ili9341_setTextSize(3);
+                    ili9341_setCursor(110, 30);
+                    ili9341_setTextColor(0xFFFF, 0xfd35);
+                    ili9341_printStr(display, "NombreJuego");
+
+                    //Imprimir puntaje
+
+                    ili9341_setTextSize(5);;
+                    ili9341_setCursor(130, 180);
+                    ili9341_printStr(display, "50");
 
                     if(leerTouch() == algunDado){
                         Selecciono/deselecciono el dado
@@ -69,8 +91,13 @@ int main(void) {
             case sacudiendo:
                 estadoAnt = sacudiendo;
 
-                Randomizar dados no seleccinados y dibujarlos.
+                //Randomizar dados no seleccinados y dibujarlos.
+                //falta implementar la fora de randomizar y escribir el arreglo que va a tener el numero de los dados
 
+                ili9341_spi_init(100000000);
+                for (int i = 1; i < 6; i++){
+                    ili9341_drawDadoNumero(display, i, 6);
+                }
                 cada(x veces){
                     Reproducir sonido
                 }
@@ -87,7 +114,7 @@ int main(void) {
 
             default:
                 break;
-        }
+            }
         wait(0.25s);
     }
 

@@ -1255,7 +1255,7 @@ int ili9341_drawDadoNumero(const ili9341_desc_ptr_t desc, uint8_t pos, uint8_t n
 	return numero;
 }
 
-int ili9341_seleccionarDado(const ili9341_desc_ptr_t desc, uint8_t pos, uint16_t color){
+void ili9341_seleccionarDado(const ili9341_desc_ptr_t desc, uint8_t pos, uint16_t color){
 	uint16_t x;
 	uint16_t y;
 	uint16_t largo = 40;
