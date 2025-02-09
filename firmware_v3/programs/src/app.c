@@ -16,16 +16,26 @@ int main(void) {
 
             case inicio:
                 if (estadoAnt!= inicio)
-                    dibujo de menu principal con nombre de juego y boton de "iniciar" 
-                    
-              
+                    //dibujo de menu principal con nombre de juego y boton de "iniciar"
+                    ili9341_spi_init(100000000);
+                    ili9341_paintBackground(display, 0);
+                    ili9341_setTextSize(5);
+                    ili9341_setCursor(0, 10);
+                    ili9341_setTextColor(0xdaa0, 0);
+                    ili9341_printStr(display, "GENERATOR");
 
-                estadoAnt = inicio;
-                leerTouch();
+                    ili9341_drawRectangle(display, 60, 140, 200, 40, 0xdaa0);
+                    ili9341_setTextSize(3);
+                    ili9341_setCursor(110, 150);
+                    ili9341_setTextColor(0, 0xdaa0);
+                    ili9341_printStr(display, "Iniciar");
 
-                if (boton apretado)
-                    estado = reposo;
-            break;
+                    estadoAnt = inicio;
+                    leerTouch();
+
+                    if (boton apretado)
+                        estado = reposo;
+                    break;
             case reposo:
                 if (estadoAnt != reposo){
                     dibujar el fondo y borde de dados
