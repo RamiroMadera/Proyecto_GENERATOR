@@ -83,7 +83,7 @@ void XPT2046_Touchscreen_readData(TS_Point *punto) {
     punto->z=z;
 
 
-    printf("Coord X : (%d)   Coord Y: (%d)   ",punto->x,punto->y);
+    printf("Coord X : (%d)   Coord Y: (%d)   ",x,y);
     if(punto->x != x || punto->y !=y){
        punto->amount=0;
     }else punto->amount=(punto->amount)+1;
@@ -94,7 +94,7 @@ void XPT2046_Touchscreen_readData(TS_Point *punto) {
        //printf("Estoy tocando algooo");
        if(punto->firsttouch) punto->firsttouch=false;
        else punto->firsttouch=true;
-    }
+    }else punto->firsttouch=false;
     //NVIC_EnableIRQ(PIN_INT1_IRQn);
 
 }

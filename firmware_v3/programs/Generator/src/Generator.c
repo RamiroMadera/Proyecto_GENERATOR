@@ -36,7 +36,7 @@ int main(void) {
                     ili9341_setTextColor(0xdaa0, 0);
                     ili9341_printStr(display, "GENERATOR");
 
-                    ili9341_drawRectangle(display, 60, 140, 200, 40, 0xdaa0);
+                    ili9341_drawRectangle(display, 55, 140, 210, 50, 0xdaa0);
                     ili9341_setTextSize(3);
                     ili9341_setCursor(110, 150);
                     ili9341_setTextColor(0, 0xdaa0);
