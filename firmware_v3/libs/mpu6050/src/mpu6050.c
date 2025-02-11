@@ -2,7 +2,7 @@
 
 static MPU60X0_address_t addr = MPU60X0_ADDRESS_0;
 static float prevMagnitude = 0;
-static float umbralMagnitudAccel = 1.6;
+static float umbralMagnitudAccel = 1;
 
 void mpu6050Init() {
    boardConfig();
