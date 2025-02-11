@@ -5,6 +5,7 @@
 #include "sapi.h"
 #include "XPT2046_Touchscreen.h"
 #include "mpu6050.h"
+#include "sonidos.h"
 
 typedef enum {inicio,reposo,sacudiendo,apagado} State;
 typedef enum {emayor,emenor,full,poker,generala,nada,j1,j2,j3,j4,j5,j6} Juego;
@@ -79,6 +80,7 @@ int main(void) {
                      //Calculo los nuevos valores
                      for (int i = 1; i < 6; i++) if(!seleccion[i-1]){
                         dados[i-1]=(rand()%6+1);
+                        
                      }
                   }
                   // Seleccionar todos los dados
@@ -92,6 +94,7 @@ int main(void) {
                         ili9341_drawDadoNumero(display, i, dados[i-1]);
                      }
                   }
+                  if (dados[0]>0) reproducirDados();
 
                   tirada=CalcularJuego(dados,&suma);
                   
@@ -104,6 +107,7 @@ int main(void) {
                   switch (tirada) {
                      case generala:
                         ili9341_printStr(display, "GEN");
+                        reproducirVictoria();
                      break;
                      case poker:
                         ili9341_printStr(display, "POK");
@@ -163,10 +167,16 @@ int main(void) {
                      ili9341_seleccionarDado(display, dado, 0);
                      seleccion[dado-1]=true;
                   }
-                  delay(100);
+                  delay(150);
                   printf("Dado Numero (%d) \r\n");
                }
-               if (agitando(8) && (!seleccion[0] || !seleccion[1] || !seleccion[2] || !seleccion[3] || !seleccion[4] || !seleccion[5])) {      //Falta agregar la condicion de dados no seleccionados
+               if (agitando(8) && (!seleccion[0] || !seleccion[1] || !seleccion[2] || !seleccion[3] || !seleccion[4]) ) {      //Falta agregar la condicion de dados no seleccionados
+                  if (!seleccion[0]) printf("1 ");
+                  if (!seleccion[1]) printf("2 ");
+                  if (!seleccion[2]) printf("3 ");
+                  if (!seleccion[3]) printf("4 ");
+                  if (!seleccion[4]) printf("5 \r\n");
+
                   estado = sacudiendo;
                }
 
@@ -183,12 +193,11 @@ int main(void) {
                        ili9341_drawDadoNumero(display, i, (i+veces)%6+1);
                      }
                 }
-                //////////////// Sonido ///////////////////////
                 printf("Sacudiendooooo \r\n");
                 veces++;
-                delay(50);
+                reproducirSacudir();
                }
-                if(!agitando(0.1) && veces >= 8){
+                if(!agitando(0.1) && veces >= 3){
                         estado = reposo;
                         veces = 0;
                 }
@@ -255,7 +264,7 @@ void inicializacion(void){
     mpu6050Init();
 
     //Aca va la inicializacion del AmpOp de sonido
-
+    inicializarParlante();
     tirada=nada;
     suma=0;
     estado=inicio;

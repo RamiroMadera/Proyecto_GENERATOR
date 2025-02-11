@@ -8,5 +8,6 @@
 void inicializarParlante();
 void reproducirDados();
 void reproducirVictoria();
+void reproducirSacudir();
 
 #endif // SONIDOS_H

@@ -17,3 +17,10 @@ void reproducirVictoria() {
       delayInaccurateUs(85);
    }
 }
+
+void reproducirSacudir() {
+   for (int j = 4000; j < DATA_DADOS-3000; j++) {
+      dacWrite(DAC, audioDados[j]);
+      delayInaccurateUs(95);
+   }
+}
