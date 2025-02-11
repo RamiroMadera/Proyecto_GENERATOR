@@ -7,7 +7,7 @@
 #include "mpu6050.h"
 
 typedef enum {inicio,reposo,sacudiendo,apagado} State;
-typedef enum {emayor,emenor,full,poker,generala,nada} Juego;
+typedef enum {emayor,emenor,full,poker,generala,nada,j1,j2,j3,j4,j5,j6} Juego;
 
 ili9341_desc_ptr_t display;
 TS_Point valPantalla;
@@ -16,13 +16,14 @@ int16_t veces=0;
 uint8_t dados[5]={0,0,0,0,0};
 bool seleccion[5]={false,false,false,false,false};
 uint8_t suma;
+const char * puntos;
 Juego tirada;
 
 void inicializacion(void);
 
 void LeerPantalla(void);
 
-Juego CalcularJuego(uint8_t *dados);
+Juego CalcularJuego(uint8_t *dados, uint8_t *puntaje);
 
 int main(void) {
 
@@ -95,9 +96,8 @@ int main(void) {
                        }
                     }
                     
-                    tirada=CalcularJuego(dados);
-                    suma=0;
-                    for (int i = 0; i < 5; i++) suma+=dados[i];
+                    tirada=CalcularJuego(dados,&suma);
+                    //for (int i = 0; i < 5; i++) suma+=dados[i];
                     
                     //Antes de todo esto para mi vamos a tener que limpiar el fondo porque (sin probarlo)(Uli) para mi reescribe
                     
@@ -121,9 +121,26 @@ int main(void) {
                        case emenor:
                           ili9341_printStr(display, "EME");
                           break;
+                       case j1:
+                          ili9341_printStr(display, "UNO");
+                          break;
+                       case j2:
+                          ili9341_printStr(display, "DOS");
+                          break;
+                       case j3:
+                          ili9341_printStr(display, "TRE");
+                          break;
+                       case j4:
+                          ili9341_printStr(display, "CUA");
+                          break;
+                       case j5:
+                          ili9341_printStr(display, "CIN");
+                          break;
+                       case j6:
+                          ili9341_printStr(display, "SEI");
+                          break;
                        case nada:
-                          if(suma>0) ili9341_printStr(display, "---");
-                          else ili9341_printStr(display, "GO!");
+                          ili9341_printStr(display, "G0!");
                           break;
                     }
 
@@ -131,27 +148,8 @@ int main(void) {
                     ili9341_setTextSize(5);;
                     ili9341_setCursor(130, 180);
                     //ili9341_printStr(display, "50");
-                    switch(tirada){
-                       case generala:
-                          ili9341_printStr(display, "50");
-                          break;
-                       case poker:
-                          ili9341_printStr(display, "40");
-                          break;
-                       case full:
-                          ili9341_printStr(display, "30");
-                          break;
-                       case emayor:
-                          ili9341_printStr(display, "25");
-                          break;
-                       case emenor:
-                          ili9341_printStr(display, "20");
-                          break;
-                       case nada:
-                          if(suma>0) ili9341_printStr(display, "00");   //Podemos imprimir la suma? No funciona asi la generala tho (a menos que juegues en Plato)
-                          //else ili9341_printStr(display, "TIRE");
-                          break;
-                    }
+                    sprintf(puntos, "%d", suma);
+                    if(suma>0) ili9341_printStr(display, puntos);
                     
                 }  
                 
@@ -290,8 +288,9 @@ void LeerPantalla(void){
    ili9341_spi_init(100000000);
 }
 
-Juego CalcularJuego(uint8_t *dados){
+Juego CalcularJuego(uint8_t *dados,uint8_t *puntaje){
    uint8_t histograma[6]={0,0,0,0,0,0};
+   uint8_t nmax=0,puntmax=0;
    uint8_t histohisto[6]={0,0,0,0,0,0};
    bool seis=false,uno=false;
    for (int i = 0; i < 5; i++){
@@ -300,19 +299,60 @@ Juego CalcularJuego(uint8_t *dados){
       if(dados[i]-1==1) uno=true;
    }
    for (int i = 0; i < 6; i++){
+      if(puntmax<(histograma[i])*(i+1)){
+         puntmax=(histograma[i])*(i+1);
+         nmax=(i+1);
+      }
       histohisto[histograma[i]]++;
    }
    //Si es generala
-   if(histohisto[5]==1) return generala;
+   if(histohisto[5]==1) {
+      *puntaje=50;
+      return generala;
+   }
    //Si es poker
-   if(histohisto[4]==1) return poker;
+   if(histohisto[4]==1){
+      *puntaje=40;
+      return poker;
+   }
    //Si es full
-   if(histohisto[3]==1 && histohisto[2]==1) return full;
+   if(histohisto[3]==1 && histohisto[2]==1){
+      *puntaje=30;
+      return full;
+   }
    //Si es escalera mayor o menor
    if(histohisto[1]==5){
-      if(seis && !uno) return emayor;
-      if(!seis && uno) return emenor;
+      if(seis && !uno){
+         *puntaje=25;
+         return emayor;
+      }
+      if(!seis && uno){
+         *puntaje=20;
+         return emenor;
+      }
    }
+   *puntaje=puntmax;
+   switch(nmax){
+      case 1:
+         return j1;
+         break;
+      case 2:
+         return j2;
+         break;
+      case 3:
+         return j3;
+         break;
+      case 4:
+         return j4;
+         break;
+      case 5:
+         return j5;
+         break;
+      case 6:
+         return j6;
+         break;
+   }
+   *puntaje=0;
    return nada;
 }
 
