@@ -3,11 +3,11 @@
 Rectangle Dado1,Dado2,Dado3,Dado4,Dado5,Push2Start;
 
 static void InitRectangles(){
-    Dado1.xi=0; Dado1.yi=0; Dado1.xs=0; Dado1.ys=0;
-    Dado2.xi=0; Dado2.yi=0; Dado2.xs=0; Dado2.ys=0;
-    Dado3.xi=0; Dado3.yi=0; Dado3.xs=0; Dado3.ys=0;
-    Dado4.xi=0; Dado4.yi=0; Dado4.xs=0; Dado4.ys=0;
-    Dado5.xi=0; Dado5.yi=0; Dado5.xs=0; Dado5.ys=0;
+    Dado4.xi=1; Dado4.yi=1; Dado4.xs=4; Dado4.ys=5;
+    Dado1.xi=1; Dado1.yi=8; Dado1.xs=4; Dado1.ys=12;
+    Dado3.xi=6; Dado3.yi=4; Dado3.xs=9; Dado3.ys=8;
+    Dado2.xi=10; Dado2.yi=8; Dado2.xs=13; Dado2.ys=12;
+    Dado5.xi=10; Dado5.yi=1; Dado5.xs=13; Dado5.ys=5;
     Push2Start.xi=3; Push2Start.yi=3; Push2Start.xs=11; Push2Start.ys=5;
     return;
 }
@@ -83,11 +83,11 @@ void XPT2046_Touchscreen_readData(TS_Point *punto) {
     punto->z=z;
 
 
-    printf("Coord X : (%d)   Coord Y: (%d)   ",x,y);
+    //printf("Coord X : (%d)   Coord Y: (%d)   ",x,y);
     if(punto->x != x || punto->y !=y){
        punto->amount=0;
     }else punto->amount=(punto->amount)+1;
-    printf("Cantidad: (%d)   \r\n",punto->amount);
+    //printf("Cantidad: (%d)   \r\n",punto->amount);
     punto->x=x;
     punto->y=y;
     if(punto->amount >= 5){

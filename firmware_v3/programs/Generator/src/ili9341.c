@@ -1241,6 +1241,19 @@ int ili9341_drawDadoNumero(const ili9341_desc_ptr_t desc, uint8_t pos, uint8_t n
 
 	switch (numero)
 	{
+   case 0:
+      ili9341_setTextSize(5);
+		ili9341_setCursor(x, y);   //Con esto hacemos el offset para que quede donde queremos
+		ili9341_setTextColor(DadoBorde, DadoFondo);
+		ili9341_printStr(desc,"?");
+      //ili9341_dibujar_punto(desc, 1, x, y, DadoBorde);
+      //ili9341_dibujar_punto(desc, 2, x, y, DadoBorde);
+      //ili9341_dibujar_punto(desc, 3, x, y, DadoBorde);
+      //ili9341_dibujar_punto(desc, 4, x, y, DadoBorde);
+      //ili9341_dibujar_punto(desc, 5, x, y, DadoBorde);
+      //ili9341_dibujar_punto(desc, 6, x, y, DadoBorde);
+      //ili9341_dibujar_punto(desc, 7, x, y, DadoBorde);
+      break;
 	case 1:
 		ili9341_dibujar_punto(desc, 4, x, y, DadoBorde);
 		break;
@@ -1319,15 +1332,15 @@ void ili9341_seleccionarDado(const ili9341_desc_ptr_t desc, uint16_t pos, uint16
 	x -= 5;
 	y -= 5;
 
-	ili9341_drawRectangle(desc, x, y, largo, 2, color);	//nor-oeste
-	ili9341_drawRectangle(desc, x, y, 2, largo, color);
+	ili9341_drawRectangle(desc, x, y, 30, 2, color);	//nor-oeste
+	ili9341_drawRectangle(desc, x, y, 2, 30, color);
 
-	ili9341_drawRectangle(desc, x + 90 - largo + correccion, y, largo, 2, color);	//nor-este
-	ili9341_drawRectangle(desc, x + 89, y, 2, largo, color);
+	ili9341_drawRectangle(desc, x + 61, y, 30, 2, color);	//nor-este
+	ili9341_drawRectangle(desc, x + 89, y, 2, 30, color);
 
-	ili9341_drawRectangle(desc, x + 90 - largo + correccion, y + 89, largo, 2, color); // sur-este
-	ili9341_drawRectangle(desc, x + 89, y + 90 - largo + correccion, 2, largo, color);
+	ili9341_drawRectangle(desc, x + 61, y + 89, 30, 2, color); // sur-este
+	ili9341_drawRectangle(desc, x + 89, y + 61, 2, 30, color);
 
-	ili9341_drawRectangle(desc, x, y + 89, largo, 2, color);	//sur-oeste
-	ili9341_drawRectangle(desc, x, y + 90 - largo + correccion, 2, largo, color);
+	ili9341_drawRectangle(desc, x, y + 89, 30, 2, color); // sur-oeste
+	ili9341_drawRectangle(desc, x, y + 61, 2, 30, color);
 }
