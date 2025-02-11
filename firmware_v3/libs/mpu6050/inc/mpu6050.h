@@ -5,6 +5,6 @@
 #include <math.h>
 
 void mpu6050Init();
-int agitando();
+int agitando(float umbralMagnitudAccel);
 
 #endif // MPU6050_H

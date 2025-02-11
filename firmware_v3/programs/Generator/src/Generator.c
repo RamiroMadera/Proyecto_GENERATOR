@@ -163,10 +163,10 @@ int main(void) {
                      ili9341_seleccionarDado(display, dado, 0);
                      seleccion[dado-1]=true;
                   }
-                  delay(50);
+                  delay(100);
                   printf("Dado Numero (%d) \r\n");
                }
-               if (agitando() && true) {      //Falta agregar la condicion de dados no seleccionados
+               if (agitando(8) && (!seleccion[0] || !seleccion[1] || !seleccion[2] || !seleccion[3] || !seleccion[4] || !seleccion[5])) {      //Falta agregar la condicion de dados no seleccionados
                   estado = sacudiendo;
                }
 
@@ -174,11 +174,10 @@ int main(void) {
 
             case sacudiendo:
                 estadoAnt = sacudiendo;
-
                 //Randomizar dados no seleccinados y dibujarlos.
                 //falta implementar la fora de randomizar y escribir el arreglo que va a tener el numero de los dados
                ili9341_spi_init(100000000);
-               while (agitando()){
+               while (agitando(0.1)){
                 for (int i = 1; i < 6; i++){
                     if (!seleccion[i-1]){
                        ili9341_drawDadoNumero(display, i, (i+veces)%6+1);
@@ -187,8 +186,9 @@ int main(void) {
                 //////////////// Sonido ///////////////////////
                 printf("Sacudiendooooo \r\n");
                 veces++;
+                delay(50);
                }
-                if(!agitando()){
+                if(!agitando(0.1) && veces >= 8){
                         estado = reposo;
                         veces = 0;
                 }
@@ -198,7 +198,7 @@ int main(void) {
                 break;
             }
         //ili9341_drawPixel(display, 0, 0,0xfd35);
-        delay_ms(100);
+        delay_ms(25);
     }
 
 

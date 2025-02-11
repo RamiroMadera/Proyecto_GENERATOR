@@ -13,8 +13,8 @@ while (TRUE) {
          gpioWrite(LED2, HIGH); // Movimiento detectado
       } else {
          gpioWrite(LED2, LOW);  // Sin movimiento
-      }
-      delay(400); // Esperar
-   }
+      }                           
+      delay(100); // Esperar
+   }                  
    return 0;
 }
