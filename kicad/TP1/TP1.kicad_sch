@@ -6,8 +6,8 @@
 	(paper "A4")
 	(title_block
 		(title "GENERATOR Esquemático")
-		(date "31/10/2024")
-		(rev "1.2")
+		(date "10/02/2024")
+		(rev "1.3")
 	)
 	(lib_symbols
 		(symbol "Amplifier_Audio:LM386"
@@ -4009,7 +4009,7 @@
 		(uuid "df7463ec-cdd6-47b2-8c9f-ff35c9430bde")
 	)
 	(no_connect
-		(at 66.04 116.84)
+		(at 66.04 109.22)
 		(uuid "e240985c-408e-43c4-8c75-54032b2d535f")
 	)
 	(no_connect
@@ -4324,6 +4324,16 @@
 	)
 	(wire
 		(pts
+			(xy 66.04 116.84) (xy 68.58 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "90b53698-5945-496d-971b-bc7583c4a413")
+	)
+	(wire
+		(pts
 			(xy 252.73 60.96) (xy 252.73 63.5)
 		)
 		(stroke
@@ -4341,16 +4351,6 @@
 			(type default)
 		)
 		(uuid "a0239b50-560d-4873-a556-08590ea62ab8")
-	)
-	(wire
-		(pts
-			(xy 66.04 109.22) (xy 68.58 109.22)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a073bfef-1d0e-471b-86db-099676b60496")
 	)
 	(wire
 		(pts
@@ -4977,7 +4977,7 @@
 	)
 	(global_label "SPI_MOSI"
 		(shape input)
-		(at 68.58 109.22 0)
+		(at 68.58 116.84 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4987,7 +4987,7 @@
 		)
 		(uuid "dbd07c48-d3cf-419a-b6b9-38f3e49492f7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 80.2133 109.22 0)
+			(at 80.2133 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
