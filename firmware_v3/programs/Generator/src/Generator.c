@@ -167,7 +167,6 @@ int main(void) {
                      ili9341_seleccionarDado(display, dado, 0);
                      seleccion[dado-1]=true;
                   }
-                  delay(150);
                   printf("Dado Numero (%d) \r\n");
                }
                if (agitando(8) && (!seleccion[0] || !seleccion[1] || !seleccion[2] || !seleccion[3] || !seleccion[4]) ) {      //Falta agregar la condicion de dados no seleccionados

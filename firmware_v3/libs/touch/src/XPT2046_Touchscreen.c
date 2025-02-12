@@ -83,13 +83,20 @@ void XPT2046_Touchscreen_readData(TS_Point *punto) {
     punto->z=z;
 
 
-    //printf("Coord X : (%d)   Coord Y: (%d)   ",x,y);
+    printf("Coord X : (%d)   Coord Y: (%d)   ",x,y);
     if(punto->x != x || punto->y !=y){
-       if(punto->amount < 5) punto->amount=0;
+       if(punto->amount < 5) {
+          punto->amount=0;
+         punto->x=x;
+         punto->y=y;
+          }
        else{
           punto->tolerancia++;
+          //punto->amount++;
           if(punto->tolerancia > 1){
              punto->amount=0;
+             punto->x=x;
+             punto->y=y;
              punto->tolerancia=0;
           }
        }
@@ -97,9 +104,7 @@ void XPT2046_Touchscreen_readData(TS_Point *punto) {
        punto->amount=(punto->amount)+1;
        punto->tolerancia=0;
     }
-    //printf("Cantidad: (%d)   \r\n",punto->amount);
-    punto->x=x;
-    punto->y=y;
+    printf("Cantidad: (%d)   \r\n",punto->amount);
     if(punto->amount == 5){
        //printf("Estoy tocando algooo");
        punto->firsttouch=true;
