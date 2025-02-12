@@ -1243,7 +1243,7 @@ int ili9341_drawDadoNumero(const ili9341_desc_ptr_t desc, uint8_t pos, uint8_t n
 	{
    case 0:
       ili9341_setTextSize(5);
-		ili9341_setCursor(x, y);   //Con esto hacemos el offset para que quede donde queremos
+		ili9341_setCursor(x+15, y+12);   //Con esto hacemos el offset para que quede donde queremos
 		ili9341_setTextColor(DadoBorde, DadoFondo);
 		ili9341_printStr(desc,"?");
       //ili9341_dibujar_punto(desc, 1, x, y, DadoBorde);

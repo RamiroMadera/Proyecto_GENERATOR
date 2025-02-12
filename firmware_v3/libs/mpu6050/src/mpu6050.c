@@ -2,7 +2,7 @@
 
 static MPU60X0_address_t addr = MPU60X0_ADDRESS_0;
 static float prevMagnitude = 0;
-static float umbralMagnitudAccel = 1.6;
+//static float umbralMagnitudAccel = 2.5;
 
 void mpu6050Init() {
    boardConfig();
@@ -14,7 +14,7 @@ void mpu6050Init() {
    prevMagnitude = sqrt(pow(AccelX, 2) + pow(AccelY, 2) + pow(AccelZ, 2));
 }
 
-int agitando() {
+int agitando(float umbralMagnitudAccel) {
    mpu60X0Read();
    float AccelX = mpu60X0GetAccelX_mss();
    float AccelY = mpu60X0GetAccelY_mss();

@@ -100,13 +100,10 @@ void XPT2046_Touchscreen_readData(TS_Point *punto) {
     //printf("Cantidad: (%d)   \r\n",punto->amount);
     punto->x=x;
     punto->y=y;
-    if(punto->amount >= 5){
+    if(punto->amount == 5){
        //printf("Estoy tocando algooo");
-       if(punto->firsttouch) punto->firsttouch=false;
-       else punto->firsttouch=true;
+       punto->firsttouch=true;
     }else punto->firsttouch=false;
-    //NVIC_EnableIRQ(PIN_INT1_IRQn);
-
 }
 
 bool_t PointInRectangle(TS_Point *punto, Rectangle *boton){
