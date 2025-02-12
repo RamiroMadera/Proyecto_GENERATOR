@@ -17,6 +17,7 @@ int16_t veces=0;
 uint8_t dados[5]={0,0,0,0,0};
 bool seleccion[5]={false,false,false,false,false};
 uint8_t suma;
+int16_t seedinicio,seedreposo;
 char puntos[12];
 Juego tirada;
 
@@ -60,6 +61,7 @@ int main(void) {
                     estado = reposo;
                     printf("Cambio de estado \r\n");
                 }
+                seedinicio++;
             break;
             case reposo:
                if ((estadoAnt != reposo)&&(estadoAnt != sacudiendo)){
@@ -71,8 +73,11 @@ int main(void) {
                   for (int i = 1; i < 6; i++){
                      ili9341_drawDadoBase(display, i);
                   }
+                  seedreposo=0;
                }
 
+               seedreposo++;
+               
                if (estadoAnt != reposo)
                {
                   if (estadoAnt == sacudiendo)
@@ -182,6 +187,7 @@ int main(void) {
             break;
 
             case sacudiendo:
+               if(dados[0]==0) srand (seedinicio*seedreposo);
                 estadoAnt = sacudiendo;
                 //Randomizar dados no seleccinados y dibujarlos.
                 //falta implementar la fora de randomizar y escribir el arreglo que va a tener el numero de los dados
@@ -269,8 +275,8 @@ void inicializacion(void){
     suma=0;
     estado=inicio;
     estadoAnt=apagado;
-    
-    srand (time(NULL));
+    seedinicio=0;
+    seedreposo=0;
     
     return;
 }
