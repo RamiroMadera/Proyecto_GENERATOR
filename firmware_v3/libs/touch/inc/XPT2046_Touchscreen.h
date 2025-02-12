@@ -30,6 +30,7 @@ typedef struct {
     int16_t z;
     bool_t firsttouch;
     int16_t amount;
+    int16_t tolerancia;
 } TS_Point;
 
 typedef struct{

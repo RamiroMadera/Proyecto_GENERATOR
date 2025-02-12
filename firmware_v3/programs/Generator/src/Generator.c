@@ -265,6 +265,7 @@ void inicializacion(void){
     valPantalla.y=-1;
     valPantalla.z=-1;
     valPantalla.amount=0;
+    valPantalla.tolerancia=0;
     valPantalla.firsttouch=false;
 
     //Aca va la inicializacion del MPU

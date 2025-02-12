@@ -85,8 +85,18 @@ void XPT2046_Touchscreen_readData(TS_Point *punto) {
 
     //printf("Coord X : (%d)   Coord Y: (%d)   ",x,y);
     if(punto->x != x || punto->y !=y){
-       punto->amount=0;
-    }else punto->amount=(punto->amount)+1;
+       if(punto->amount < 5) punto->amount=0;
+       else{
+          punto->tolerancia++;
+          if(punto->tolerancia > 1){
+             punto->amount=0;
+             punto->tolerancia=0;
+          }
+       }
+    }else{
+       punto->amount=(punto->amount)+1;
+       punto->tolerancia=0;
+    }
     //printf("Cantidad: (%d)   \r\n",punto->amount);
     punto->x=x;
     punto->y=y;
