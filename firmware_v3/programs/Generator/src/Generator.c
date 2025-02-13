@@ -195,7 +195,7 @@ int main(void) {
                while (agitando(0.1)){
                 for (int i = 1; i < 6; i++){
                     if (!seleccion[i-1]){
-                       ili9341_drawDadoNumero(display, i, (i+veces)%6+1);
+                       ili9341_drawDadoNumero(display, i, (rand())%6+1);
                      }
                 }
                 printf("Sacudiendooooo \r\n");
