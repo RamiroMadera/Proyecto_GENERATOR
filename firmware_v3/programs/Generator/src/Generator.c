@@ -294,8 +294,8 @@ Juego CalcularJuego(uint8_t *dados,uint8_t *puntaje){
    bool seis=false,uno=false;
    for (int i = 0; i < 5; i++){
       histograma[dados[i]-1]++;
-      if(dados[i]-1==6) seis=true;
-      if(dados[i]-1==1) uno=true;
+      if(dados[i]==6) seis=true;
+      if(dados[i]==1) uno=true;
    }
    for (int i = 0; i < 6; i++){
       if(puntmax<(histograma[i])*(i+1)){
