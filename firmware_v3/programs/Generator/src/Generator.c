@@ -211,7 +211,7 @@ int main(void) {
                   //Imprimir nombre del juego
                   ili9341_setTextSize(3);
                   ili9341_setCursor(135, 30);
-                  ili9341_setTextColor(0xFFFF, 0xfd35);
+                  ili9341_setTextColor(0xFFFF, 0xc0e6);
                   switch (tirada) {
                      case generala:
                         ili9341_printStr(display, "GEN");
