@@ -42,17 +42,99 @@ int main(void) {
                 if ((estadoAnt!= inicio)){
                     //dibujo de menu principal con nombre de juego y boton de "iniciar"
                     ili9341_spi_init(100000000);
+
                     ili9341_paintBackground(display, 0);
+                    
+
+                    ili9341_paintBackground(display, 0);
+
+                    uint16_t col = YELLOW;
+                    ili9341_drawHLine(display, 141, 1, 179 - 141, col);
+                    ili9341_drawHLine(display, 137, 2, 183 - 137, col);
+                    ili9341_drawHLine(display, 134, 3, 186 - 134, col);
+                    ili9341_drawHLine(display, 132, 4, 188 - 132, col);
+                    
+                    ili9341_drawHLine(display, 124, 8, 196 - 124, col);
+                    ili9341_drawHLine(display, 122, 9, 198 - 122, col);
+                    ili9341_drawHLine(display, 120, 10, 200 - 120, col);
+                    ili9341_drawHLine(display, 119, 11, 201 - 119, col);
+
+                    ili9341_drawHLine(display, 113, 15, 207 - 113, col);
+                    ili9341_drawHLine(display, 112, 16, 208 - 112, col);
+                    ili9341_drawHLine(display, 111, 17, 209 - 111, col);
+                    ili9341_drawHLine(display, 110, 18, 210 - 110, col);
+
+                    ili9341_drawHLine(display, 106, 22, 214 - 106, col);
+                    ili9341_drawHLine(display, 105, 23, 215 - 105, col);
+                    ili9341_drawHLine(display, 104, 24, 216 - 104, col);
+                    ili9341_drawHLine(display, 103, 25, 217 - 103, col);
+
+                    ili9341_drawHLine(display, 100, 29, 220 - 100, col);
+                    ili9341_fillRect(display, 99, 30, 221 - 99, 2, col);
+                    ili9341_drawHLine(display, 98, 32, 222 - 98, col);
+
+                    col = ORANGE;
+                    ili9341_fillRect(display, 95, 36, 225 - 95, 2, col);
+                    ili9341_fillRect(display, 94, 38, 226 - 94, 2, col);
+
+                    ili9341_drawHLine(display, 92, 43, 228 - 92, col);
+                    ili9341_fillRect(display, 91, 44, 229 - 91, 3, col);
+
                     ili9341_setTextSize(5);
                     ili9341_setCursor(28, 50);
                     ili9341_setTextColor(0xdaa0, 0);
                     ili9341_printStr(display, "GENERATOR");
 
-                    ili9341_drawRectangle(display, 55, 140, 210, 50, 0xdaa0);
+                    ili9341_fillRect(display, 89, 93, 231 - 89, 2, col);
+                    ili9341_fillRect(display, 90, 95, 230 - 90, 2, col);
+
+                    ili9341_fillRect(display, 92, 100, 228 - 92, 3, col);
+                    ili9341_fillRect(display, 93, 103, 227 - 93, 1, col);
+                    
+                    col = RED;
+                    ili9341_fillRect(display, 95, 107, 225 - 95, 2, col);
+                    ili9341_fillRect(display, 96, 109, 224 - 96, 2, col);
+
+                    ili9341_fillRect(display, 99, 114, 221 - 99, 1, col);
+                    ili9341_fillRect(display, 100, 115, 220 - 100, 2, col);
+                    ili9341_fillRect(display, 101, 117, 219 - 101, 1, col);
+
+                    ili9341_fillRect(display, 104, 121, 216 - 104, 1, col);
+                    ili9341_fillRect(display, 105, 122, 215 - 105, 1, col);
+                    ili9341_fillRect(display, 106, 123, 214 - 106, 1, col);
+                    ili9341_fillRect(display, 107, 124, 213 - 107, 1, col);
+
+                    ili9341_fillRect(display, 111, 128, 209 - 111, 1, col);
+                    ili9341_fillRect(display, 112, 129, 208 - 112, 1, col);
+                    ili9341_fillRect(display, 113, 130, 207 - 113, 1, col);
+                    ili9341_fillRect(display, 115, 131, 205 - 115, 1, col);
+
+                    ili9341_fillRect(display, 120, 135, 200 - 120, 1, col);
+                    ili9341_fillRect(display, 122, 136, 198 - 122, 2, col);
+                    ili9341_fillRect(display, 124, 137, 196 - 124, 2, col);
+                    ili9341_fillRect(display, 126, 138, 194 - 126, 2, col);   
+
+
+
+                    ili9341_drawRectangle(display, 57, 142, 206, 46, 0xdaa0);
                     ili9341_setTextSize(3);
                     ili9341_setCursor(100, 153);
                     ili9341_setTextColor(0, 0xdaa0);
                     ili9341_printStr(display, "Iniciar");
+
+                    //detalles botón
+                    ili9341_drawRectangle(display, 56, 140, 208, 2, 0x8180);
+                    ili9341_drawRectangle(display, 55, 141, 2, 48, 0x8180);
+                    ili9341_drawRectangle(display, 56, 188, 208, 2, 0x8180);
+                    ili9341_drawRectangle(display, 263, 141, 2, 48, 0x8180);
+
+                    
+                    ili9341_drawRectangle(display, 64, 127, 30, 2, 0x9820);
+                    ili9341_drawRectangle(display, 62, 129, 2, 15, 0x9820);
+
+                    ili9341_drawRectangle(display, 226, 181, 30, 2, 0x9820); //esquina 256, 181
+                    ili9341_drawRectangle(display, 256, 166, 2, 15, 0x9820);
+                    //
 
                     estadoAnt = inicio;
                 }
