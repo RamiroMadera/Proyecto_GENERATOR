@@ -129,8 +129,8 @@ int main(void) {
                     ili9341_drawRectangle(display, 263, 141, 2, 48, 0x8180);
 
                     
-                    ili9341_drawRectangle(display, 64, 127, 30, 2, 0x9820);
-                    ili9341_drawRectangle(display, 62, 129, 2, 15, 0x9820);
+                    ili9341_drawRectangle(display, 64, 147, 30, 2, 0x9820);
+                    ili9341_drawRectangle(display, 62, 149, 2, 15, 0x9820);
 
                     ili9341_drawRectangle(display, 226, 181, 30, 2, 0x9820); //esquina 256, 181
                     ili9341_drawRectangle(display, 256, 166, 2, 15, 0x9820);
@@ -149,7 +149,7 @@ int main(void) {
                if ((estadoAnt != reposo)&&(estadoAnt != sacudiendo)){
                   //dibujar SOLO el fondo y borde de dados
                   ili9341_spi_init(100000000);
-                  ili9341_paintBackground(display, 0xfd35);
+                  ili9341_paintBackground(display, 0xc0e6);
                   ili9341_setDadoFondo(0xFFFF);
                   ili9341_setDadoBorde(0);
                   for (int i = 1; i < 6; i++){
