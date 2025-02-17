@@ -56,7 +56,7 @@ int main(void) {
                     ili9341_setCursor(115, 147);
                     ili9341_printStr(display, "SQUARE");
                     ili9341_setCursor(115, 157);
-                    ili9341_printStr(display, "PRODUCTIONS.");
+                    ili9341_printStr(display, "PRODUCTIONS_");
 
                     ili9341_setTextColor(WHITE, BLACK);
                     ili9341_setCursor(5, 206);
@@ -64,7 +64,7 @@ int main(void) {
                     ili9341_setCursor(5, 216);
                     ili9341_printStr(display, "MADERA");
                     ili9341_setCursor(5, 226);
-                    ili9341_printStr(display, "PEREIRA.");
+                    ili9341_printStr(display, "PEREIRA_");
 
                     delay_ms(3000);
                     ili9341_paintBackground(display, 0);
@@ -269,7 +269,7 @@ int main(void) {
                   //Selecciono/deselecciono el dado
                   //Y dibujo la seleccion
                   if (seleccion[dado-1]) {
-                     ili9341_seleccionarDado(display, dado, 0xfd35);
+                     ili9341_seleccionarDado(display, dado, 0xc0e6);
                      seleccion[dado-1]=false;
                   } else {
                      ili9341_seleccionarDado(display, dado, 0);
@@ -314,7 +314,6 @@ int main(void) {
             default:
                 break;
             }
-        //ili9341_drawPixel(display, 0, 0,0xfd35);
         delay_ms(25);
     }
 
