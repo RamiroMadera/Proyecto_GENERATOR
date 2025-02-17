@@ -44,8 +44,29 @@ int main(void) {
                     ili9341_spi_init(100000000);
 
                     ili9341_paintBackground(display, 0);
-                    
+                    coord_2d_t square_top_left = {110, 70}; // (320-100)/2, (240-100)/2
+                    coord_2d_t square_bottom_right = {210, 170};
 
+                    ili9341_set_region(display, square_top_left, square_bottom_right);
+                    ili9341_fill_region(display, RED);
+                    ili9341_setTextSize(1);
+                    ili9341_setTextColor(BLACK, RED);
+                    ili9341_setCursor(115, 137);
+                    ili9341_printStr(display, "RED");
+                    ili9341_setCursor(115, 147);
+                    ili9341_printStr(display, "SQUARE");
+                    ili9341_setCursor(115, 157);
+                    ili9341_printStr(display, "PRODUCTIONS.");
+
+                    ili9341_setTextColor(WHITE, BLACK);
+                    ili9341_setCursor(5, 206);
+                    ili9341_printStr(display, "GARCIA");
+                    ili9341_setCursor(5, 216);
+                    ili9341_printStr(display, "MADERA");
+                    ili9341_setCursor(5, 226);
+                    ili9341_printStr(display, "PEREIRA.");
+
+                    delay_ms(3000);
                     ili9341_paintBackground(display, 0);
 
                     uint16_t col = YELLOW;
