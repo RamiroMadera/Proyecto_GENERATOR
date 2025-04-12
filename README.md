@@ -6,7 +6,7 @@ Dispositivo desarrollado con la **EDU-CIAA-NXP** que emula tiradas de dados, com
 
 ## 🎮 Características principales
 
-- **Simulación realista de tiradas de Generala**
+- **Simulación de tiradas de Generala**
   - Aleatorización de dados entre 1 y 6.
   - Selección de dados para conservar y volver a tirar.
   - Evaluación automática del puntaje y combinaciones.
@@ -31,9 +31,8 @@ Dispositivo desarrollado con la **EDU-CIAA-NXP** que emula tiradas de dados, com
 ## 🧠 Arquitectura del sistema
 
 - **Microcontrolador:** EDU-CIAA-NXP  
-- **Interacción por estados:** Inicio → Juego → Sacudida  
-- **Firmware en C** desarrollado bajo **CIAA Launcher** y **Eclipse IDE**  
-- **Actualización periódica cada 25 ms** para gestionar entradas/salidas y lógica del juego.
+- **Interacción por estados:** Inicio → Reposo → Sacudiendo 
+- **Firmware en C** desarrollado bajo **CIAA Launcher** 
 
 ---
 
