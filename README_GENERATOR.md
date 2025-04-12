@@ -6,7 +6,7 @@ Dispositivo desarrollado con la **EDU-CIAA-NXP** que emula tiradas de dados, com
 
 ## 🎮 Características principales
 
-- **Simulación de tiradas de Generala**
+- **Simulación realista de tiradas de Generala**
   - Aleatorización de dados entre 1 y 6.
   - Selección de dados para conservar y volver a tirar.
   - Evaluación automática del puntaje y combinaciones.
@@ -31,8 +31,9 @@ Dispositivo desarrollado con la **EDU-CIAA-NXP** que emula tiradas de dados, com
 ## 🧠 Arquitectura del sistema
 
 - **Microcontrolador:** EDU-CIAA-NXP  
-- **Interacción por estados:** Inicio → Reposo → Sacudiendo 
-- **Firmware en C** desarrollado bajo **CIAA Launcher** 
+- **Interacción por estados:** Inicio → Juego → Sacudida  
+- **Firmware en C** desarrollado bajo **CIAA Launcher** y **Eclipse IDE**  
+- **Actualización periódica cada 25 ms** para gestionar entradas/salidas y lógica del juego.
 
 ---
 
@@ -44,7 +45,7 @@ Dispositivo desarrollado con la **EDU-CIAA-NXP** que emula tiradas de dados, com
    ```
 2. Abrí el proyecto con CIAA Launcher.
 3. Compila y carga el firmware a la placa.
-4. Conecta los periféricos según el [esquemático incluido](https://github.com/RamiroMadera/Proyecto_GENERATOR/blob/main/kicad/GENERATOR_Esquematico.pdf).
+4. Conecta los periféricos según el [esquemático incluido](https://github.com/RamiroMadera/Proyecto_GENERATOR/tree/main/hardware).
 5. ¡Listo para jugar!
 
 ---
@@ -75,15 +76,6 @@ Se ha validado el correcto funcionamiento de todos los requerimientos. Puedes ve
 
 ---
 
-## 🚀 Próximos pasos
-
-- Añadir sistema de historial de puntajes  
-- Incorporar carcasa protectora  
-- Expansión a múltiples juegos de dados  
-- Conectividad en red para multijugador o leaderboard en la nube
-
----
-
 ## 🛠️ Créditos
 
 **Autores:**  
@@ -92,3 +84,13 @@ Se ha validado el correcto funcionamiento de todos los requerimientos. Puedes ve
 - Ulises Pereira  
 
 Este proyecto fue desarrollado como parte del curso **Taller de Proyecto I** en la **Facultad de Ingeniería, Universidad Nacional de La Plata**.
+
+---
+
+## 🚀 Próximos pasos
+
+- Añadir sistema de historial de puntajes  
+- Incorporar carcasa protectora  
+- Expansión a múltiples juegos de dados  
+- Conectividad en red para multijugador o leaderboard en la nube
+
